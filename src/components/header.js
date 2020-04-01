@@ -1,33 +1,31 @@
 import React from 'react'
 import { Link } from "gatsby"
 
-const Header = ({ siteTitle }) => (
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
+const Header = ({ siteTitle }) => { 
+
+
+  return (  
+  <div> 
+  
+  
+  <nav className="dt w-100 mw8 center">
+
+  <div className="dtc v-mid tr pa3">
+    
+   <Link className={"f6 fw4 hover-blue no-underline black-70 dn dib-ns pv2 ph3"}  to="/">Home</Link>
+
+    <a className="f6 fw4 hover-blue no-underline black-70 dn dib-ns pv2 ph3"
+      href="https://legislation-tweets.herokuapp.com/">Paid Leave Twitter Mentions</a>
+
+   <Link className={"f6 fw4 hover-blue no-underline black-70 dn dib-ns pv2 ph3"}  to="/">Blog</Link>
+
+    <a className="f6 fw4 hover-blue no-underline black-70 dn dib-ns pv2 ph3"
+      href="https://www.kennywhyte.com/">Created with 🍕 by Kenny</a>
   </div>
-)
+</nav>
+
+
+  </div>)
+}
 
 export default Header
