@@ -6,8 +6,7 @@ const Header = ({ siteTitle }) => {
 
   return (  
   <div> 
-  
-  
+
   <nav className="dt w-100 mw8 center">
 
   <div className="dtc v-mid tr pa3">
