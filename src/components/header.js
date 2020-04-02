@@ -16,7 +16,7 @@ const Header = ({ siteTitle }) => {
     <a className="f6 fw4 hover-blue no-underline black-70 dn dib-ns pv2 ph3"
       href="https://legislation-tweets.herokuapp.com/">Paid Leave Twitter Mentions</a>
 
-   <Link className={"f6 fw4 hover-blue no-underline black-70 dn dib-ns pv2 ph3"}  to="/">Blog</Link>
+   <Link className={"f6 fw4 hover-blue no-underline black-70 dn dib-ns pv2 ph3"}  to="/blog">Blog</Link>
 
     <a className="f6 fw4 hover-blue no-underline black-70 dn dib-ns pv2 ph3"
       href="https://www.kennywhyte.com/">Created with 🍕 by Kenny</a>
