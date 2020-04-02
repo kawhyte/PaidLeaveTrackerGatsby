@@ -23,7 +23,7 @@ export default ({ children }) => (
              <Header /> 
              {children}
 
-             <Footer />>
+             <Footer />
            </div>
          </>
        )}
