@@ -25,11 +25,12 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "env-cmd -f .env.development gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "env-cmd": "^10.1.0",
     "prettier": "^2.0.2",
     "tachyons": "^4.11.1"
   },
