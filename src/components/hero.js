@@ -3,6 +3,7 @@ import { Link, graphql, useStaticQuery } from 'gatsby'
 import 'tachyons'
 import '../layouts/tachyons/css/tachyons.css'
 import img from '../layouts/img/fam-2.svg'
+import Img from "gatsby-image"
 
 const Hero = () => {
   const data = useStaticQuery(graphql`
@@ -15,15 +16,21 @@ const Hero = () => {
     }
   `)
   return (
+<div> 
     <div
       id="bg-hero"
       class="contain bg-center cover"
       style={{
+        backgroundImage: "url("+ img + ")",
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        height: 520
         // background: url('../layouts/img/fam-2.svg'),
-        marginBottom: '1.45rem',
       }}
     >
       <div class="bg-black-0 pb5 pb6-m pb7-l">
+      
         <div class="tc-l mt3 mt4-m mt5-l ph3">
           <h1 class="f2 f1-l fw2 black-80 mb0 lh-title">
             {data.site.siteMetadata.title}
@@ -33,6 +40,7 @@ const Hero = () => {
           </h2>
         </div>
       </div>
+    </div>
     </div>
   )
 }
