@@ -52,7 +52,7 @@ const BlogPage = () => {
                       </h1>
                     </Link>
                     <h2 class="f6 fw4 mt2 mb0 black-60">
-                      Posted by: Kenny Whyte
+                      Posted by: Kenny 
                     </h2>
                     <dl class="mt2 f6">
                       <dt class="clip">Date</dt>
