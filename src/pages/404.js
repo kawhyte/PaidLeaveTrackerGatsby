@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'gatsby'
 import Layout from '../components/layout'
 
 const NotFoundPage = () => {
@@ -11,7 +12,10 @@ const NotFoundPage = () => {
   </header>
   <p class="fw1 i tc mt4 mt5-l f4 f3-l">Are you looking for one of these?</p>
   <ul class="list tc pl0 w-100 mt5">
+    <Link to='/'> 
     <li class="dib"><a class="f5 f4-ns link black db pv2 ph3 hover-light-purple" href="/">Home</a></li>
+  </Link>
+
     <li class="dib"><a class="f5 f4-ns link black db pv2 ph3 hover-light-purple" href="/about">About</a></li>
     <li class="dib"><a class="f5 f4-ns link black db pv2 ph3 hover-light-purple" href="/careers">Careers</a></li>
     <li class="dib"><a class="f5 f4-ns link black db pv2 ph3 hover-light-purple" href="/contact">Contact</a></li>
