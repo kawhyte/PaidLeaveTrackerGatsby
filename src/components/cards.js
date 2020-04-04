@@ -4,28 +4,29 @@ import Footer from "../components/footer"
 import Header from "../components/header"
 import Hero from "../components/hero"
 import Layout from "../components/layout"
-import Card from "../components/cards"
-
-const IndexPage = () => {
-
-  return ( 
-  <div  className="Roboto">
 
 
 
+const Card = () => {
 
-<Layout> 
-<Hero /> 
+return(
+    <div> 
 
-<Card> </Card>
-  
-</Layout>
+        
+    <h1> This is a card </h1>
+    <Link to="/page-2/">Go to page 2</Link>
    
-  </div>
 
 
+    
+
+
+    
+    </div>
 )
-  
+
 }
 
-export default IndexPage
+
+
+export default Card
