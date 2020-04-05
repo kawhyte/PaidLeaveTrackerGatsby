@@ -30,7 +30,7 @@ module.exports = {
         headers: {
 
           // Learn about environment variables: https://gatsby.dev/env-vars
-          "X-API-KEY":"7af11ccd-afc5-4b19-9217-76f9f838389b",
+          "X-API-KEY":process.env.OPENSTATE,
           
         },
         // Additional options to pass to node-fetch
