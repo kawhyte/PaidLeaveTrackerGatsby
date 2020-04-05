@@ -1,3 +1,14 @@
+
+console.log ("⚱️⚱️⚱️⚱️⚱️⚱️⚱️⚱️⚱️⚱️⚱️⚱️⚱️⚱️⚱️",process.env.CONTENTFUL_ACCESS_TOKEN)
+let activeEnv =
+  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || process.env.CONTENTFUL_ACCESS_TOKEN || "development"
+
+console.log(`%%%%%%%Using environment config%%%%%%%%%%: ${activeEnv}`)
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: 'Paid Leave Legislation Tracker',

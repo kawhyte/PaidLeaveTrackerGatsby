@@ -2,8 +2,8 @@ import React from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import 'tachyons'
 import '../layouts/tachyons/css/tachyons.css'
-import img from '../layouts/img/fam-2.svg'
-import Img from "gatsby-image"
+import svg from '../layouts/img/fam-2.svg'
+
 
 const Hero = () => {
   const data = useStaticQuery(graphql`
@@ -21,7 +21,7 @@ const Hero = () => {
       id="bg-hero"
       class="contain bg-center cover"
       style={{
-        backgroundImage: "url("+ img + ")",
+        backgroundImage: "url("+ svg + ")",
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',

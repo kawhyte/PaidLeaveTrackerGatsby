@@ -19,7 +19,7 @@ const Header = ({ siteTitle }) => {
    <Link className={"f6 fw4 hover-blue no-underline black-70 dn dib-ns pv2 ph3"}  to="/blog">Blog</Link>
 
     <a className="f6 fw4 hover-blue no-underline black-70 dn dib-ns pv2 ph3"
-      href="https://www.kennywhyte.com/">Created with 🍕 by Kenny</a>
+      href="https://www.kennywhyte.com/">Created with <span role="img" aria-label="pizza"> 🍕</span> by Kenny</a>
   </div>
 </nav>
 
