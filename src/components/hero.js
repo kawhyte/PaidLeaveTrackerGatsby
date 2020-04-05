@@ -19,7 +19,7 @@ const Hero = () => {
 <div> 
     <div
       id="bg-hero"
-      class="contain bg-center cover"
+      className="contain bg-center cover"
       style={{
         backgroundImage: "url("+ svg + ")",
         backgroundPosition: 'center',
@@ -29,13 +29,13 @@ const Hero = () => {
         // background: url('../layouts/img/fam-2.svg'),
       }}
     >
-      <div class="bg-black-0 pb5 pb6-m pb7-l">
+      <div className="bg-black-0 pb5 pb6-m pb7-l">
       
-        <div class="tc-l mt3 mt4-m mt5-l ph3">
-          <h1 class="f2 f1-l fw2 black-80 mb0 lh-title">
+        <div className="tc-l mt3 mt4-m mt5-l ph3">
+          <h1 className="f2 f1-l fw2 black-80 mb0 lh-title">
             {data.site.siteMetadata.title}
           </h1>
-          <h2 class="fw1 f3 black-50 mt3 mb1">
+          <h2 className="fw1 f3 black-50 mt3 mb1">
             Track and review upcoming family paid leave legislations
           </h2>
         </div>
