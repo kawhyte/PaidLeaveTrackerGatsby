@@ -32,7 +32,7 @@ const BlogPage = () => {
             <article className="dt w-100 bb b--black-05 pb2 mt2" href="#0">
               <Link to={`/blog/${post.node.slug}`}>
                 <div class="dtc w2 w3-ns v-mid">
-                  <img alt="blog photo"
+                  <img alt="blog"
                     src="http://mrmrs.github.io/photos/p/2.jpg"
                     className="ba b--black-10 db br-100 w2 w3-ns h2 h3-ns"
                   />

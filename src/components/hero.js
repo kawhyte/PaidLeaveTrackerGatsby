@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, graphql, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import 'tachyons'
 import '../layouts/tachyons/css/tachyons.css'
 import svg from '../layouts/img/fam-2.svg'
