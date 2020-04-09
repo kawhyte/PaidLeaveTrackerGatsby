@@ -3,14 +3,9 @@ import { Link } from 'gatsby'
 import addDays from 'date-fns/addDays'
 import  differenceInDays from 'date-fns/differenceInDays'
 import  parseJSON from 'date-fns/parseJSON'
-
-// let differenceInCalendarDays = require("date-fns/differenceInCalendarDays");
-// let date = require("date-fns");
-// let add = require("date-fns/add")
-// //var addDays = require('date-fns/addDays')
-// // var formatDistance = require("date-fns");
-//  let parseJSON = require("date-fns/parseJSON");
-
+import {status, statusColor} from '../Util/helper'
+import format from 'date-fns/format'
+let bg_color = ""
 const Card = ({ title, identifier, jurisdiction, createdAt, sources, actions  }) => {
 
  ////LOGIC TO CHECK IF BILL IS NEW //////
@@ -38,7 +33,16 @@ let futureDate = addDays(new Date(Date.now()), 7)
         Object.values(value.description).includes("executive") 
     );
 
- console.log("importantValue ", jurisdiction, identifier, isMajorUpdate)
+    if (actions.length) {
+      bg_color = "bg-green"
+    }else {
+      bg_color = "bg-gray"
+    }
+
+  console.log("actions.lengton ", actions[0].date)
+  console.log("actions.lengton 2 ", format(new Date(actions[0].date),'MM/dd/yyyy'))
+  // console.log("actions.lengton ", format(new Date(parseJSON(actions[0].date)),'MM/dd/yyyy'))
+ console.log("statusColor ", jurisdiction, identifier, statusColor [actions[actions.length-1].classification[0]].color)
 
 
   return (
@@ -48,7 +52,7 @@ let futureDate = addDays(new Date(Date.now()), 7)
     <div className="vh-10 dt w-100 tc b--black-20">
 
     <div className="tc mt3">
-    <img src={"https://res.cloudinary.com/babyhulk/image/upload/v1584505244/flags/Flag_of_" + jurisdiction}  alt= {"Flag of" + jurisdiction} className="br2 h3 w3 dib" title={"Flag of " + jurisdiction} ></img>
+    <img src={"https://res.cloudinary.com/babyhulk/image/upload/v1584505244/flags/Flag_of_" + jurisdiction +".svg"}  alt= {"Flag of" + jurisdiction} className="br2 h3 w3 dib" title={"Flag of " + jurisdiction} ></img>
   <h1 className="f4">{jurisdiction} - {identifier}</h1>
     <span>
    {billDateDifference > -7714 ? <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy bg-light-yellow">New</a> : " "} { isMajorUpdate ? <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy bg-washed-green">Major Update</a> : " "}
@@ -66,32 +70,43 @@ let futureDate = addDays(new Date(Date.now()), 7)
 
                         <div className="pt2 f3-m fw5 white">
                                 
-                        <h3 className="tc f4 f4-m measure-narrow lh-title mv0 bg-black-10 center">
-                            <span className="$
-                              data.statusColor
-                             lh-copy black pa1 tracked-tight tc">
+                        <h3 className="tc f4 f4-m measure-narrow lh-title mv0 center">
+                            <span className={"lh-copy black pa1 tracked-tight tc " + statusColor [actions[actions.length - 1].classification[0]].color}>
                              {actions[actions.length - 1].description}
                             </span>
                           </h3>
                    
                             <div className="pt3 pl3 pr3 w-100 dt dt--fixed bg-black-50 flex items-center justify-between">
-                            <span> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy tc bg-light-yellow" style={{width: 100}}>Introduced</a></span>
-                            <span>&#8594;</span>
-                            <span> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy bg-light-yellow tc "style={{width: 100}}>House</a></span>
-                            <span>&#8594;</span>
-                            <span> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy bg-light-yellow tc "style={{width: 100}}>Senate</a></span>
-                            <span>&#8594;</span>
-                            <span> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy bg-light-yellow tc "style={{width: 100}}>Governor</a></span>
-                        
+                            <div> 
+                            <span> <a className={"f6 grow no-underline br-pill ph2 pv1 mb0 dib navy tc " +  bg_color} style={{width: 85}}>Introduced</a></span>
+                            
+                             <small> <a className="f6 grow no-underline br-pill ph2 pv0 mb2 dib navy tc" style={{width: 80}}>{ format(new Date(actions[0].date),'MM/dd/yyyy') }</a></small>
+                            </div>
+                            
+                            
+                            
+                            <div> 
+                            <span> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy tc bg-light-yellow" style={{width: 80}}>House</a></span>
+                            
+                             <small> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy tc bg-light-yellow" style={{width: 80}}>Date</a></small>
+                            </div>
 
 
+                            <div> 
+                            <span> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy tc bg-light-yellow" style={{width: 80}}>Senate</a></span>
+                         
+                             <small> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy tc bg-light-yellow" style={{width: 80}}>Date</a></small>
+                            </div>
 
+
+                            <div> 
+                            <span> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy tc bg-light-yellow" style={{width: 80}}>Governor</a></span>
+                           
+                             <small> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy tc bg-light-yellow" style={{width: 80}}>Date</a></small>
+                            </div>                           
+                           
+                           
                            </div>
-                     
-                                
-                        
-
-
 
                             <div className="pt1 pl3 pr3 w-100 dt dt--fixed bg-red">
                        
