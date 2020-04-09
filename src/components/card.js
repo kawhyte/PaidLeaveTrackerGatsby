@@ -5,7 +5,11 @@ import  differenceInDays from 'date-fns/differenceInDays'
 import  parseJSON from 'date-fns/parseJSON'
 import {status, statusColor} from '../Util/helper'
 import format from 'date-fns/format'
+import svg from '../layouts/img/family-bg-green.svg'
+import Progress from './progressBar'
+import Headers from './header'
 let bg_color = ""
+
 const Card = ({ title, identifier, jurisdiction, createdAt, sources, actions  }) => {
 
  ////LOGIC TO CHECK IF BILL IS NEW //////
@@ -39,15 +43,64 @@ let futureDate = addDays(new Date(Date.now()), 7)
       bg_color = "bg-gray"
     }
 
-  console.log("actions.lengton ", actions[0].date)
+  console.log("jurisdiction ", jurisdiction)
   console.log("actions.lengton 2 ", format(new Date(actions[0].date),'MM/dd/yyyy'))
   // console.log("actions.lengton ", format(new Date(parseJSON(actions[0].date)),'MM/dd/yyyy'))
- console.log("statusColor ", jurisdiction, identifier, statusColor [actions[actions.length-1].classification[0]].color)
+//  console.log("statusColor ", jurisdiction, identifier, statusColor [actions[actions.length-1].classification[0]].color)
 
 
   return (
 
-<div className="div1 container ">
+<div className="div1 container bg-red-100">
+
+
+
+<div className="max-w-sm w-full lg:max-w-full lg:flex">
+  <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: "url("+ svg + ")"}} title="Woman holding a mug">
+  </div>
+  <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+    <div className="mb-8">
+      <div className="text-sm text-gray-600 flex items-center">
+   
+      <img className="w-10 h-10 rounded-full mr-4" src={"https://res.cloudinary.com/babyhulk/image/upload/v1584505244/flags/Flag_of_" + jurisdiction +".svg"} alt={"Flag of" + jurisdiction} />
+
+        <div className=" text-center py-4 lg:px-4">
+  <p className="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+   {billDateDifference > 14 ?   <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} { !isMajorUpdate ? <a className="flex rounded-full text-indigo-700 bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3">Major Update</a> : " "}
+  
+    <span className="font-semibold mr-2 text-left flex-auto">{jurisdiction} - {identifier}</span>
+  </p>
+</div>
+
+
+
+
+      </div>
+      <div className="text-gray-900 font-bold text-xl mb-2">Can coffee make you a better developer?</div>
+    <Progress></Progress>
+
+      <p className="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
+    </div>
+    <div className="flex items-center">
+      <div className="text-sm">
+        <p className="text-gray-900 leading-none">Jonathan Reinink</p>
+        <p className="text-gray-600">Aug 18</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
   <article className="mw6 center bg-white br3 pa3 pa0-ns mv3 ba b--black-20 shadow-5">
     <div className="vh-10 dt w-100 tc b--black-20">
 
@@ -55,6 +108,11 @@ let futureDate = addDays(new Date(Date.now()), 7)
     <img src={"https://res.cloudinary.com/babyhulk/image/upload/v1584505244/flags/Flag_of_" + jurisdiction +".svg"}  alt= {"Flag of" + jurisdiction} className="br2 h3 w3 dib" title={"Flag of " + jurisdiction} ></img>
   <h1 className="f4">{jurisdiction} - {identifier}</h1>
     <span>
+
+    <h2 className=" text-purple-600 bg-yellow-400 text-2xl font-bold inline-block my-8 p-3">
+          Hey there! Welcome to your first Gatsby site.
+        </h2>
+
    {billDateDifference > -7714 ? <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy bg-light-yellow">New</a> : " "} { isMajorUpdate ? <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy bg-washed-green">Major Update</a> : " "}
    </span>
     <hr className="mw3 bb bw1 b--black-10" />
@@ -71,9 +129,9 @@ let futureDate = addDays(new Date(Date.now()), 7)
                         <div className="pt2 f3-m fw5 white">
                                 
                         <h3 className="tc f4 f4-m measure-narrow lh-title mv0 center">
-                            <span className={"lh-copy black pa1 tracked-tight tc " + statusColor [actions[actions.length - 1].classification[0]].color}>
-                             {actions[actions.length - 1].description}
-                            </span>
+                            {/* <span className={"lh-copy black pa1 tracked-tight tc " + statusColor [actions[actions.length - 1].classification[0]].color}>
+                             {actions[actions.length - 1].description} */}
+                            {/* </span> */}
                           </h3>
                    
                             <div className="pt3 pl3 pr3 w-100 dt dt--fixed bg-black-50 flex items-center justify-between">

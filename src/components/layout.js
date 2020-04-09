@@ -20,7 +20,7 @@ export default ({ children }) => (
          <>
            <Helmet titleTemplate={`%s | ${data.site.siteMetadata.title}`} defaultTitle={data.site.siteMetadata.title} />
            <div>
-             <Header /> 
+     
              {children}
 
              <Footer />

@@ -15,8 +15,18 @@ module.exports = {
     author: 'Kenny Whyte',
     year: 2020,
   },
-  plugins: ['gatsby-plugin-react-helmet'],
-  plugins: [`gatsby-plugin-postcss`],
+  plugins: ['gatsby-plugin-react-helmet',
+
+  {
+    resolve: "gatsby-plugin-postcss",
+    options: {
+      postCssPlugins: [require(`tailwindcss`)(`./tailwind.config.js`),
+      require(`autoprefixer`),
+      require(`cssnano`)]
+    }
+  },
+
+],
 
   plugins: [
         // Advanced config, passing parameters to apollo-link
