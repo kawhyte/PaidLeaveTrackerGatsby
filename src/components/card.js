@@ -1,17 +1,12 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import addDays from 'date-fns/addDays'
 import  differenceInDays from 'date-fns/differenceInDays'
 import  parseJSON from 'date-fns/parseJSON'
-import {status, statusColor} from '../Util/helper'
 import format from 'date-fns/format'
-import svg from '../layouts/img/family-bg-green.svg'
 import sideImg from '../layouts/img/New_Mexico.jpg'
 import Progress from './progressBar'
-import Headers from './header'
-let bg_color = ""
 
-const Card = ({ title, identifier, jurisdiction, createdAt, sources, actions  }) => {
+const Card = ({ title, identifier, jurisdiction,actions  }) => {
 
  ////LOGIC TO CHECK IF BILL IS NEW //////
 let futureDate = addDays(new Date(Date.now()), 7)
@@ -49,12 +44,6 @@ let futureDate = addDays(new Date(Date.now()), 7)
         Object.values(value.description).includes("executive") 
     );
 
-    if (actions.length) {
-      bg_color = "bg-green"
-    }else {
-      bg_color = "bg-gray"
-    }
-
   console.log("jurisdiction ", jurisdiction)
   console.log("actions.lengton 2 ", format(new Date(actions[0].date),'MM/dd/yyyy'))
   // console.log("actions.lengton ", format(new Date(parseJSON(actions[0].date)),'MM/dd/yyyy'))
@@ -78,7 +67,7 @@ let futureDate = addDays(new Date(Date.now()), 7)
 
         <div className=" text-center py-4 lg:px-4">
   <p className="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-   {billDateDifference > 14 ?   <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} { !isMajorUpdate ? <a className="flex rounded-full text-indigo-700 bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3">Major Update</a> : " "}
+   {billDateDifference > 14 ?   <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} { !isMajorUpdate ? <a href="https://www.google.com/" className="flex rounded-full text-indigo-700 bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3">Major Update</a> : " "}
   
     <span className="font-semibold mr-2 text-left flex-auto">{jurisdiction} - {identifier}</span>
   </p>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from './card'
-import { Link, graphql, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 
 const CardList = function ({ robots, lotto }) {
   const data = useStaticQuery(graphql`

@@ -1,18 +1,8 @@
 import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
 import svg from '../layouts/img/family-green.svg'
 import Headers from './header'
 
 const Hero = () => {
-  const data = useStaticQuery(graphql`
-    query MyQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
   return (
 <div> 
 
@@ -20,7 +10,7 @@ const Hero = () => {
       
 {/* <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script> */}
 
-<div x-data="{ open: false }" className="relative bg-white overflow-hidden">
+<div className="relative bg-white overflow-hidden">
   <div className="max-w-screen-xl mx-auto ">
     <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
 
@@ -39,12 +29,12 @@ const Hero = () => {
           </p>
           <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
             <div className="rounded-md shadow">
-              <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+              <a href="https://www.google.com/" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                 Get started
               </a>
             </div>
             <div className="mt-3 sm:mt-0 sm:ml-3">
-              <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:shadow-outline focus:border-indigo-300 transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+              <a href="https://www.google.com/" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:shadow-outline focus:border-indigo-300 transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                 Live demo
               </a>
             </div>

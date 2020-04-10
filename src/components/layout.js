@@ -2,7 +2,6 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from "gatsby"
 import Footer from "../components/footer"
-import Header from "../components/header"
 
 
 export default ({ children }) => (
