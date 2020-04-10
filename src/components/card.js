@@ -67,7 +67,7 @@ let futureDate = addDays(new Date(Date.now()), 7)
 
 
 
-<div className="max-w-sm w-full lg:max-w-full lg:flex">
+<div className="max-w-sm w-full lg:max-w-full lg:flex m-5">
   <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: "url("+ sideImg + ")"}} title={jurisdiction}>
   </div>
   <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
@@ -112,145 +112,7 @@ let futureDate = addDays(new Date(Date.now()), 7)
 
 
 
-  <article className="mw6 center bg-white br3 pa3 pa0-ns mv3 ba b--black-20 shadow-5">
-    <div className="vh-10 dt w-100 tc b--black-20">
-
-
-    </div>
-
-    <div>
-        <article className="w-100 pa0 bg-black-10">
-
-            <div className=" bg-white black w-100 mt1 ph0 pv0">
-                <div className="w-100 pb3 bb b--light-gray flex items-center justify-between">
-
-                        <div className="pt2 f3-m fw5 white">
-                                
-                        <h3 className="tc f4 f4-m measure-narrow lh-title mv0 center">
-                            {/* <span className={"lh-copy black pa1 tracked-tight tc " + statusColor [actions[actions.length - 1].classification[0]].color}>
-                             {actions[actions.length - 1].description} */}
-                            {/* </span> */}
-                          </h3>
-                   
-                            <div className="pt3 pl3 pr3 w-100 dt dt--fixed bg-black-50 flex items-center justify-between">
-                            <div> 
-                            <span> <a className={"f6 grow no-underline br-pill ph2 pv1 mb0 dib navy tc " +  bg_color} style={{width: 85}}>Introduced</a></span>
-                            
-                             <small> <a className="f6 grow no-underline br-pill ph2 pv0 mb2 dib navy tc" style={{width: 80}}>{ format(new Date(actions[0].date),'MM/dd/yyyy') }</a></small>
-                            </div>
-                            
-                            
-                            
-                            <div> 
-                            <span> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy tc bg-light-yellow" style={{width: 80}}>House</a></span>
-                            
-                             <small> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy tc bg-light-yellow" style={{width: 80}}>Date</a></small>
-                            </div>
-
-
-                            <div> 
-                            <span> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy tc bg-light-yellow" style={{width: 80}}>Senate</a></span>
-                         
-                             <small> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy tc bg-light-yellow" style={{width: 80}}>Date</a></small>
-                            </div>
-
-
-                            <div> 
-                            <span> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy tc bg-light-yellow" style={{width: 80}}>Governor</a></span>
-                           
-                             <small> <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy tc bg-light-yellow" style={{width: 80}}>Date</a></small>
-                            </div>                           
-                           
-                           
-                           </div>
-
-                            <div className="pt1 pl3 pr3 w-100 dt dt--fixed bg-red">
-                       
-                                <div className="dtc h1 black  br1 br--left tc" style={{width: 50}}>
-                                    <small className= "f7 gray">{actions.date =
-                                      actions.length > 0
-                                        ? actions[0].date
-                                         
-                                        : "No data"}</small></div>
-                                <div className="dtc h1 black br1 br--left tc" style={{width: 50}}>
-                                    <small className= "f7 gray">
-                                      houseDate.length > 0 
-                                      houseDate.some
-                                        d => d.actor === "lower"
-                                     
-                                        ? houseDate.date.substring
-                                            0,
-                                            10
-                                         
-                                        : " "
-                                    </small></div>
-                                <div className="dtc h1 black br1 br--left tc" style={{width: 50}}>
-                                    <small className= "f7 gray" >
-                                      senateDate.length > 0 
-                                      senateDate.some
-                                        d => d.actor === "upper"
-                                      
-                                        ? senateDate.date.substring
-                                            0,
-                                            10
-                                          
-                                        : " "
-                                    </small></div>
-                                <div className="dtc h1 black  br1 br--left tc" style={{width: 50}}>
-                                    <small className= "f7 gray" >
-                                      govDate.length > 
-                                    govDate.some
-                                        d => d.actor === "upper"
-                                       ||
-                                        govDate.some
-                                          d =>
-                                            d.actor ===
-                                            "legislature"
-                                         ||
-                                        govDate.some
-                                          d =>
-                                            d.actor === "executive"
-                                         ||
-                                        govDate.some
-                                          d =>
-                                            d.type.includes ===
-                                            "governor:signed"
-                                       
-                                        ? govDate.date.substring
-                                            0,
-                                            10
-                                         
-                                        : " "
-                                    </small></div>
-                                <div className="dtc h1 bg-white o-30 br1 br--right"></div>
-                            </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-            <div className="pt3 pl3 pb0">
-            <small className="gray lh-title">Bill Title</small>
-  <span className="f6 db pv1 pr3 truncate">{title}</span>
-            </div>
-
-            <div className="pt3 pl3 pb0">
-            <small className="gray lh-title">Latest Action Date</small>
-            <span className="f6 db pv1"><time>{actions[actions.length - 1].date}</time></span>
-            </div>
-
-           
-
-            <div className="pt3 pl3 pb0">
-            <small className="gray lh-title">State Website</small>
-
-            
-            </div>
-            </article>
-  </div>
-    <div className=" pb3" > </div>
-  </article>
+  
 </div>
 
 
