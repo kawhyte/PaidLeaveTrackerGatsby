@@ -6,6 +6,7 @@ import  parseJSON from 'date-fns/parseJSON'
 import {status, statusColor} from '../Util/helper'
 import format from 'date-fns/format'
 import svg from '../layouts/img/family-bg-green.svg'
+import sideImg from '../layouts/img/New_Mexico.jpg'
 import Progress from './progressBar'
 import Headers from './header'
 let bg_color = ""
@@ -18,6 +19,17 @@ let futureDate = addDays(new Date(Date.now()), 7)
     futureDate,
     new Date(parseJSON("2020-04-03 11:02:32.289671+00:00"))
   );
+
+
+  /// Format to Sentence Case
+  function sentenceCase(string) {
+
+   let  lowercaseTitle = string.toLowerCase();
+   return ( lowercaseTitle[0].toUpperCase() +
+    lowercaseTitle.substring(1))
+
+ }
+// sentenceCase(testString.toLowerCase());
 
  ///LOGIC TO CHECK IF BILL IS IMPORTANT //////
  let   isMajorUpdate = actions.some(
@@ -51,12 +63,12 @@ let futureDate = addDays(new Date(Date.now()), 7)
 
   return (
 
-<div className="div1 container bg-red-100">
+<div className="bg-red-100">
 
 
 
 <div className="max-w-sm w-full lg:max-w-full lg:flex">
-  <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: "url("+ svg + ")"}} title="Woman holding a mug">
+  <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: "url("+ sideImg + ")"}} title={jurisdiction}>
   </div>
   <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
     <div className="mb-8">
@@ -71,20 +83,19 @@ let futureDate = addDays(new Date(Date.now()), 7)
     <span className="font-semibold mr-2 text-left flex-auto">{jurisdiction} - {identifier}</span>
   </p>
 </div>
-
-
-
-
       </div>
       <div className="text-gray-900 font-bold text-xl mb-2">Can coffee make you a better developer?</div>
     <Progress></Progress>
-
-      <p className="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
     </div>
     <div className="flex items-center">
-      <div className="text-sm">
-        <p className="text-gray-900 leading-none">Jonathan Reinink</p>
-        <p className="text-gray-600">Aug 18</p>
+      <div className="text-sm border-t border-grey p-4 pin-b ">
+        <p className="f6 db pv1 text-gray-700 mb-3 ">  {sentenceCase(title)}</p>
+        <p className=""></p>
+        <p className="text-gray-700 leading-none mr-2 mb-3 ">Last activity posted on <time>{actions[actions.length - 1].date}</time> - {sentenceCase(actions[actions.length - 1].description)}</p>
+       
+
+
+        <p className="text-gray-700">State Website</p>
       </div>
     </div>
   </div>
@@ -104,19 +115,6 @@ let futureDate = addDays(new Date(Date.now()), 7)
   <article className="mw6 center bg-white br3 pa3 pa0-ns mv3 ba b--black-20 shadow-5">
     <div className="vh-10 dt w-100 tc b--black-20">
 
-    <div className="tc mt3">
-    <img src={"https://res.cloudinary.com/babyhulk/image/upload/v1584505244/flags/Flag_of_" + jurisdiction +".svg"}  alt= {"Flag of" + jurisdiction} className="br2 h3 w3 dib" title={"Flag of " + jurisdiction} ></img>
-  <h1 className="f4">{jurisdiction} - {identifier}</h1>
-    <span>
-
-    <h2 className=" text-purple-600 bg-yellow-400 text-2xl font-bold inline-block my-8 p-3">
-          Hey there! Welcome to your first Gatsby site.
-        </h2>
-
-   {billDateDifference > -7714 ? <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy bg-light-yellow">New</a> : " "} { isMajorUpdate ? <a className="f6 grow no-underline br-pill ph2 pv1 mb2 dib navy bg-washed-green">Major Update</a> : " "}
-   </span>
-    <hr className="mw3 bb bw1 b--black-10" />
-    </div>
 
     </div>
 
