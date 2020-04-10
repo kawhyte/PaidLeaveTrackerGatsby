@@ -57,8 +57,8 @@ let futureDate = addDays(new Date(Date.now()), 7)
 
 
 <div className="max-w-sm w-full lg:max-w-full lg:flex m-5">
-  <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: "url("+ sideImg + ")"}} title={jurisdiction}>
-  </div>
+  {/* <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: "url("+ sideImg + ")"}} title={jurisdiction}>
+  </div> */}
   <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
     <div className="mb-8">
       <div className="text-sm text-gray-600 flex items-center">
@@ -73,14 +73,14 @@ let futureDate = addDays(new Date(Date.now()), 7)
   </p>
 </div>
       </div>
-      <div className="text-gray-900 font-bold text-xl mb-2">Can coffee make you a better developer?</div>
+  
     <Progress></Progress>
     </div>
     <div className="flex items-center">
       <div className="text-sm border-t border-grey p-4 pin-b ">
         <p className="f6 db pv1 text-gray-700 mb-3 ">  {sentenceCase(title)}</p>
         <p className=""></p>
-        <p className="text-gray-700 leading-none mr-2 mb-3 ">Last activity posted on <time>{actions[actions.length - 1].date}</time> - {sentenceCase(actions[actions.length - 1].description)}</p>
+        <p className="text-gray-700 leading-none mr-2 mb-3 ">Last activity posted on <time>{actions[actions.length - 1].date}</time> - <span className="bg-blue-100 mb-3 f6 db pv2 "> {sentenceCase(actions[actions.length - 1].description)}</span></p>
        
 
 
