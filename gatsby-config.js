@@ -17,9 +17,8 @@ module.exports = {
   {
     resolve: "gatsby-plugin-postcss",
     options: {
-      postCssPlugins: [require(`tailwindcss`)(`./tailwind.config.js`),
-      require(`autoprefixer`),
-      require(`cssnano`)]
+      postCssPlugins: [require(`tailwindcss`)
+      ]
     }
   },
 
@@ -35,7 +34,6 @@ module.exports = {
         url: "https://openstates.org/graphql",
         // HTTP headers
         headers: {
-
           // Learn about environment variables: https://gatsby.dev/env-vars
           "X-API-KEY":process.env.OPENSTATE,
           
