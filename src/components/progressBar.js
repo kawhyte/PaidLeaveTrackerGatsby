@@ -9,7 +9,7 @@ const Progress = () => {
 
 return( 
 
-<div className="relative pt-1">
+<div className="relative pt-1 mx-4">
 <div class="flex text-xs content-center text-center">
 		<div class="w-1/4">
 			Introduced
