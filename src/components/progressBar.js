@@ -10,20 +10,20 @@ const Progress = () => {
 return( 
 
 <div className="relative pt-1 mx-4">
-<div class="flex text-xs content-center text-center">
-		<div class="w-1/4">
+<div className="flex text-xs content-center text-center">
+		<div className="w-1/4">
 			Introduced
 		</div>
 		
-		<div class="w-1/4">
+		<div className="w-1/4">
 			House
 		</div>
 		
-		<div class="w-1/4">
+		<div className="w-1/4">
 			Senate
 		</div>
 		
-		<div class="w-1/4">
+		<div className="w-1/4">
 			Governor
 		</div>			
 	</div>
@@ -40,20 +40,20 @@ return(
   </div>
 
 	
-	<div class="flex text-xs content-center text-center">
-		<div class="w-1/4">
+	<div className="flex text-xs content-center text-center">
+		<div className="w-1/4">
 			4/2/2020
 		</div>
 		
-		<div class="w-1/4">
+		<div className="w-1/4">
 		6/9/2020
 		</div>
 		
-		<div class="w-1/4">
+		<div className="w-1/4">
 		7/12/2020
 		</div>
 		
-		<div class="w-1/4">
+		<div className="w-1/4">
 		9/29/2020
 		</div>			
 	</div>
