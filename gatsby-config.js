@@ -3,8 +3,8 @@ console.log ("⚱️⚱️⚱️⚱️⚱️⚱️⚱️⚱️⚱️⚱️⚱️
 let activeEnv =
   process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || process.env.CONTENTFUL_ACCESS_TOKEN || "development"
 
-console.log(`%%%%%%%Using environment config%%%%%%%%%%: ${activeEnv}`)
 
+console.log(`%%%%%%%Using environment config%%%%%%%%%%:`, process.env.OPENSTATE )
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
@@ -47,13 +47,6 @@ module.exports = {
         fetchOptions: {},
       },
     },
-
-
-
-
-
-    
-
     {
       resolve: `gatsby-source-contentful`,
       options: {

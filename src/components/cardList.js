@@ -8,7 +8,7 @@ const CardList = function ({ robots, lotto }) {
 
     OpenState{
      
-     bills(first: 1, searchQuery:"paid+family+leave", updatedSince: "2019-11-15") {
+     bills(first: 5, searchQuery:"paid+family+leave", updatedSince: "2019-11-15") {
            edges {
                node { 
                  
