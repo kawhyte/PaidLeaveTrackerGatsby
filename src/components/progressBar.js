@@ -1,11 +1,31 @@
-
-
-
 import React from 'react'
+import isValid from 'date-fns/isValid'
+import addDays from 'date-fns/addDays'
+import  differenceInDays from 'date-fns/differenceInDays'
+import  parseJSON from 'date-fns/parseJSON'
+import format from 'date-fns/format'
 
+let dateStringLength = 0;
+let actionDate = " "
 
+const Progress = ({actions}) => {
+	
 
-const Progress = () => {
+	// console.log("LENGTH ",(actions[actions.length - 1].date).length)
+	// console.log("actions[0].date ", format(new Date(actions[0].date),'MM/dd/yyyy'))
+
+	// console.log("Is this valid ? ",isValid(new Date((actions[actions.length - 1].date).length)))
+
+// CHECK IF DATE VALID
+ dateStringLength = (actions[0].date).length
+ actionDate = format(new Date(actions[0].date),'MM/dd/yyyy')
+//  if (dateStringLength > 10) {
+// 	actionDate = format(new Date(actions[0].date),'MM/dd/yyyy')
+//  } else {
+// 	actionDate = actions[0].date;
+//  }
+
+console.log("action DAte", actionDate)
 
 return( 
 
@@ -42,19 +62,19 @@ return(
 	
 	<div className="flex text-xs content-center text-center">
 		<div className="w-1/4">
-			4/2/2020
+		{actions.length > 0 ? actionDate : " "}
 		</div>
 		
 		<div className="w-1/4">
-		6/9/2020
+		add date
 		</div>
 		
 		<div className="w-1/4">
-		7/12/2020
+		add date
 		</div>
 		
 		<div className="w-1/4">
-		9/29/2020
+		add date
 		</div>			
 	</div>
 </div>
