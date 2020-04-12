@@ -71,7 +71,7 @@ let futureDate = addDays(new Date(Date.now()), 7)
 
         <div className=" text-center py-4 lg:px-4">
   <p className="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-   {billDateDifference > 14 ?   <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} { !isMajorUpdate ? <a href="https://www.google.com/" className="flex rounded-full text-indigo-700 bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3">Major Update</a> : " "}
+   {billDateDifference > 14 ?   <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} { !isMajorUpdate ? <a href="https://www.google.com/" className="flex rounded-full text-indigo-700 bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3">Updated</a> : " "}
   
     <span className="font-semibold mr-2 text-left flex-auto">{jurisdiction} - {identifier}</span>
   </p>
@@ -105,7 +105,7 @@ let futureDate = addDays(new Date(Date.now()), 7)
         <div> 
         <p className="text-gray-700">State Website</p>
 
-  <ul class="list-inside bg-gray-200">
+  <ul className="list-inside bg-gray-200">
     {/* <StateLinks action ={actions}/>  */}
   </ul>
 
