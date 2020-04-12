@@ -10,7 +10,7 @@ let govDate = " "
 
 const Progress = ({actions}) => {
 
-	 let sorted = actions.sort((a, b) => parseJSON(a.order) - parseJSON(b.order));
+	 let sorted = actions.sort((a, b) => parseJSON(b.order) - parseJSON(a.order));
 
 
 	
@@ -60,48 +60,28 @@ const Progress = ({actions}) => {
 
 if (typeof (billIntroduction[0]) !== "undefined" ) {
 
-	// houseDate =  format(new Date(houseBillPassed[0].date),'LLL dd, yyyy')
 	 introductionDate =  format(new Date(billIntroduction[0].date),'LLL d, yyyy')
 
 } 
 if (typeof (houseBillPassed[0]) !== "undefined" ) {
 
-	// houseDate =  format(new Date(houseBillPassed[0].date),'LLL dd, yyyy')
 	houseDate =  format(new Date(parseJSON(houseBillPassed[0].date)),'LLL d, yyyy')
-
 } 
 
-if (typeof (senateBillPassed[0]) !== "undefined" ) {
-	
+if (typeof (senateBillPassed[0]) !== "undefined" ) {	
 	senateDate =  format(new Date(senateBillPassed[0].date),'LLL dd, yyyy')
-	
 } 
 
 if (typeof (governorBillPassed[0]) !== "undefined" ) {
 	
 	govDate =  format(new Date(governorBillPassed[0].date),'LLL dd, yyyy')
-	
 } 
- 
-//  console.log("senateBillPassed ",senateBillPassed)
-//  console.log("governorBillPassed ",governorBillPassed)
 
-	// console.log("LENGTH ",(actions[actions.length - 1].date).length)
-	// console.log("actions[0].date ", format(new Date(actions[0].date),'MM/dd/yyyy'))
-
-	// console.log("Is this valid ? ",isValid(new Date((actions[actions.length - 1].date).length)))
 
 // CHECK IF DATE VALID
 //  dateStringLength = (actions[actions.length - 1].date).length
- introductionDate = format(new Date(actions[0].date),'LLL dd, yyyy')
-//  houseDate = format(new Date(billPassed[0].organization.updatedAt),'MM/dd/yyyy')
-//  if (dateStringLength > 10) {
-// 	actionDate = format(new Date(actions[0].date),'MM/dd/yyyy')
-//  } else {
-// 	actionDate = actions[0].date;
-//  }
+ //introductionDate = format(new Date(actions[0].date),'LLL dd, yyyy')
 
-// console.log("billPassed ", billPassed.some ( b => b.organization.classification ==="lower"))
 
 return( 
 
@@ -125,17 +105,12 @@ return(
 	</div>
 
 
-
-
-
   <div className="overflow-hidden h-2 mb-1 text-xs flex rounded bg-gray-200">
     <div style={{ width: "25%" }} className={"shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"}></div>
     { houseBillPassed.length > 0 ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center  bg-orange-500"></div>: ""} 
     { senateBillPassed.length > 0 ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>: ""}
 	{governorBillPassed.length> 0 ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-teal-500"></div> : ""}
-	
-	
-	</div>
+ </div>
 
 	
 	<div className="flex text-xs content-center text-center tracking-tighter">

@@ -7,7 +7,9 @@ import sideImg from '../layouts/img/New_Mexico.jpg'
 import Progress from './progressBar'
 import isValid from 'date-fns/isValid'
 
-const Card = ({ title, identifier, jurisdiction, actions  }) => {
+const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
+
+  let sorted = actions.sort((a, b) => parseJSON(b.order) - parseJSON(a.order));
 
  ////LOGIC TO CHECK IF BILL IS NEW //////
 let futureDate = addDays(new Date(Date.now()), 7)
@@ -103,9 +105,17 @@ let futureDate = addDays(new Date(Date.now()), 7)
         </span>
 
         <div> 
-        <p className="text-gray-700">State Website</p>
+<p className="text-gray-700">{jurisdiction}  bill source(s)</p>
 
-  <ul className="list-inside bg-gray-200">
+  <ul className=" text-gray-700 list-inside">
+
+{sources.map((u, i)=>{
+ 
+
+//  return (<li key={i}>{u.url}</li>)
+return (<li key={i}> <a href={u.url} target="_blank" rel="noopener" className="no-underline">Link ({i+1})</a> </li>)
+
+})}
     {/* <StateLinks action ={actions}/>  */}
   </ul>
 
