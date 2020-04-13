@@ -65,7 +65,13 @@ if (typeof (billIntroduction[0]) !== "undefined" ) {
 } 
 if (typeof (houseBillPassed[0]) !== "undefined" ) {
 
-	houseDate =  format(new Date(parseJSON(houseBillPassed[0].date)),'LLL d, yyyy')
+	if ((houseBillPassed[0].date).length > 10) {
+		houseDate =  format(new Date(parseJSON(houseBillPassed[0].date)),'LLL d, yyyy')
+	} else {
+		houseDate =  houseBillPassed[0].date
+	}
+
+	
 } 
 
 if (typeof (senateBillPassed[0]) !== "undefined" ) {	
@@ -106,8 +112,8 @@ return(
 
 
   <div className="overflow-hidden h-2 mb-1 text-xs flex rounded bg-gray-200">
-    <div style={{ width: "25%" }} className={"shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"}></div>
-    { houseBillPassed.length > 0 ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center  bg-orange-500"></div>: ""} 
+    <div style={{ width: "25%" }} className={"shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"}></div>
+    { houseBillPassed.length > 0 ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center  bg-indigo-500"></div>: ""} 
     { senateBillPassed.length > 0 ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>: ""}
 	{governorBillPassed.length> 0 ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-teal-500"></div> : ""}
  </div>

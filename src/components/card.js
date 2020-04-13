@@ -3,20 +3,33 @@ import addDays from 'date-fns/addDays'
 import  differenceInDays from 'date-fns/differenceInDays'
 import  parseJSON from 'date-fns/parseJSON'
 import format from 'date-fns/format'
-import sideImg from '../layouts/img/New_Mexico.jpg'
 import Progress from './progressBar'
-import isValid from 'date-fns/isValid'
+let introductionDate = " "
 
 const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
 
   let sorted = actions.sort((a, b) => parseJSON(b.order) - parseJSON(a.order));
 
+  let billIntroduction = actions.filter(h => {
+
+		return(h.classification.some( v => v === "introduction" ) )
+
+    });
+    
+
+
+    if (typeof (billIntroduction[0]) !== "undefined" ) {
+
+      introductionDate =  billIntroduction[0].date
+   
+    } 
  ////LOGIC TO CHECK IF BILL IS NEW //////
-let futureDate = addDays(new Date(Date.now()), 7)
- let billDateDifference = differenceInDays(
-    futureDate,
-    new Date(parseJSON("2020-04-03 11:02:32.289671+00:00"))
-  );
+      let futureDate = addDays(new Date(Date.now()), 15)
+      let billDateDifference = differenceInDays(
+        futureDate,
+        new Date(parseJSON(introductionDate))
+      );
+      // console.log("billDateDifference ", billDateDifference)
 
 
   /// Format to Sentence Case
@@ -32,22 +45,28 @@ let futureDate = addDays(new Date(Date.now()), 7)
  ///LOGIC TO CHECK IF BILL IS IMPORTANT //////
  let   isMajorUpdate = actions.some(
       value =>
-        value.classification.includes("withdrawal") ||
-        value.classification.includes("failure") ||
-        value.classification.includes("became-law") ||
-        value.classification.includes("amendment-passage") ||
-        value.classification.includes("amendment-failure") ||
         value.classification.includes("executive-receipt") ||
-        value.classification.includes("executive-signature") ||
         value.classification.includes("executive-veto") ||
-        value.classification.includes("executive-veto-line-item") ||
         value.classification.includes("veto-override-passage") ||
-        value.classification.includes("veto-override-failure") ||
+        value.classification.includes("executive-veto-line-item") ||
         Object.values(value.description).includes("governor") ||
         Object.values(value.description).includes("executive") 
     );
 
-  // console.log("jurisdiction ", jurisdiction)
+
+
+
+  let didBillPass = actions.some(
+    value => value.classification.includes("became-law") ||
+    value.classification.includes("executive-signature")
+
+  )
+
+  let didBillFail = actions.some(
+    value => value.classification.includes("executive-veto") ||
+    value.classification.includes("veto-override-failure")
+
+  )
   // console.log("actions.lengton 2 ", format(new Date(actions[0].date),'MM/dd/yyyy'))
   // console.log("actions.lengton ", format(new Date(parseJSON(actions[0].date)),'MM/dd/yyyy'))
 //  console.log("statusColor ", jurisdiction, identifier, statusColor [actions[actions.length-1].classification[0]].color)
@@ -73,7 +92,10 @@ let futureDate = addDays(new Date(Date.now()), 7)
 
         <div className=" text-center py-4 lg:px-4">
   <p className="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-   {billDateDifference > 14 ?   <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} { !isMajorUpdate ? <a href="https://www.google.com/" className="flex rounded-full text-indigo-700 bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3">Updated</a> : " "}
+   {billDateDifference < 14 ?   <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} 
+   {didBillPass ?   <span className="flex rounded-full bg-green-500 uppercase px-2 py-1 text-xs font-bold mr-3">Passed</span>: " "} 
+   {didBillFail ? <span className="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">Failed</span>: " "} 
+   { isMajorUpdate ? <a href="https://www.google.com/" className="flex rounded-full text-indigo-700 bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3">Governor</a> : " "}
   
     <span className="font-semibold mr-2 text-left flex-auto">{jurisdiction} - {identifier}</span>
   </p>
