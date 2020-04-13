@@ -22,7 +22,7 @@ const Hero = () => {
           <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
           Track upcoming
             <br className="xl:hidden" />
-            <span className="text-indigo-600"> Family Paid Leave legislations</span>
+            <span className="text-indigo-600">Paid Leave legislations</span>
           </h2>
           <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
             Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
