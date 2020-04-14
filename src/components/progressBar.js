@@ -92,8 +92,8 @@ if (typeof (governorBillPassed[0]) !== "undefined" ) {
 return( 
 
 <div className="relative pt-1 mx-4">
-<div className="flex text-xs content-center text-center">
-		<div className="w-1/4">
+<div className="flex text-xs  content-center text-center">
+		<div className="w-1/4 mr-3">
 			Introduced
 		</div>
 		
@@ -101,7 +101,7 @@ return(
 			House
 		</div>
 		
-		<div className="w-1/4">
+		<div className="w-1/4 mr-2">
 			Senate
 		</div>
 		
@@ -112,7 +112,7 @@ return(
 
 
   <div className="overflow-hidden h-2 mb-1 text-xs flex rounded bg-gray-200">
-    <div style={{ width: "25%" }} className={"shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"}></div>
+    <div style={{ width: "25%" }} className={"shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 "}></div>{" "}
     { houseBillPassed.length > 0 ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center  bg-indigo-500"></div>: ""} 
     { senateBillPassed.length > 0 ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>: ""}
 	{governorBillPassed.length> 0 ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-teal-500"></div> : ""}

@@ -88,113 +88,55 @@ const Table = ({ title, identifier, jurisdiction, actions, sources  }) => {
                 </div>
                 <div className="ml-3">
                     <p className="text-gray-900 wrap">
-                    {jurisdiction} - {identifier}
+                    {jurisdiction} 
                     </p>
                 </div>
             </div>
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <p className="text-gray-900 whitespace-no-wrap">Admin</p>
-        </td>
-        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <p className="text-gray-900 whitespace-no-wrap">
-                Jan 21, 2020
-            </p>
-        </td>
-        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <p className="text-gray-900 whitespace-no-wrap">
-                May 21, 2020
-            </p>
+            <p className="text-gray-900 whitespace-no-wrap">{identifier}</p>
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white-200 text-sm">
-
-        
-           
 
 <Progress actions ={actions}/> 
 
   <div className="inline-flex items-center bg-gray-400">
+</div>
+        </td>
+        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+
+
+<div className="flex ml-4" > 
+
+<span class="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle">Passed</span>
+<span class="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Failed</span>
+<span class="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle">Pending</span>
+<span class="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">New</span>
 
   
- 
-
-  {/* <div className="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-green-200 text-green-700 rounded-full">
-     House 
-     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="feather feather-arrow-right ml-2"
-    >
-      <line x1="5" y1="12" x2="19" y2="12"></line>
-      <polyline points="12 5 19 12 12 19"></polyline>
-    </svg>
-   
   </div>
-  <div className="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-green-200 text-green-700 rounded-full">
-     Senate 
-     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="feather feather-arrow-right ml-2"
-    >
-      <line x1="5" y1="12" x2="19" y2="12"></line>
-      <polyline points="12 5 19 12 12 19"></polyline>
-    </svg>
-   
-  </div>
-  <div
-    class="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-green-200 text-green-700 rounded-full"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="feather feather-archive mr-2"
-    >
-      <polyline points="21 8 21 21 3 21 3 8"></polyline>
-      <rect x="1" y="3" width="22" height="5"></rect>
-      <line x1="10" y1="12" x2="14" y2="12"></line>
-    </svg>
-   Governor
-  </div> */}
 
+        </td>
+        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <p className="text-gray-900 whitespace-no-wrap">
+            <time>{format(new Date(actions[actions.length - 1].date),'LLL dd, yyyy')}</time>
+            </p>
+        </td>
+
+        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <p className="text-gray-900 whitespace-no-wrap">
+
+    {sources.map((u, i)=>{
  
-</div>
+        return (<span key={i} className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle" > <a href={u.url} target="_blank" rel="noopener noreferrer" className="no-underline">Link ({i+1})</a> </span>)
+ 
+      })}
 
-
-
-
-
-
-
-
+            </p>
         </td>
     </tr>
     
     )
-
-
-
 }
 export default Table
 
