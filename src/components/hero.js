@@ -20,8 +20,8 @@ const Hero = () => {
       <div className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
         <div className="sm:text-center lg:text-left">
           <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
-          Track upcoming
-            <br className="xl:hidden" />
+          Track upcoming 
+            <br className="" />
             <span className="text-indigo-600">Paid Leave legislations</span>
           </h2>
           <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
@@ -39,7 +39,25 @@ const Hero = () => {
               </a>
             </div>
           </div>
+
+
+
+
+
+
+
+
+
         </div>
+
+
+ 
+
+
+
+
+
+
       </div>
       <svg className="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
         <polygon points="50,0 100,0 50,100 0,100" />
@@ -51,9 +69,10 @@ const Hero = () => {
   </div>
 </div>
 
+
+
+
 </div>
-
-
 
   )
 }

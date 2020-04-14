@@ -20,6 +20,7 @@ const BlogPage = () => {
 
   return (
     <Layout>
+      
       <header className="bb b--black-70 pv4">
         <h3 class="f2 fw7 ttu ml3 tracked lh-title mt0 mb3 avenir">
           Blog Posts
