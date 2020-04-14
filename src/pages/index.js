@@ -11,7 +11,7 @@ const IndexPage = () => {
 <Layout> 
 <Hero /> 
 
-<Table /> 
+{/* <Table />  */}
 <CardList />  
 </Layout>
 </div>

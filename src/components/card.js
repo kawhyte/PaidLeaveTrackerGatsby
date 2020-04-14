@@ -91,14 +91,16 @@ const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
       <img className="w-10 h-10 rounded-full mr-4" src={"https://res.cloudinary.com/babyhulk/image/upload/v1584505244/flags/Flag_of_" + jurisdiction +".svg"} alt={"Flag of" + jurisdiction} />
 
         <div className=" text-center py-4 lg:px-4">
-  <p className="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+  <div className="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+    <p className="font-semibold mr-2 text-left flex-auto">{jurisdiction} - {identifier}</p>
+
+  <div className="flex"> 
    {billDateDifference < 14 ?   <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} 
    {didBillPass ?   <span className="flex rounded-full bg-green-500 uppercase px-2 py-1 text-xs font-bold mr-3">Passed</span>: " "} 
    {didBillFail ? <span className="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">Failed</span>: " "} 
    { isMajorUpdate ? <a href="https://www.google.com/" className="flex rounded-full text-indigo-700 bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3">Governor</a> : " "}
-  
-    <span className="font-semibold mr-2 text-left flex-auto">{jurisdiction} - {identifier}</span>
-  </p>
+  </div>
+  </div>
 </div>
       </div>
   

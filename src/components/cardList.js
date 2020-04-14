@@ -1,13 +1,14 @@
 import React from 'react'
 import Card from './card'
 import { graphql, useStaticQuery } from 'gatsby'
+import FilterBar from './filterBar'
 
 let quote = '"'
 const CardList = function (v) {
   const data = useStaticQuery(graphql`
   query {
     OpenState{ 
-           bills(first: 15, searchQuery:"paid family leave" , updatedSince: "2019-06-15") {
+           bills(first: 15, searchQuery:"\\\"paid family leave\\\"" , updatedSince: "2019-06-15") {
         edges {
           node {
             identifier
@@ -64,8 +65,11 @@ const CardList = function (v) {
   })
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    < div className="ml-16 mr-16">
+      <FilterBar />
+    <div className="  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {cardComponent}
+    </div>
     </div>
   )
 }

@@ -87,8 +87,8 @@ const Table = ({ title, identifier, jurisdiction, actions, sources  }) => {
                          />
                 </div>
                 <div className="ml-3">
-                    <p className="text-gray-900 whitespace-no-wrap">
-                    {jurisdiction} - {identifier}
+                    <p className="text-gray-900 wrap">
+                    {jurisdiction} - {identifier} - {title}
                     </p>
                 </div>
             </div>

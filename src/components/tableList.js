@@ -67,7 +67,7 @@ const TableList = function (v) {
   return (
 
 <div className="ml-12 mr-12  mx-auto px-4 sm:px-8">
-  <FilterBar></FilterBar>
+  <FilterBar />
         <div className="py-8">
             
 
