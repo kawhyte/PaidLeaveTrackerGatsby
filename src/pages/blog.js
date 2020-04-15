@@ -34,7 +34,7 @@ const BlogPage = () => {
               <Link to={`/blog/${post.node.slug}`}>
                 <div class="dtc w2 w3-ns v-mid">
                   <img alt="blog"
-                    src="http://mrmrs.github.io/photos/p/2.jpg"
+                    src="https://images.unsplash.com/photo-1568967729548-e3dbad3d37e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
                     className="ba b--black-10 db br-100 w2 w3-ns h2 h3-ns"
                   />
                 </div>

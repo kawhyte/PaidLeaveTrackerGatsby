@@ -9,7 +9,7 @@ const CardList = function () {
   const data = useStaticQuery(graphql`
   query {
     OpenState{ 
-           bills(first: 15, searchQuery:"\\\"paid family leave\\\"" , updatedSince: "2019-06-15") {
+           bills(first: 100, searchQuery:"\\\"paid family leave\\\"" , updatedSince: "2019-06-15") {
         edges {
           node {
             identifier
@@ -93,14 +93,6 @@ const CardList = function () {
   
   console.log("filteredData ",filteredData)
 
-
-
-
-
-
-
-  
-
   // const cardComponent = data.OpenState.bills.edges.map((b, i) => {
   const cardComponent = filteredData.map((b, i) => {
     return (
@@ -172,33 +164,40 @@ const CardList = function () {
     </div>
 </div>
 
+      <div className="mt-0 mx-5 flex lg:flex-shrink-0 lg:mt-3">
 
-
-
-<div className="mt-0 mx-5 flex lg:flex-shrink-0 lg:mt-3">
-
-<button>
-<Link
-className={
-  "mr-3 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 py-2 px-4"
-}
-to="/"
->
-Card View</Link>
-</button>
-<button>
-<Link
-className={
-  "font-medium rounded-md text-indigo-700 bg-indigo-100 hover:text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:shadow-outline focus:border-indigo-300 transition duration-150 ease-in-out py-2 px-4 py-2 px-4 "
-}
-to="/tableview"
->
-Table View </Link>
-</button>
+        <button>
+        <Link
+        className={
+          "mr-3 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 py-2 px-4"
+        }
+        to="/"
+        >
+        Card View</Link>
+        </button>
+        <button>
+        <Link
+        className={
+          "font-medium rounded-md text-indigo-700 bg-indigo-100 hover:text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:shadow-outline focus:border-indigo-300 transition duration-150 ease-in-out py-2 px-4 py-2 px-4 "
+        }
+        to="/tableview"
+        >
+        Table View </Link>
+        </button>
 
     </div>
 
+
 </div>
+    <div className="flex ml-4 mt-4" > 
+
+<span className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle">Passed</span>
+<span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Failed</span>
+<span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle">Pending</span>
+<span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">New</span>
+
+  
+  </div>
 
     <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {cardComponent}

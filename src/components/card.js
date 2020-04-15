@@ -95,6 +95,9 @@ const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
     <p className="font-semibold mr-2 text-left flex-auto">{jurisdiction} - {identifier}</p>
 
   <div className="flex"> 
+
+
+  
    {billDateDifference < 14 ?   <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">N</span>: " "} 
    {didBillPass ?   <span className="flex rounded-full bg-green-500 uppercase px-2 py-1 text-xs font-bold mr-3">P</span>: " "} 
    {didBillFail ? <span className="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">F</span>: " "} 

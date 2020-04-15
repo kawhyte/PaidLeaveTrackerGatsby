@@ -8,7 +8,7 @@ const TableList = function (v) {
   const data = useStaticQuery(graphql`
   query {
     OpenState{ 
-      bills(first: 15, searchQuery:"\\\"paid family leave\\\"" , updatedSince: "2019-06-15") {
+      bills(first: 100, searchQuery:"\\\"paid family leave\\\"" , updatedSince: "2019-06-15") {
         edges {
           node {
             identifier
