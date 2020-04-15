@@ -120,12 +120,12 @@ const CardList = function () {
     < div className="ml-16 mr-16">
       {/* <FilterBar props ={data.OpenState.bills.edges}/> */}
 
-      <div className="py-8">
+      <div className="py-8 ">
 
-<h2 className="text-2xl font-semibold leading-tight">Filter</h2>
+<h2 className="mx-5 text-2xl font-semibold leading-tight">Filter</h2>
 
-<div className="my-2 mb-5 flex sm:flex-row flex-col">
-<div className="flex flex-row mb-1 sm:mb-0">
+<div className="my-2 mx-5 mb-5 flex sm:flex-row flex-col">
+<div className="flex  flex-row mb-1 sm:mb-0">
     {/* <div className="relative">
         <select
             className="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
@@ -175,7 +175,7 @@ const CardList = function () {
 
 
 
-<div className="mt-0 flex lg:flex-shrink-0 lg:mt-3">
+<div className="mt-0 mx-5 flex lg:flex-shrink-0 lg:mt-3">
 
 <button>
 <Link
@@ -200,27 +200,7 @@ Table View </Link>
 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div className="  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {cardComponent}
     </div>
     </div>

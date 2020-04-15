@@ -84,7 +84,7 @@ const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
 <div className=" p-2 w-full lg:flex justify-center">
    {/* <div className="h-40 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: "url("+ sideImg + ")"}} title={jurisdiction}>
   </div>  */}
-  <div className="max-w-xl shadow-xl mx-1 my-1 border-r border-b border-l border-gray-400  border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+  <div className="max-w-md shadow-xl mx-1 my-1 border-r border-b border-l border-gray-400  border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
     <div className="mb-8">
       <div className="text-sm  flex items-center">
    
@@ -95,10 +95,10 @@ const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
     <p className="font-semibold mr-2 text-left flex-auto">{jurisdiction} - {identifier}</p>
 
   <div className="flex"> 
-   {billDateDifference < 14 ?   <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} 
-   {didBillPass ?   <span className="flex rounded-full bg-green-500 uppercase px-2 py-1 text-xs font-bold mr-3">Passed</span>: " "} 
-   {didBillFail ? <span className="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">Failed</span>: " "} 
-   { isMajorUpdate ? <a href="https://www.google.com/" className="flex rounded-full text-indigo-700 bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3">Gov</a> : " "}
+   {billDateDifference < 14 ?   <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">N</span>: " "} 
+   {didBillPass ?   <span className="flex rounded-full bg-green-500 uppercase px-2 py-1 text-xs font-bold mr-3">P</span>: " "} 
+   {didBillFail ? <span className="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">F</span>: " "} 
+   { isMajorUpdate ? <a href="https://www.google.com/" className="flex rounded-full text-indigo-700 bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3">G</a> : " "}
   </div>
   </div>
 </div>
