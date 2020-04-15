@@ -108,10 +108,10 @@ const Table = ({ title, identifier, jurisdiction, actions, sources  }) => {
 
 <div className="flex ml-4" > 
 
-<span class="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle">Passed</span>
-<span class="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Failed</span>
-<span class="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle">Pending</span>
-<span class="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">New</span>
+<span className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle">Passed</span>
+<span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Failed</span>
+<span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle">Pending</span>
+<span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">New</span>
 
   
   </div>

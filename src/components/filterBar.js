@@ -1,10 +1,54 @@
 
-import React from 'react'
+import React, { useState }from 'react'
 import { Link } from 'gatsby'
 
 
-const FilterBar = () => {
+const FilterBar = (props) => {
+    const emptyQuery = ""
+    const [state, setState] = useState({
+      filteredData: [],
+      query: emptyQuery,
+    })
 
+  
+
+    const handleInputChange = event => {
+        const query = event.target.value
+ console.log("event.target.value is ", event.target.value)
+console.log("POST ",props)
+        const { data } = props
+        //console.log("POST ",props)
+        // this is how we get all of our posts
+        // const posts = data.allMarkdownRemark.edges || []
+        const posts = data || []
+ 
+
+         // return all filtered posts
+        const filteredData = posts.filter(post => {
+          // destructure data from post frontmatter
+          const { identifier, title, legislativeSession } = post.node
+          return (
+            // standardize data with .toLowerCase()
+            // return true if the description, title or tags
+            // contains the query string
+            identifier.toLowerCase().includes(query.toLowerCase()) ||
+            title.toLowerCase().includes(query.toLowerCase()) ||
+            (legislativeSession && legislativeSession
+              .join("") // convert tags from an array to string
+              .toLowerCase()
+              .includes(query.toLowerCase()))
+          )
+        })
+        // update state according to the latest query and results
+        setState({
+          query, // with current query string from the `Input` event
+          filteredData, // with filtered data from posts.filter(post => (//filteredData)) above
+        })
+      }
+
+      const { filteredData, query } = state
+
+      console.log("filteredData", filteredData)
 
 return(
 
@@ -54,15 +98,17 @@ return(
             </path>
         </svg>
     </span>
-    <input placeholder="Filter by State or Bill ID"
-        className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+    <input type ="text"
+    aria-label ="Search"
+    placeholder="Filter by State or Bill ID" onChange={handleInputChange}
+    className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
 </div>
 </div>
 
 
 
 
-<div class="mt-0 flex lg:flex-shrink-0 lg:mt-3">
+<div className="mt-0 flex lg:flex-shrink-0 lg:mt-3">
 
 <button>
 <Link
@@ -86,17 +132,7 @@ Table View </Link>
     </div>
 
 </div>
-
-
-
-
-
-
 )
-
-
-
-
 }
 
 export default FilterBar
