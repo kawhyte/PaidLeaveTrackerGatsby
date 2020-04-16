@@ -1,3 +1,8 @@
+var date_fns = require('date-fns')
+
+
+let introductionDate = " " 
+
 const state = {
     AL: {
       name: "Alabama",
@@ -442,5 +447,78 @@ let statusColor = {
 
 
 
+  let getBillIntroduction = (actions)  => {
+    let sorted = actions.sort((a, b) =>date_fns.parseJSON(b.order) - date_fns.parseJSON(a.order));
+    const  billIntroduction = actions.filter((h) => {
+      return h.classification.some((v) => v === 'introduction')
+    })
 
-module.exports = {state, status, statusColor};
+    if (typeof (billIntroduction[0]) !== "undefined" ) {
+
+      return introductionDate =  billIntroduction[0].date
+   
+    } else {
+
+      return "No date found"
+    }
+  }
+
+ ////LOGIC TO CHECK IF BILL IS NEW //////
+  let  isBillNew = (introductionDate) => {
+    let futureDate = date_fns.addDays(new Date(Date.now()), 15)
+    let billDateDifference = date_fns.differenceInDays(futureDate, new Date(date_fns.parseJSON(introductionDate)))
+
+    return billDateDifference > 14 ? true: false
+   
+  }
+
+ /// Format to Sentence Case
+ let  sentenceCase = (string) => {
+  let  lowercaseTitle = string.toLowerCase();
+  return ( lowercaseTitle[0].toUpperCase() +
+   lowercaseTitle.substring(1))
+
+}
+
+
+///LOGIC TO CHECK IF BILL IS MAJOR //////
+let isUpdateMajor = (actions)  => {
+
+const isMajorUpdate = actions.some(
+  value =>
+    value.classification.includes("executive-receipt") ||
+    value.classification.includes("executive-veto") ||
+    value.classification.includes("veto-override-passage") ||
+    value.classification.includes("executive-veto-line-item") ||
+    Object.values(value.description).includes("governor") ||
+    Object.values(value.description).includes("executive") 
+);
+
+return isMajorUpdate
+}
+
+
+///LOGIC TO CHECK IF BILL PASSED/FAILED //////
+let isBillSignedByGovornor = (actions)  => {
+let didBillPass = actions.some(
+  value => value.classification.includes("became-law") ||
+  value.classification.includes("executive-signature")
+
+)
+
+return didBillPass
+}
+
+
+let isBillFailedByGovornor = (actions)  => {
+let didBillFail = actions.some(
+  value => value.classification.includes("executive-veto") ||
+  value.classification.includes("veto-override-failure")
+
+)
+}
+
+
+
+
+module.exports = {state, status, statusColor, getBillIntroduction, sentenceCase, isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor};

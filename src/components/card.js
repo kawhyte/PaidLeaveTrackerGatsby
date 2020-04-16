@@ -1,79 +1,10 @@
 import React from 'react'
-import addDays from 'date-fns/addDays'
-import  differenceInDays from 'date-fns/differenceInDays'
-import  parseJSON from 'date-fns/parseJSON'
 import format from 'date-fns/format'
 import Progress from './progressBar'
-let introductionDate = " "
+import {getBillIntroduction, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
+
 
 const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
-
-  let sorted = actions.sort((a, b) => parseJSON(b.order) - parseJSON(a.order));
-
-  let billIntroduction = actions.filter(h => {
-
-		return(h.classification.some( v => v === "introduction" ) )
-
-    });
-    
-
-
-    if (typeof (billIntroduction[0]) !== "undefined" ) {
-
-      introductionDate =  billIntroduction[0].date
-   
-    } 
- ////LOGIC TO CHECK IF BILL IS NEW //////
-      let futureDate = addDays(new Date(Date.now()), 15)
-      let billDateDifference = differenceInDays(
-        futureDate,
-        new Date(parseJSON(introductionDate))
-      );
-      // console.log("billDateDifference ", billDateDifference)
-
-
-  /// Format to Sentence Case
-  function sentenceCase(string) {
-
-   let  lowercaseTitle = string.toLowerCase();
-   return ( lowercaseTitle[0].toUpperCase() +
-    lowercaseTitle.substring(1))
-
- }
-// sentenceCase(testString.toLowerCase());
-
- ///LOGIC TO CHECK IF BILL IS IMPORTANT //////
- let   isMajorUpdate = actions.some(
-      value =>
-        value.classification.includes("executive-receipt") ||
-        value.classification.includes("executive-veto") ||
-        value.classification.includes("veto-override-passage") ||
-        value.classification.includes("executive-veto-line-item") ||
-        Object.values(value.description).includes("governor") ||
-        Object.values(value.description).includes("executive") 
-    );
-
-
-
-
-  let didBillPass = actions.some(
-    value => value.classification.includes("became-law") ||
-    value.classification.includes("executive-signature")
-
-  )
-
-  let didBillFail = actions.some(
-    value => value.classification.includes("executive-veto") ||
-    value.classification.includes("veto-override-failure")
-
-  )
-  // console.log("actions.lengton 2 ", format(new Date(actions[0].date),'MM/dd/yyyy'))
-  // console.log("actions.lengton ", format(new Date(parseJSON(actions[0].date)),'MM/dd/yyyy'))
-//  console.log("statusColor ", jurisdiction, identifier, statusColor [actions[actions.length-1].classification[0]].color)
-
-// var result = isValid(new Date(actions[actions.length - 1].date))
-
-// console.log("Is valid ", result)
 
   return (
 
@@ -82,27 +13,25 @@ const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
 
 
 <div className=" p-2 w-full lg:flex justify-center">
-   {/* <div className="h-40 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style={{backgroundImage: "url("+ sideImg + ")"}} title={jurisdiction}>
-  </div>  */}
   <div className="max-w-md shadow-xl mx-1 my-1 border-r border-b border-l border-gray-400  border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
     <div className="mb-8">
       <div className="text-sm  flex items-center">
-   
       <img className="w-10 h-10 rounded-full mr-4" src={"https://res.cloudinary.com/babyhulk/image/upload/v1584505244/flags/Flag_of_" + jurisdiction +".svg"} alt={"Flag of" + jurisdiction} />
 
         <div className=" text-center py-4 lg:px-4">
-  <div className="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+ 
+      <div className="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
     <p className="font-semibold mr-2 text-left flex-auto">{jurisdiction} - {identifier}</p>
 
-  <div className="flex"> 
+  </div>
+  <div className="flex mt-3"> 
 
 
   
-   {billDateDifference < 14 ?   <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">N</span>: " "} 
-   {didBillPass ?   <span className="flex rounded-full bg-green-500 uppercase px-2 py-1 text-xs font-bold mr-3">P</span>: " "} 
-   {didBillFail ? <span className="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">F</span>: " "} 
-   { isMajorUpdate ? <a href="https://www.google.com/" className="flex rounded-full text-indigo-700 bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3">G</a> : " "}
-  </div>
+   {isBillNew (getBillIntroduction(actions)) === true ?   <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} 
+   {isBillSignedByGovornor(actions) ?   <span className="flex rounded-full bg-green-300 text-green-700 uppercase px-2 py-1 text-xs font-bold mr-3">Passed</span>: " "} 
+   {isBillFailedByGovornor(actions) ? <span className="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">Failed</span>: " "} 
+   {isUpdateMajor(actions) ? <a href="https://www.google.com/" className="flex rounded-full text-indigo-700 bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3"> Major</a> : " "}
   </div>
 </div>
       </div>
@@ -116,7 +45,7 @@ const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
         <span className=" pl-1"> 
         <svg className="fill-current text-gray-500 w-5  h-5 mr-2 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.667 12H2v8H0V0h12l.333 2H20l-3 6 3 6H8l-.333-2z"/></svg>
         </span>
-        <span className="f6 db pv1 text-gray-700 mb-3 leading-snug "> {sentenceCase(title)}</span>
+        <span className="f6 db pv1 text-gray-700 mb-3 leading-snug  break-all truncate-custom "> {sentenceCase(title)}</span>
 </div>
 
 <div className="flex">       
@@ -160,3 +89,6 @@ return (<li key={i}> <a href={u.url} target="_blank" rel="noopener" className="n
 }
 
 export default Card
+
+
+

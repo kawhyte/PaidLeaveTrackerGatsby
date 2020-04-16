@@ -58,7 +58,32 @@ const CardList = function () {
   })
 
   console.log('DATA', data.OpenState.bills.edges[0].node.title)
+ 
+ 
+  const handleDropdownChange = event  =>{
 
+    const query = event.target.value
+    console.log("event.target.value", event.target.value )
+    const posts = data.OpenState.bills.edges || []
+
+    console.log("Hey ", posts)
+
+    const filteredData = posts.filter(post => {
+     
+      const { identifier, title, legislativeSession } = post.node
+      return (
+
+        identifier.replace(/\s+/g, "").toLowerCase().includes(query.toLowerCase()) 
+        // ||
+        //  title.toLowerCase().includes(query.toLowerCase()) 
+        ||
+        (legislativeSession.jurisdiction.name && legislativeSession.jurisdiction.name
+           .toLowerCase()
+           .includes(query.toLowerCase()))
+      )
+    })
+
+ }
 
   const handleInputChange = event => {
     const query = event.target.value
@@ -66,7 +91,7 @@ const CardList = function () {
 
     const posts = data.OpenState.bills.edges || []
 
-    console.log("POSTS", posts)
+    // console.log("POSTS", posts)
 
     const filteredData = posts.filter(post => {
      
@@ -147,12 +172,12 @@ const CardList = function () {
     className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
 </div>
     <div className="relative">
-        <select
+        <select onChange={handleDropdownChange}
             className="sm:ml-3 appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 sm:border-r border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
-            <option>All</option>
-            <option>Gov</option>
-            <option>New</option>
-            <option>Pass</option>
+            <option defaultValue="all" value="all" >All</option>
+            <option >Major Update</option>
+            <option value="new">New</option>
+            <option>Passed</option>
             <option>Failed</option>
         </select>
         <div
@@ -191,10 +216,10 @@ const CardList = function () {
 </div>
     <div className="flex ml-4 mt-4" > 
 
-<span className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle">Passed</span>
-<span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Failed</span>
+      <span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">{filteredData.length} bills found</span>
+{/*<span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Failed</span>
 <span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle">Pending</span>
-<span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">New</span>
+<span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">New</span> */}
 
   
   </div>

@@ -11335,6 +11335,17 @@ video {
   white-space: nowrap;
 }
 
+
+.truncate-custom{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+
+
+}
+
+
 .w-0 {
   width: 0;
 }
