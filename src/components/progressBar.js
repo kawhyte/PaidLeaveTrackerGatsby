@@ -1,93 +1,45 @@
 import React from 'react'
-import  parseJSON from 'date-fns/parseJSON'
 import format from 'date-fns/format'
+import {getBillIntroduction,didBillPassHouse,didBillPassSenate,didBillPassGovernor, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
+import { parseJSON } from 'date-fns'
 
-
-let introductionDate = " "
-let houseDate = " "
-let senateDate = " "
-let govDate = " "
+let houseBillPassed = " "
+let senateBillPassed =" "
+let governorBillPassed =" "
+let introDate = " "
 
 const Progress = ({actions}) => {
-
-	 let sorted = actions.sort((a, b) => parseJSON(b.order) - parseJSON(a.order));
-
-
 	
-	let billPassed = actions.filter(house => {
-		let found = false;
-		house.classification.forEach(element => {
-		  if (element === "passage" || 
-		  element === "failure" || 
-		  element === "introduction" || 
-		  element === "withdrawal" || 
-		  element === "executive-veto" || 
-		  element === "veto-override-passage " || 
-		  element === "veto-override-failure" || 
-		  element === "executive-signature") {
-			found = true;
-		  }
-		});
-		return found;
-	  });
+	houseBillPassed = didBillPassHouse(actions)
+	senateBillPassed = didBillPassSenate(actions)
+	governorBillPassed = didBillPassGovernor(actions)
 
-	let billIntroduction = actions.filter(h => {
-
-		return(h.classification.some( v => v === "introduction" ) )
-
-	  });
-
-	let houseBillPassed = actions.filter(h => {
-
-		return( h.organization.classification.includes("lower")&& h.classification.some( v => v === "passage" ) )
-
-	  });
-	let senateBillPassed = actions.filter(h => {
-
-		return( h.organization.classification.includes("upper")&& h.classification.some( v => v === "passage" ) )
-
-	  });
-
-	let governorBillPassed = actions.filter(h => {
-
-		return( h.organization.classification.includes("executive")&& 
-		(h.classification.some( v => v === "passage" ) || h.classification.some( v => v === "executive-signature" )  ))
-
-	  });
-
-
-
-
-if (typeof (billIntroduction[0]) !== "undefined" ) {
-
-	 introductionDate =  format(new Date(billIntroduction[0].date),'LLL d, yyyy')
-
-} 
-if (typeof (houseBillPassed[0]) !== "undefined" ) {
-
-	if ((houseBillPassed[0].date).length > 10) {
-		houseDate =  format(new Date(parseJSON(houseBillPassed[0].date)),'LLL d, yyyy')
+	if ((actions[0].date).length > 10) {
+		introDate = format(new Date(parseJSON(actions[0].date)),'LLL d, yyyy')
+		console.log(introDate)
 	} else {
-		houseDate =  houseBillPassed[0].date
-	}
+		introDate =  format(new Date(introDate),'LLL d, yyyy')
+		console.log("No format ", format(new Date(introDate),'LLL d, yyyy'))
+	 }
+	
+	// let billPassed = actions.filter(house => {
+	// 	let found = false;
+	// 	house.classification.forEach(element => {
+	// 	  if (element === "passage" || 
+	// 	  element === "failure" || 
+	// 	  element === "introduction" || 
+	// 	  element === "withdrawal" || 
+	// 	  element === "executive-veto" || 
+	// 	  element === "veto-override-passage " || 
+	// 	  element === "veto-override-failure" || 
+	// 	  element === "executive-signature") {
+	// 		found = true;
+	// 	  }
+	// 	});
+	// 	return found;
+	//   });
 
 	
-} 
-
-if (typeof (senateBillPassed[0]) !== "undefined" ) {	
-	senateDate =  format(new Date(senateBillPassed[0].date),'LLL dd, yyyy')
-} 
-
-if (typeof (governorBillPassed[0]) !== "undefined" ) {
-	
-	govDate =  format(new Date(governorBillPassed[0].date),'LLL dd, yyyy')
-} 
-
-
-// CHECK IF DATE VALID
-//  dateStringLength = (actions[actions.length - 1].date).length
- //introductionDate = format(new Date(actions[0].date),'LLL dd, yyyy')
-
 
 return( 
 
@@ -113,29 +65,29 @@ return(
 
   <div className="overflow-hidden h-2 mb-1 text-xs flex rounded bg-gray-200">
     <div style={{ width: "25%" }} className={"shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 "}></div>{" "}
-    { houseBillPassed.length > 0 ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center  bg-indigo-500"></div>: ""} 
-    { senateBillPassed.length > 0 ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>: ""}
-	{governorBillPassed.length> 0 ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-teal-500"></div> : ""}
+    { houseBillPassed ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center  bg-indigo-500"></div>: ""} 
+    { senateBillPassed ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>: ""}
+	{governorBillPassed ? <div style={{ width: "25%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-teal-500"></div> : ""}
  </div>
 
 	
 	<div className="flex text-xs content-center text-center tracking-tighter">
 		<div className="w-1/4">
-		{actions.length > 0 ? introductionDate : " "}
+		{introDate ? introDate : " "}
 		</div>
 		
 		<div className="w-1/4">
-		{houseBillPassed.length > 0  ? houseDate   : " "}
+		{houseBillPassed  ? houseBillPassed   : " "}
 		
 		</div>
 		
 		<div className="w-1/4">
-		{senateBillPassed.length > 0 ? senateDate : " "}
+		{senateBillPassed ? senateBillPassed : " "}
 
 		</div>
 		
 		<div className="w-1/4">
-		{governorBillPassed.length > 0 ? govDate : " "}
+		{governorBillPassed ? governorBillPassed : " "}
 
 		</div>			
 	</div>

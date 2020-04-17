@@ -9,9 +9,6 @@ const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
   return (
 
 <div className="p-2 ">
-
-
-
 <div className=" p-2 w-full lg:flex justify-center">
   <div className="max-w-md shadow-xl mx-1 my-1 border-r border-b border-l border-gray-400  border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
     <div className="mb-8">
@@ -25,9 +22,6 @@ const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
 
   </div>
   <div className="flex mt-3"> 
-
-
-  
    {isBillNew (getBillIntroduction(actions)) === true ?   <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} 
    {isBillSignedByGovornor(actions) ?   <span className="flex rounded-full bg-green-300 text-green-700 uppercase px-2 py-1 text-xs font-bold mr-3">Passed</span>: " "} 
    {isBillFailedByGovornor(actions) ? <span className="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">Failed</span>: " "} 
@@ -52,7 +46,7 @@ const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
         <span className="mb-3 p-1 p-1"> 
         <svg className="fill-current text-gray-500 w-5  h-5 mr-2 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M16 2h4v15a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V0h16v2zm0 2v13a1 1 0 0 0 1 1 1 1 0 0 0 1-1V4h-2zM2 2v15a1 1 0 0 0 1 1h11.17a2.98 2.98 0 0 1-.17-1V2H2zm2 8h8v2H4v-2zm0 4h8v2H4v-2zM4 4h8v4H4V4z"/></svg>
         </span>
-        <p className="text-gray-700 leading-none mr-2 mb-3 leading-snug">Last activity posted on <time>{format(new Date(actions[actions.length - 1].date),'MM/dd/yyyy')}</time> - <span className="bg-blue-100 mb-3 f6 db pv2 "> {sentenceCase(actions[actions.length - 1].description)}</span></p>
+        <p className="text-gray-700 leading-none mr-2 mb-3 leading-snug">Last activity posted on <time>{format(new Date(actions[0].date),'MM/dd/yyyy')}</time> - <span className="bg-blue-100 mb-3 f6 db pv2 "> {sentenceCase(actions[0].description)}</span></p>
 </div>
 
 <div className="flex"> 
@@ -69,7 +63,7 @@ const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
  
 
 //  return (<li key={i}>{u.url}</li>)
-return (<li key={i}> <a href={u.url} target="_blank" rel="noopener" className="no-underline">Link ({i+1})</a> </li>)
+return (<li key={i}> <a href={u.url} target="_blank" rel="noopener" rel="noopener noreferrer" className="no-underline">Link ({i+1})</a> </li>)
 
 })}
     {/* <StateLinks action ={actions}/>  */}

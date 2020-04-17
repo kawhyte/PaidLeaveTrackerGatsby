@@ -1,8 +1,6 @@
 var date_fns = require('date-fns')
 
 
-let introductionDate = " " 
-
 const state = {
     AL: {
       name: "Alabama",
@@ -448,14 +446,20 @@ let statusColor = {
 
 
   let getBillIntroduction = (actions)  => {
-    let sorted = actions.sort((a, b) =>date_fns.parseJSON(b.order) - date_fns.parseJSON(a.order));
-    const  billIntroduction = actions.filter((h) => {
+    let introductionDate = " " 
+    let sorted  =" "
+
+  sorted = actions.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+
+    
+    const  billIntroduction = sorted.filter((h) => {
       return h.classification.some((v) => v === 'introduction')
     })
 
     if (typeof (billIntroduction[0]) !== "undefined" ) {
 
-      return introductionDate =  billIntroduction[0].date
+      return introductionDate =  date_fns.format(new Date(billIntroduction[0].date),'LLL d, yyyy')
    
     } else {
 
@@ -475,9 +479,7 @@ let statusColor = {
  /// Format to Sentence Case
  let  sentenceCase = (string) => {
   let  lowercaseTitle = string.toLowerCase();
-  return ( lowercaseTitle[0].toUpperCase() +
-   lowercaseTitle.substring(1))
-
+  return ( lowercaseTitle[0].toUpperCase() + lowercaseTitle.substring(1))
 }
 
 
@@ -491,8 +493,7 @@ const isMajorUpdate = actions.some(
     value.classification.includes("veto-override-passage") ||
     value.classification.includes("executive-veto-line-item") ||
     Object.values(value.description).includes("governor") ||
-    Object.values(value.description).includes("executive") 
-);
+    Object.values(value.description).includes("executive"));
 
 return isMajorUpdate
 }
@@ -502,9 +503,7 @@ return isMajorUpdate
 let isBillSignedByGovornor = (actions)  => {
 let didBillPass = actions.some(
   value => value.classification.includes("became-law") ||
-  value.classification.includes("executive-signature")
-
-)
+  value.classification.includes("executive-signature"))
 
 return didBillPass
 }
@@ -513,12 +512,67 @@ return didBillPass
 let isBillFailedByGovornor = (actions)  => {
 let didBillFail = actions.some(
   value => value.classification.includes("executive-veto") ||
-  value.classification.includes("veto-override-failure")
-
-)
+  value.classification.includes("veto-override-failure"))
 }
 
 
+let didBillPassHouse = (actions)  => {
+let houseDate = " "
+let houseBillPassed = actions.filter(h => {
+
+  return( h.organization.classification.includes("lower")&& h.classification.some( v => v === "passage" ) )
+
+  });
 
 
-module.exports = {state, status, statusColor, getBillIntroduction, sentenceCase, isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor};
+  if (typeof (houseBillPassed[0]) !== "undefined" ) {
+
+    if ((houseBillPassed[0].date).length > 10) {
+       return houseDate = date_fns.format(new Date(date_fns.parseJSON(houseBillPassed[0].date)),'LLL d, yyyy')
+    } else {
+     return houseDate = date_fns.format(new Date(houseBillPassed[0].date ),'LLL d, yyyy')
+    }
+
+  } 
+
+}
+
+
+let didBillPassSenate = (actions)  => {
+
+let senateDate = " "
+let senateBillPassed = actions.filter(h => {
+
+  return( h.organization.classification.includes("upper")&& h.classification.some( v => v === "passage" ) )
+
+  });
+
+  if (typeof (senateBillPassed[0]) !== "undefined" ) {	
+   return senateDate =  date_fns.format(new Date(senateBillPassed[0].date),'LLL dd, yyyy')
+  } 
+
+
+}
+
+
+let didBillPassGovernor = (actions)  => {
+let govDate =" "
+
+let governorBillPassed = actions.filter(h => {
+
+  return( h.organization.classification.includes("executive")&& 
+  (h.classification.some( v => v === "passage" ) || h.classification.some( v => v === "executive-signature" )  ))
+
+  });
+
+  if (typeof (governorBillPassed[0]) !== "undefined" ) {
+	
+    return govDate = date_fns.format(new Date(governorBillPassed[0].date),'LLL dd, yyyy')
+  } 
+
+}
+
+
+module.exports = {state, status, statusColor,didBillPassGovernor, didBillPassSenate, 
+  didBillPassHouse, getBillIntroduction, sentenceCase, isBillNew, isUpdateMajor, 
+  isBillSignedByGovornor, isBillFailedByGovornor};
