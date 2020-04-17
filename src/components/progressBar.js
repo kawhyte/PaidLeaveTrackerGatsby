@@ -16,10 +16,10 @@ const Progress = ({actions}) => {
 
 	if ((actions[0].date).length > 10) {
 		introDate = format(new Date(parseJSON(actions[0].date)),'LLL d, yyyy')
-		console.log(introDate)
+		// console.log(introDate)
 	} else {
 		introDate =  format(new Date(introDate),'LLL d, yyyy')
-		console.log("No format ", format(new Date(introDate),'LLL d, yyyy'))
+		// console.log("No format ", format(new Date(introDate),'LLL d, yyyy'))
 	 }
 	
 	// let billPassed = actions.filter(house => {

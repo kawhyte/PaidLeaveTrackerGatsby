@@ -560,10 +560,12 @@ let govDate =" "
 
 let governorBillPassed = actions.filter(h => {
 
-  return( h.organization.classification.includes("executive")&& 
-  (h.classification.some( v => v === "passage" ) || h.classification.some( v => v === "executive-signature" )  ))
+  return( h.organization.classification.includes("executive") || h.organization.classification.includes("legislature")&& 
+  (h.classification.some( v => v === "passage" ) || h.classification.some( v => v === "executive-signature" ) || h.classification.includes( v => v === "executive-signature" ) ))
 
   });
+
+  console.log("governorBillPassed-", governorBillPassed)
 
   if (typeof (governorBillPassed[0]) !== "undefined" ) {
 	

@@ -1,73 +1,75 @@
 import React from 'react'
-import addDays from 'date-fns/addDays'
-import  differenceInDays from 'date-fns/differenceInDays'
-import  parseJSON from 'date-fns/parseJSON'
+// import addDays from 'date-fns/addDays'
+// import  differenceInDays from 'date-fns/differenceInDays'
+// import  parseJSON from 'date-fns/parseJSON'
 import format from 'date-fns/format'
 import Progress from './progressBar'
-let introductionDate = " "
+import {getBillIntroduction, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
+
+
 
 
 const Table = ({ title, identifier, jurisdiction, actions, sources  }) => {
 
-    let sorted = actions.sort((a, b) => parseJSON(b.order) - parseJSON(a.order));
+    // let sorted = actions.sort((a, b) => parseJSON(b.order) - parseJSON(a.order));
 
-    let billIntroduction = actions.filter(h => {
+    // let billIntroduction = actions.filter(h => {
   
-          return(h.classification.some( v => v === "introduction" ) )
+    //       return(h.classification.some( v => v === "introduction" ) )
   
-      });
+    //   });
       
   
   
-      if (typeof (billIntroduction[0]) !== "undefined" ) {
+      // if (typeof (billIntroduction[0]) !== "undefined" ) {
   
-        introductionDate =  billIntroduction[0].date
+      //   introductionDate =  billIntroduction[0].date
      
-      } 
+      // } 
    ////LOGIC TO CHECK IF BILL IS NEW //////
-        let futureDate = addDays(new Date(Date.now()), 15)
-        let billDateDifference = differenceInDays(
-          futureDate,
-          new Date(parseJSON(introductionDate))
-        );
+        // let futureDate = addDays(new Date(Date.now()), 15)
+        // let billDateDifference = differenceInDays(
+        //   futureDate,
+        //   new Date(parseJSON(introductionDate))
+        // );
         // console.log("billDateDifference ", billDateDifference)
   
   
     /// Format to Sentence Case
-    function sentenceCase(string) {
+  //   function sentenceCase(string) {
   
-     let  lowercaseTitle = string.toLowerCase();
-     return ( lowercaseTitle[0].toUpperCase() +
-      lowercaseTitle.substring(1))
+  //    let  lowercaseTitle = string.toLowerCase();
+  //    return ( lowercaseTitle[0].toUpperCase() +
+  //     lowercaseTitle.substring(1))
   
-   }
+  //  }
   // sentenceCase(testString.toLowerCase());
   
    ///LOGIC TO CHECK IF BILL IS IMPORTANT //////
-   let   isMajorUpdate = actions.some(
-        value =>
-          value.classification.includes("executive-receipt") ||
-          value.classification.includes("executive-veto") ||
-          value.classification.includes("veto-override-passage") ||
-          value.classification.includes("executive-veto-line-item") ||
-          Object.values(value.description).includes("governor") ||
-          Object.values(value.description).includes("executive") 
-      );
+  //  let   isMajorUpdate = actions.some(
+  //       value =>
+  //         value.classification.includes("executive-receipt") ||
+  //         value.classification.includes("executive-veto") ||
+  //         value.classification.includes("veto-override-passage") ||
+  //         value.classification.includes("executive-veto-line-item") ||
+  //         Object.values(value.description).includes("governor") ||
+  //         Object.values(value.description).includes("executive") 
+  //     );
   
   
   
   
-    let didBillPass = actions.some(
-      value => value.classification.includes("became-law") ||
-      value.classification.includes("executive-signature")
+    // let didBillPass = actions.some(
+    //   value => value.classification.includes("became-law") ||
+    //   value.classification.includes("executive-signature")
   
-    )
+    // )
   
-    let didBillFail = actions.some(
-      value => value.classification.includes("executive-veto") ||
-      value.classification.includes("veto-override-failure")
+    // let didBillFail = actions.some(
+    //   value => value.classification.includes("executive-veto") ||
+    //   value.classification.includes("veto-override-failure")
   
-    )
+    // )
     // console.log("actions.lengton 2 ", format(new Date(actions[0].date),'MM/dd/yyyy'))
     // console.log("actions.lengton ", format(new Date(parseJSON(actions[0].date)),'MM/dd/yyyy'))
   //  console.log("statusColor ", jurisdiction, identifier, statusColor [actions[actions.length-1].classification[0]].color)
@@ -80,21 +82,29 @@ const Table = ({ title, identifier, jurisdiction, actions, sources  }) => {
 
         <tr>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <div className="flex items-center">
-                <div className="flex-shrink-0 w-10 h-10">
+            <div className="">
+                {/* <div className="flex-shrink-0 w-10 h-10">
                     <img className="w-full h-full rounded-full"
                         src={"https://res.cloudinary.com/babyhulk/image/upload/v1584505244/flags/Flag_of_" + jurisdiction +".svg"} alt={"Flag of" + jurisdiction}
                          />
-                </div>
+                </div> */}
                 <div className="ml-3">
                     <p className="text-gray-900 wrap">
-                    {jurisdiction} 
+                    {title} 
                     </p>
                 </div>
             </div>
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <p className="text-gray-900 whitespace-no-wrap">{identifier}</p>
+        <div className="">
+        <div className="flex-shrink-0 w-10 h-10 mr-3">
+                    <img className="w-full h-full rounded-full"
+                        src={"https://res.cloudinary.com/babyhulk/image/upload/v1584505244/flags/Flag_of_" + jurisdiction +".svg"} alt={"Flag of" + jurisdiction}
+                         />
+        </div>
+            <p className="text-gray-900 whitespace-no-wrap">{jurisdiction} | {identifier}</p>
+        
+          </div>
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white-200 text-sm">
 
@@ -108,10 +118,10 @@ const Table = ({ title, identifier, jurisdiction, actions, sources  }) => {
 
 <div className="flex ml-4" > 
 
-<span className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle">Passed</span>
-<span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Failed</span>
-<span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle">Pending</span>
-<span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">New</span>
+{isBillNew (getBillIntroduction(actions)) === true ? <span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">New</span> :" "}
+{isBillSignedByGovornor(actions) ?  <span className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle"> Passed</span> :" "}
+{isBillFailedByGovornor(actions) ? <span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Failed</span> : " "}
+{isUpdateMajor(actions) ? <span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle">Major</span> : " "}
 
   
   </div>
@@ -119,7 +129,7 @@ const Table = ({ title, identifier, jurisdiction, actions, sources  }) => {
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
             <p className="text-gray-900 whitespace-no-wrap">
-            <time>{format(new Date(actions[actions.length - 1].date),'LLL dd, yyyy')}</time>
+            <time>{format(new Date(actions[0].date),'LLL dd, yyyy')}</time>
             </p>
         </td>
 
