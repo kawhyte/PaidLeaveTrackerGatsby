@@ -90,7 +90,7 @@ const Table = ({ title, identifier, jurisdiction, actions, sources  }) => {
                 </div> */}
                 <div className="ml-3">
                     <p className="text-gray-900 wrap">
-                    {title} 
+                    {sentenceCase(title)} 
                     </p>
                 </div>
             </div>
@@ -127,9 +127,10 @@ const Table = ({ title, identifier, jurisdiction, actions, sources  }) => {
   </div>
 
         </td>
-        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <p className="text-gray-900 whitespace-no-wrap">
-            <time>{format(new Date(actions[0].date),'LLL dd, yyyy')}</time>
+        <td className="px-5 py-5 border-b border-gray-200 bg-white  text-sm">
+            <p className="text-gray-900 whitespace-pre w-auto ">
+            <time>{format(new Date(actions[0].date),'LLL dd, yyyy')}</time>  
+            <p className="bg-blue-100 mb-3 f6 db pv2 wrap  ">{sentenceCase(actions[0].description)}</p>
             </p>
         </td>
 
