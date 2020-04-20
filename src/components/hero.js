@@ -1,5 +1,5 @@
 import React from 'react'
-import svg from '../layouts/img/family-green.svg'
+import svg from '../layouts/img/family-green.webp'
 import Headers from './header'
 
 const Hero = () => {
