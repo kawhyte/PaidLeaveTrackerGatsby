@@ -565,7 +565,6 @@ let governorBillPassed = actions.filter(h => {
 
   });
 
-  console.log("governorBillPassed-", governorBillPassed)
 
   if (typeof (governorBillPassed[0]) !== "undefined" ) {
 	

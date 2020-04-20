@@ -9,74 +9,8 @@ import {getBillIntroduction, sentenceCase,isBillNew, isUpdateMajor, isBillSigned
 
 
 
-const Table = ({ title, identifier, jurisdiction, actions, sources  }) => {
-
-    // let sorted = actions.sort((a, b) => parseJSON(b.order) - parseJSON(a.order));
-
-    // let billIntroduction = actions.filter(h => {
-  
-    //       return(h.classification.some( v => v === "introduction" ) )
-  
-    //   });
-      
-  
-  
-      // if (typeof (billIntroduction[0]) !== "undefined" ) {
-  
-      //   introductionDate =  billIntroduction[0].date
-     
-      // } 
-   ////LOGIC TO CHECK IF BILL IS NEW //////
-        // let futureDate = addDays(new Date(Date.now()), 15)
-        // let billDateDifference = differenceInDays(
-        //   futureDate,
-        //   new Date(parseJSON(introductionDate))
-        // );
-        // console.log("billDateDifference ", billDateDifference)
-  
-  
-    /// Format to Sentence Case
-  //   function sentenceCase(string) {
-  
-  //    let  lowercaseTitle = string.toLowerCase();
-  //    return ( lowercaseTitle[0].toUpperCase() +
-  //     lowercaseTitle.substring(1))
-  
-  //  }
-  // sentenceCase(testString.toLowerCase());
-  
-   ///LOGIC TO CHECK IF BILL IS IMPORTANT //////
-  //  let   isMajorUpdate = actions.some(
-  //       value =>
-  //         value.classification.includes("executive-receipt") ||
-  //         value.classification.includes("executive-veto") ||
-  //         value.classification.includes("veto-override-passage") ||
-  //         value.classification.includes("executive-veto-line-item") ||
-  //         Object.values(value.description).includes("governor") ||
-  //         Object.values(value.description).includes("executive") 
-  //     );
-  
-  
-  
-  
-    // let didBillPass = actions.some(
-    //   value => value.classification.includes("became-law") ||
-    //   value.classification.includes("executive-signature")
-  
-    // )
-  
-    // let didBillFail = actions.some(
-    //   value => value.classification.includes("executive-veto") ||
-    //   value.classification.includes("veto-override-failure")
-  
-    // )
-    // console.log("actions.lengton 2 ", format(new Date(actions[0].date),'MM/dd/yyyy'))
-    // console.log("actions.lengton ", format(new Date(parseJSON(actions[0].date)),'MM/dd/yyyy'))
-  //  console.log("statusColor ", jurisdiction, identifier, statusColor [actions[actions.length-1].classification[0]].color)
-  
-  // var result = isValid(new Date(actions[actions.length - 1].date))
-  
-  // console.log("Is valid ", result)
+const Table = ({ title, identifier, jurisdiction, actions, sources}) => {
+ 
     return (
 
 
@@ -127,6 +61,8 @@ const Table = ({ title, identifier, jurisdiction, actions, sources  }) => {
   </div>
 
         </td>
+
+
         <td className="px-5 py-5 border-b border-gray-200 bg-white  text-sm">
             <p className="text-gray-900 w-56 ">
             <time>{format(new Date(actions[0].date),'LLL dd, yyyy')}</time>  

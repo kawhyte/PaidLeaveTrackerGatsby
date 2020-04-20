@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import CardList from "../components/cardList"
 import Table from "../components/tableList"
 
+
 const IndexPage = () => {
 
   return ( 

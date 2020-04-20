@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Card from './card'
 import { graphql, useStaticQuery, Link } from 'gatsby'
 import FilterBar from './filterBar'
+import {getBillIntroduction, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
 
 
 const CardList = function () {
@@ -62,28 +63,41 @@ const CardList = function () {
  
   const handleDropdownChange = event  =>{
 
-    const query = event.target.value
-    console.log("event.target.value", event.target.value )
-    const posts = data.OpenState.bills.edges || []
+    // const query = event.target.value
+    // console.log("event.target.value", event.target.value )
+    // const posts = data.OpenState.bills.edges || []
 
-    console.log("Hey ", posts)
+    // console.log("Hey ", filteredData)
+    // console.log("actions ", isBillNew (getBillIntroduction(c.node)))
+    // console.log("NEW- ", posts.actions.includes())
+  // const filteredData1 = filteredData.filter(post => {
+      
 
-    const filteredData = posts.filter(post => {
-     
-      const { identifier, title, legislativeSession } = post.node
-      return (
 
-        identifier.replace(/\s+/g, "").toLowerCase().includes(query.toLowerCase()) 
-        // ||
-        //  title.toLowerCase().includes(query.toLowerCase()) 
-        ||
-        (legislativeSession.jurisdiction.name && legislativeSession.jurisdiction.name
-           .toLowerCase()
-           .includes(query.toLowerCase()))
-      )
-    })
+//  return ( 
+// //console.log( "Post",  isUpdateMajor(post.node.actions))
+// post.node.actions.includes(isUpdateMajor(post.node.actions)===true)
+//       //   identifier.replace(/\s+/g, "").toLowerCase().includes(query.toLowerCase()) 
+//       //   // ||
+//       //   //  title.toLowerCase().includes(query.toLowerCase()) 
+//       //   ||
+//       //   (legislativeSession.jurisdiction.name && legislativeSession.jurisdiction.name
+//       //      .toLowerCase()
+//       //      .includes(query.toLowerCase()))
+//      )
+//    //})
+  
+// })
+// setState({
+//   query, 
+//   filteredDatau, 
+// })
+ }  
 
- }
+// const { filteredDatau, query } = state
+  
+// console.log("filteredData ",filteredDatau)
+
 
   const handleInputChange = event => {
     const query = event.target.value
@@ -117,6 +131,8 @@ const CardList = function () {
   const { filteredData, query } = state
   
   console.log("filteredData ",filteredData)
+  
+  // console.log("filteredData ",choice)
 
   // const cardComponent = data.OpenState.bills.edges.map((b, i) => {
   const cardComponent = filteredData.map((b, i) => {
@@ -175,10 +191,10 @@ const CardList = function () {
         <select onChange={handleDropdownChange}
             className="sm:ml-3 appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 sm:border-r border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
             <option defaultValue="all" value="all" >All</option>
-            <option >Major Update</option>
+            <option value="major">Major Update</option>
             <option value="new">New</option>
-            <option>Passed</option>
-            <option>Failed</option>
+            <option value="passed">  Passed</option>
+            <option value="failed">Failed</option>
         </select>
         <div
             className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -201,7 +217,7 @@ const CardList = function () {
         Card View</Link>
         </button>
         <button>
-        <Link
+        <Link user = {{query}}
         className={
           "font-medium rounded-md text-indigo-700 bg-indigo-100 hover:text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:shadow-outline focus:border-indigo-300 transition duration-150 ease-in-out py-2 px-4 py-2 px-4 "
         }
