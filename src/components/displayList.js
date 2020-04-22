@@ -268,7 +268,8 @@ return (
     className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
 </div>
     <div className="relative">
-        <select onChange={(e)=> handleDropdownChange(e, filteredData)}
+    <label for="filter-value"></label>
+        <select id="filter-value" onChange={(e)=> handleDropdownChange(e, filteredData)}
             className="sm:ml-3 appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 sm:border-r border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
             <option defaultValue="all" value="all" >All</option>
             <option value="major">Major Update</option>
@@ -287,7 +288,7 @@ return (
 
       <div className="mt-0 mx-5 flex lg:flex-shrink-0 lg:mt-3">
 
-        <button onClick={handleSwitchView} className= "mr-3 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 py-2 px-4">
+        <button aria-label="Left Align" onClick={handleSwitchView} className= "mr-3 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 py-2 px-4">
         Switch to {clicked === "Table" ? "Card": "Table" } view
         </button>
       </div>
@@ -297,10 +298,10 @@ return (
 
 
     <div className="flex ml-4 mt-4" > 
-      <span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">{filteredData.length} bills found</span>
-      <span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle"> XX Major Updates</span>
-      <span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">XX New bills</span> 
-      <span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">XX Failed bills</span>
+      <span className="text-sm font-medium bg-blue-300 py-1 px-2 rounded text-black align-middle">{filteredData.length} bills found</span>
+      <span className="text-sm font-medium bg-green-300 py-1 px-2 rounded text-black align-middle"> XX Passed bills</span>
+      <span className="text-sm font-medium bg-yellow-300 py-1 px-2 rounded text-black align-middle">XX New bills</span> 
+      <span className="text-sm font-medium bg-red-300 py-1 px-2 rounded text-black align-middle">XX Failed bills</span>
     </div>
 
 
