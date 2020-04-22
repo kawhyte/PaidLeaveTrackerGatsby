@@ -64,10 +64,6 @@ const CardList = function () {
     clicked === "Table" ? setClicked("Card") : setClicked("Table") 
   }
 
-
- 
-  
-  
   const handleInputChange = (event) => {
     const query = event.target.value
     console.log("event.target.value", event.target.value )
@@ -247,7 +243,7 @@ const CardList = function () {
 
 
 
-  return (
+return (
     < div className="ml-16 mr-16">
 
       <div className="py-8 ">
@@ -301,14 +297,11 @@ const CardList = function () {
 
 
     <div className="flex ml-4 mt-4" > 
-
       <span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">{filteredData.length} bills found</span>
-<span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle"> XX Major Updates</span>
-<span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">XX New bills</span> 
-<span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">XX Failed bills</span>
-
-  
-  </div>
+      <span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle"> XX Major Updates</span>
+      <span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">XX New bills</span> 
+      <span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">XX Failed bills</span>
+    </div>
 
 
     {renderView()}
