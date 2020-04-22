@@ -59,11 +59,9 @@ const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
 
   <ul className=" text-gray-700 list-inside">
 
-{sources.map((u, i)=>{
- 
+{sources.map((link, i)=>{
 
-//  return (<li key={i}>{u.url}</li>)
-return (<li key={i}> <a href={u.url} target="_blank" rel="noopener" rel="noopener noreferrer" className="no-underline">Link ({i+1})</a> </li>)
+return (<li key={i}> <a href={link.url} target="_blank" rel="noopener" rel="noopener noreferrer" className="no-underline">Link ({i+1})</a> </li>)
 
 })}
     {/* <StateLinks action ={actions}/>  */}

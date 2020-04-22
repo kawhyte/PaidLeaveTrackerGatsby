@@ -1,7 +1,7 @@
 import React from 'react'
-import Hero from "../components/hero"
-import Layout from "../components/layout"
-import Table from "../components/tableList"
+import Hero from "../hero"
+import Layout from "../layout"
+import Table from "./tableList"
 
 const TableView = () => {
 

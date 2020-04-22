@@ -1,10 +1,12 @@
 import React from 'react'
-import Table from './table'
+import Table from '../table'
 import { graphql, useStaticQuery } from 'gatsby'
-import FilterBar from './filterBar'
+import FilterBar from '../filterBar'
 
 let quote = '"'
 const TableList = function (v) {
+ console.log("VVVVVVV", v)
+
   const data = useStaticQuery(graphql`
   query {
     OpenState{ 

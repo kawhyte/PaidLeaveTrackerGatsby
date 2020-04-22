@@ -9,8 +9,8 @@ import {getBillIntroduction, sentenceCase,isBillNew, isUpdateMajor, isBillSigned
 
 
 
-const Table = ({ title, identifier, jurisdiction, actions, sources}) => {
- 
+const Table = ({ title, identifier, jurisdiction, actions, sources, props}) => {
+
     return (
 
 
