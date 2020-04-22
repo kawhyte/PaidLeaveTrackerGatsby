@@ -1,7 +1,4 @@
 import React from 'react'
-// import addDays from 'date-fns/addDays'
-// import  differenceInDays from 'date-fns/differenceInDays'
-// import  parseJSON from 'date-fns/parseJSON'
 import format from 'date-fns/format'
 import Progress from './progressBar'
 import {getBillIntroduction, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
@@ -9,11 +6,9 @@ import {getBillIntroduction, sentenceCase,isBillNew, isUpdateMajor, isBillSigned
 
 
 
-const Table = ({ title, identifier, jurisdiction, actions, sources, props}) => {
+const Table = ({ title, identifier, jurisdiction, actions, sources}) => {
 
     return (
-
-
         <tr>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
               <div className="">
@@ -28,11 +23,6 @@ const Table = ({ title, identifier, jurisdiction, actions, sources, props}) => {
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
             <div className="">
-                {/* <div className="flex-shrink-0 w-10 h-10">
-                    <img className="w-full h-full rounded-full"
-                        src={"https://res.cloudinary.com/babyhulk/image/upload/v1584505244/flags/Flag_of_" + jurisdiction +".svg"} alt={"Flag of" + jurisdiction}
-                         />
-                </div> */}
                 <div className="ml-3">
                     <p className="text-gray-900  wrap">
                     {sentenceCase(title)} 
@@ -57,12 +47,9 @@ const Table = ({ title, identifier, jurisdiction, actions, sources, props}) => {
 {isBillFailedByGovornor(actions) ? <span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Failed</span> : " "}
 {isUpdateMajor(actions) ? <span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle">Major</span> : " "}
 
-  
   </div>
 
         </td>
-
-
         <td className="px-5 py-5 border-b border-gray-200 bg-white  text-sm">
             <p className="text-gray-900 w-56 ">
             <time>{format(new Date(actions[0].date),'LLL dd, yyyy')}</time>  

@@ -64,7 +64,6 @@ const Card = ({ title, identifier, jurisdiction, actions, sources  }) => {
 return (<li key={i}> <a href={link.url} target="_blank" rel="noopener" rel="noopener noreferrer" className="no-underline">Link ({i+1})</a> </li>)
 
 })}
-    {/* <StateLinks action ={actions}/>  */}
   </ul>
 
 </div>

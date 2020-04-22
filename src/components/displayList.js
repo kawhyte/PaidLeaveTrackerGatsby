@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import Card from './card'
-import { graphql, useStaticQuery, Link } from 'gatsby'
+import { graphql, useStaticQuery} from 'gatsby'
 import Table from './table'
-import FilterBar from './filterBar'
 import {getBillIntroduction, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
 
 
@@ -77,7 +76,7 @@ const CardList = function () {
     
     const filteredData = posts.filter(post => {
       
-      const { identifier, title, legislativeSession } = post.node
+      const { identifier, legislativeSession } = post.node
       return (
         
         identifier.replace(/\s+/g, "").toLowerCase().includes(query.toLowerCase()) 
@@ -145,7 +144,7 @@ const CardList = function () {
        })
        }  
   
-  const { filteredData, query } = state
+  const { filteredData } = state
   
   console.log("filteredData outside",filteredData)
 
@@ -304,7 +303,7 @@ const CardList = function () {
     <div className="flex ml-4 mt-4" > 
 
       <span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">{filteredData.length} bills found</span>
-<span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle">XX Major Updates</span>
+<span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle"> XX Major Updates</span>
 <span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">XX New bills</span> 
 <span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">XX Failed bills</span>
 
