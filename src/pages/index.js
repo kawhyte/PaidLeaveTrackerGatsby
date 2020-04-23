@@ -7,6 +7,8 @@ import CardList from "../components/displayList"
 
 const IndexPage = () => {
 
+  
+
   return ( 
 <div  className="Roboto">
 <Layout> 

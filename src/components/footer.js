@@ -13,7 +13,12 @@ const Footer = () => {
         }
       }
     }
-  `)
+  `
+  
+  )
+
+// console.log("Time ", time.currentBuildDate.currentDate)
+
   return (
     <div> 
       <div>{` `}</div>
