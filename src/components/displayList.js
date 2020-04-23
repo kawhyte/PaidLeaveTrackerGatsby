@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Card from './card'
 import { graphql, useStaticQuery} from 'gatsby'
 import Table from './table'
-import {getBillIntroduction, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
-
+import {sentenceCase,isBillNew, isBillSignedByGovornor, isBillFailedByGovornor, isUpdateMajor} from '../Util/helper'
+// let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
 
 const CardList = function () {
 
@@ -60,9 +60,75 @@ const CardList = function () {
 
   const [clicked, setClicked] = useState("Card");
 
+  const [count, setCount] = useState({
+    newBill:0 , signedGov:0, failedBill:0, major:0
+  })
+
   function handleSwitchView() {
     clicked === "Table" ? setClicked("Card") : setClicked("Table") 
   }
+
+  
+
+  useEffect(() => {
+  
+    const test = filteredData.map((status, i)=> {
+      let signedGov1 = isBillSignedByGovornor(status.node.actions) 
+      let newBill1 = isBillNew(status.node.actions) 
+      let failedBill1 = isBillFailedByGovornor(status.node.actions) 
+      let major1 = isUpdateMajor(status.node.actions)
+
+      console.log('signedGov ', signedGov)
+      if (signedGov1=== true) {
+        setCount({ 
+          ...count,
+          count:count['signedGov']++ 
+        })
+      }
+
+      if (major1=== true) {
+        setCount({ 
+          ...count,
+          count:count['major']++ 
+        })
+      }
+      
+      if (newBill1=== true) {
+        setCount({ 
+          ...count,
+          count:count['newBill']++ 
+        })
+      }
+      if (failedBill1=== true) {
+        setCount({ 
+          ...count,
+          count:count['failedBill']++ 
+        })
+      }
+      
+      //   } else if (signedGov) {
+      //   setCount(count['signedGov']++)
+      // } else if (failedBill) {
+      //   setCount(count['failedBill']++)
+      // } else if (major){
+      //   setCount(count['major']++)
+
+      // }
+
+      //return(count)
+      
+        })
+     //setCount(count)
+    
+  }, []);
+
+  const { signedGov, major, newBill, failedBill  } = count
+  console.log('signedGov ', signedGov)
+  console.log('major ', major)
+  console.log('newBill1 ', newBill)
+  console.log('failedBill1 ', failedBill)
+
+
 
   const handleInputChange = (event) => {
     const query = event.target.value
@@ -100,18 +166,9 @@ const CardList = function () {
           const posts = jsonData || []
           console.log("posts ", posts )
 
-          
-          // console.log("Hey ", filteredData)
-          // console.log("actions ", isBillNew (getBillIntroduction(c.node)))
-          // console.log("NEW- ", posts.actions.includes())
        const filteredData = posts.filter(post => {
-            
-      
-        // const {actions} = post.node
-        // console.log("AAAAAA",post.node.actions.organization.classification.includes("executive"))
-        // let test = isUpdateMajor(actions)
+
         let test = post.node.actions.filter(obj=>obj.organization.classification==="executive")
-        // console.log("AAAAAA",test)
 
      
         return ( 
@@ -268,7 +325,7 @@ return (
     className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
 </div>
     <div className="relative">
-    <label for="filter-value"></label>
+    <label htmlFor="filter-value">
         <select id="filter-value" onChange={(e)=> handleDropdownChange(e, filteredData)}
             className="sm:ml-3 appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 sm:border-r border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
             <option defaultValue="all" value="all" >All</option>
@@ -276,7 +333,7 @@ return (
             <option value="new">New</option>
             <option value="passed">  Passed</option>
             <option value="failed">Failed</option>
-        </select>
+        </select></label>
         <div
             className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
             <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -297,11 +354,13 @@ return (
 </div>
 
 
-    <div className="flex ml-4 mt-4" > 
-      <span className="text-sm font-medium bg-blue-300 py-1 px-2 rounded text-black align-middle">{filteredData.length} bills found</span>
-      <span className="text-sm font-medium bg-green-300 py-1 px-2 rounded text-black align-middle"> XX Passed bills</span>
-      <span className="text-sm font-medium bg-yellow-300 py-1 px-2 rounded text-black align-middle">XX New bills</span> 
-      <span className="text-sm font-medium bg-red-300 py-1 px-2 rounded text-black align-middle">XX Failed bills</span>
+    <div className="flex ml-4 mt-4 px-1"> 
+    
+      <p className="text-sm font-medium bg-blue-300 py-1 px-2 mr-2 rounded text-black align-middle">{filteredData.length} bills displayed</p>
+      <p className="text-sm font-medium bg-green-300 py-1 px-2 mr-2  rounded text-black align-middle"> {count.signedGov} signed bills</p>
+      <p className="text-sm font-medium bg-yellow-300 py-1 px-2  mr-2 rounded text-black align-middle">{count.newBill} new bills</p> 
+      <p className="text-sm font-medium bg-red-300 py-1 px-2 mr-2 rounded text-black align-middle">{count.newBill} failed bills</p>
+      <p className="text-sm font-medium bg-indigo-300 py-1 px-2  rounded text-black align-middle">{count.major} major updates</p>
     </div>
 
 
