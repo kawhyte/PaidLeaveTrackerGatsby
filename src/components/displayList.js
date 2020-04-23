@@ -356,11 +356,11 @@ return (
 
     <div className="flex ml-4 mt-4 px-1"> 
     
-      <p className="text-sm font-medium bg-blue-300 py-1 px-2 mr-2 rounded text-black align-middle">{filteredData.length} bills displayed</p>
-      <p className="text-sm font-medium bg-green-300 py-1 px-2 mr-2  rounded text-black align-middle"> {count.signedGov} signed bills</p>
+      <p className="text-sm font-medium bg-blue-300 py-1 px-2 mr-2 rounded text-black align-middle">Showing {filteredData.length} of 100 bills</p>
+      <p className="text-sm font-medium bg-green-300 py-1 px-2 mr-2  rounded text-black align-middle"> {count.signedGov} bills signed by Governor</p>
       <p className="text-sm font-medium bg-yellow-300 py-1 px-2  mr-2 rounded text-black align-middle">{count.newBill} new bills</p> 
       <p className="text-sm font-medium bg-red-300 py-1 px-2 mr-2 rounded text-black align-middle">{count.newBill} failed bills</p>
-      <p className="text-sm font-medium bg-indigo-300 py-1 px-2  rounded text-black align-middle">{count.major} major updates</p>
+      <p className="text-sm font-medium bg-indigo-300 py-1 px-2  rounded text-black align-middle">{count.major} bills had major updates</p>
     </div>
 
 
