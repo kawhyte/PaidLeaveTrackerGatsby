@@ -1,7 +1,7 @@
 import React from 'react'
 import Hero from "../components/hero"
 import Layout from "../components/layout"
-import CardList from "../components/displayList"
+import DisplayList from "../components/displayList"
 
 
 
@@ -13,7 +13,7 @@ const IndexPage = () => {
 <div  className="Roboto">
 <Layout> 
 <Hero /> 
-<CardList />  
+<DisplayList />  
 </Layout>
 </div>
 )

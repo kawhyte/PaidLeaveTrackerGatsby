@@ -6,22 +6,47 @@ import { parseJSON } from 'date-fns'
 let houseBillPassed = " "
 let senateBillPassed =" "
 let governorBillPassed =" "
+// let governorBillPassedDate =" "
+let billIntroduction =" "
 let introDate = " "
 
 const Progress = ({actions}) => {
+	let governorBillPassedDate =" "
 	
+	billIntroduction = getBillIntroduction(actions)
 	houseBillPassed = didBillPassHouse(actions)
 	senateBillPassed = didBillPassSenate(actions)
 	governorBillPassed = didBillPassGovernor(actions)
 
-	if ((actions[0].date).length > 10) {
-		introDate = format(new Date(parseJSON(actions[0].date)),'LLL d, yyyy')
-		// console.log(introDate)
-	} else {
-		introDate =  format(new Date(introDate),'LLL d, yyyy')
-		// console.log("No format ", format(new Date(introDate),'LLL d, yyyy'))
-	 }
+	//  console.log("governorBillPassed ", governorBillPassed)
+	//  console.log("governorBillPassed.length ", governorBillPassed.length)
+	   
 	
+
+	if ((typeof (billIntroduction[0]) !== "undefined") && billIntroduction.length) {
+	//   console.log("billIntroduction ", (billIntroduction[0].date))
+	// if ((billIntroduction[0].date).length > 10) {
+	 	//introDate = format(new Date(parseJSON(billIntroduction[0].date)),'LLL d, yyyy')
+		 introDate = billIntroduction[0].date
+		//  console.log("formatteed ", introDate)
+	// 	 console.log("INtro Date ",introDate)
+	// } else {
+		//introDate =  format(new Date(billIntroduction[0]),'LLL d, yyyy')
+		// console.log("No format ", format(new Date(introDate),'LLL d, yyyy'))
+	 //}
+	}
+
+
+	 if ((typeof ((governorBillPassed[0]) !== "undefined" ) && governorBillPassed.length > 0)){
+
+	 if (governorBillPassed[0].date > 10) {
+		governorBillPassedDate = format(new Date(parseJSON(governorBillPassed[0].date)),'LLL d, yyyy')
+	 } else {
+		governorBillPassedDate =  format(new Date(governorBillPassed[0].date),'LLL d, yyyy')
+	 }
+	}
+	
+	//   console.log("governorBillPassedDate ",governorBillPassedDate)
 	// let billPassed = actions.filter(house => {
 	// 	let found = false;
 	// 	house.classification.forEach(element => {
@@ -87,7 +112,7 @@ return(
 		</div>
 		
 		<div className="w-1/4">
-		{governorBillPassed ? governorBillPassed : " "}
+		{governorBillPassedDate ? governorBillPassedDate : " "}
 
 		</div>			
 	</div>

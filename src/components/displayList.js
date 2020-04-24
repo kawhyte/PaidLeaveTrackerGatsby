@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react'
 import Card from './card'
 import { graphql, useStaticQuery} from 'gatsby'
 import Table from './table'
-import {sentenceCase,isBillNew, isBillSignedByGovornor, isBillFailedByGovornor, isUpdateMajor} from '../Util/helper'
+import {sentenceCase,isBillNew, isBillSignedByGovornor, isBillFailedByGovornor, isUpdateMajor, didBillPassGovernor} from '../Util/helper'
 // let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
+import Pagination from '../components/common/pagination.jsx'
 
-const CardList = function () {
+const DisplayList = function () {
 
   const data = useStaticQuery(graphql`
   query {
@@ -55,7 +56,12 @@ const CardList = function () {
   const emptyQuery = ""
   const [state, setState] = useState({
     filteredData: data.OpenState.bills.edges,
-    query: emptyQuery,
+    query: emptyQuery
+  })
+
+  const [pageState, setPageState] = useState({
+    currentPage: 1,
+    pageSize: 10
   })
 
   const [clicked, setClicked] = useState("Card");
@@ -78,7 +84,7 @@ const CardList = function () {
       let failedBill1 = isBillFailedByGovornor(status.node.actions) 
       let major1 = isUpdateMajor(status.node.actions)
 
-      console.log('signedGov ', signedGov)
+      // console.log('signedGov ', signedGov)
       if (signedGov1=== true) {
         setCount({ 
           ...count,
@@ -105,29 +111,20 @@ const CardList = function () {
           count:count['failedBill']++ 
         })
       }
-      
-      //   } else if (signedGov) {
-      //   setCount(count['signedGov']++)
-      // } else if (failedBill) {
-      //   setCount(count['failedBill']++)
-      // } else if (major){
-      //   setCount(count['major']++)
 
-      // }
-
-      //return(count)
-      
         })
-     //setCount(count)
+  
     
   }, []);
 
   const { signedGov, major, newBill, failedBill  } = count
-  console.log('signedGov ', signedGov)
-  console.log('major ', major)
-  console.log('newBill1 ', newBill)
-  console.log('failedBill1 ', failedBill)
+ 
 
+
+  const handlePageChange = (page) =>{
+    setPageState({ pageSize: 10, currentPage:page})
+
+  }
 
 
   const handleInputChange = (event) => {
@@ -158,48 +155,68 @@ const CardList = function () {
       }
       
       const handleDropdownChange = (event, jsonData)  =>{
-        const query = "Employment"//event.target.value
-      console.log("event  ", event.target.value )
-      console.log("JsonDFata  ", jsonData )
 
 
-          const posts = jsonData || []
-          console.log("posts ", posts )
 
-       const filteredData = posts.filter(post => {
 
-        let test = post.node.actions.filter(obj=>obj.organization.classification==="executive")
 
-     
-        return ( 
-          test
-          // post.node.actions.filter(obj=>obj.organization.classification==="executive")
-          
+        // if (searchItem === "all") {
+        //   console.log("EE ");
+        //   displayBills(fetchedBills);
+        //   return;
+        // } else if (searchItem === "recent") {
+        //   filteredItems = fetchedBills.filter(bill => {
+        //     return bill.isBillNew === true;
+        //   });
+        // } else if (searchItem === "major") {
+        //   filteredItems = fetchedBills.filter(bill => {
+        //     return bill.isLastUpdateImportant === 1;
+        //   });
+        // }
+    
+        // displayBills(filteredItems);
+
+
+
+
+        // console.log("event  ", event.target.value )
+        const query = event.target.value
+        const posts = jsonData || []
+          // console.log("posts ", posts )
           
          
-          //title.toLowerCase().includes(query.toLowerCase())
-      // //console.log( "Post",  isUpdateMajor(post.node.actions))
-      // post.node.actions.includes(isUpdateMajor(post.node.actions)===true)
-      //       //   identifier.replace(/\s+/g, "").toLowerCase().includes(query.toLowerCase()) 
-      //       //   // ||
-      //       //   //  title.toLowerCase().includes(query.toLowerCase()) 
-      //       //   ||
-      //       //   (legislativeSession.jurisdiction.name && legislativeSession.jurisdiction.name
-      //       //      .toLowerCase()
-      //       //      .includes(query.toLowerCase()))
-            )
-      //    //})
+          if (event.target.value==='all') {
+            setState({ query, filteredData: jsonData}) 
+         } 
+
+       const test = posts.filter(post => {
+         
+         if (event.target.value==='passed'){
+          let signedGov1 = didBillPassGovernor(post.node.actions)
+
+          if (typeof (signedGov1) !== "undefined" && (signedGov1.length > 0)) {
+
+            
+            return signedGov1
+          }
+          
+         }
+         
+
         
       })
-       setState({
-         query, 
-         filteredData: filteredData
-       })
+      setState({ query,filteredData: test})
+      // console.log("signedGov1-filteredData ", filteredData)
+      // console.log("signedGov1-test ", test)
+      
+
+
+
        }  
   
   const { filteredData } = state
   
-  console.log("filteredData outside",filteredData)
+  // console.log("filteredData outside",filteredData)
 
 
   const renderView = ()=>{
@@ -244,22 +261,11 @@ const CardList = function () {
 
                         </tbody>
                     </table>
-                    <div
-                        className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
-                        <span className="text-xs xs:text-sm text-gray-900">
-                            Showing 1 to 4 of 50 Entries
-                        </span>
-                        <div className="inline-flex mt-2 xs:mt-0">
-                            <button
-                                className="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l">
-                                Prev
-                            </button>
-                            <button
-                                className="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-r">
-                                Next
-                            </button>
-                        </div>
-                    </div>
+              
+
+
+
+
                 </div>
             </div>
         </div>
@@ -268,7 +274,7 @@ const CardList = function () {
       return <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{cardComponent}</div>
     }
   }
-
+ console.log("filteredData - cardCom ", filteredData)
   const cardComponent = filteredData.map((b, i) => {
     return (
       <Card
@@ -329,10 +335,10 @@ return (
         <select id="filter-value" onChange={(e)=> handleDropdownChange(e, filteredData)}
             className="sm:ml-3 appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 sm:border-r border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
             <option defaultValue="all" value="all" >All</option>
+            <option value="new">New bills</option>
             <option value="major">Major Update</option>
-            <option value="new">New</option>
-            <option value="passed">  Passed</option>
-            <option value="failed">Failed</option>
+            <option value="passed">Signed by Gov</option>
+            <option value="failed">Failed bills</option>
         </select></label>
         <div
             className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -353,22 +359,26 @@ return (
 
 </div>
 
-
-    <div className="flex ml-4 mt-4 px-1"> 
+<div className= "ml-4 px-1"> 
+    <div className="flex  mt-4 mb-2"> 
     
-      <p className="text-sm font-medium bg-blue-300 py-1 px-2 mr-2 rounded text-black align-middle">Showing {filteredData.length} of 100 bills</p>
+      <p className="text-sm font-medium bg-blue-300 py-1 px-2 mr-2 rounded text-black align-middle">Displaying {filteredData.length} bills</p>
       <p className="text-sm font-medium bg-green-300 py-1 px-2 mr-2  rounded text-black align-middle"> {count.signedGov} bills signed by Governor</p>
       <p className="text-sm font-medium bg-yellow-300 py-1 px-2  mr-2 rounded text-black align-middle">{count.newBill} new bills</p> 
       <p className="text-sm font-medium bg-red-300 py-1 px-2 mr-2 rounded text-black align-middle">{count.newBill} failed bills</p>
       <p className="text-sm font-medium bg-indigo-300 py-1 px-2  rounded text-black align-middle">{count.major} bills had major updates</p>
+   
     </div>
-
+    <small className="font-normal leading-normal mb-4 text-gray-800 ">
+    Note: Includes paid family leave bills created in the last 200 days.
+    </small>
+</div>
 
     {renderView()}
     
-  
+  <Pagination itemsCount={filteredData.length} pageSize={pageState.pageSize} onPageChange={handlePageChange} currentPage={pageState.currentPage}></Pagination>
     </div>
   )
 }
 
-export default CardList
+export default DisplayList

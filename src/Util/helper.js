@@ -457,6 +457,12 @@ let statusColor = {
       return h.classification.some((v) => v === 'introduction')
     })
 
+    // console.log("Helper ",billIntroduction)
+
+    billIntroduction.sort( (a, b) => new Date(a.date) - new Date(b.date)  )
+
+    return billIntroduction
+
     if (typeof (billIntroduction[0]) !== "undefined" ) {
 
       return introductionDate =  date_fns.format(new Date(billIntroduction[0].date),'LLL d, yyyy')
@@ -564,13 +570,14 @@ let governorBillPassed = actions.filter(h => {
   (h.classification.some( v => v === "passage" ) || h.classification.some( v => v === "executive-signature" ) || h.classification.includes( v => v === "executive-signature" ) ))
 
   });
-
+ 
 
   if (typeof (governorBillPassed[0]) !== "undefined" ) {
 	
-    return govDate = date_fns.format(new Date(governorBillPassed[0].date),'LLL dd, yyyy')
+     date_fns.format(new Date(governorBillPassed[0].date),'LLL dd, yyyy')
   } 
 
+ return governorBillPassed
 }
 
 
