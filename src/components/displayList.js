@@ -56,11 +56,12 @@ const DisplayList = function () {
 
   const emptyQuery = ""
   const [state, setState] = useState({
-    filteredData: data.OpenState.bills.edges,
+    bills: data.OpenState.bills.edges,
     query: emptyQuery
   })
 
   const [pageState, setPageState] = useState({
+    bills: data.OpenState.bills.edges,
     currentPage: 1,
     pageSize: 10
   })
@@ -77,48 +78,48 @@ const DisplayList = function () {
 
   
 
-  useEffect(() => {
+  // useEffect(() => {
   
-    const test = filteredData.map((status, i)=> {
-      let signedGov1 = isBillSignedByGovornor(status.node.actions) 
-      let newBill1 = isBillNew(status.node.actions) 
-      let failedBill1 = isBillFailedByGovornor(status.node.actions) 
-      let major1 = isUpdateMajor(status.node.actions)
+  //   const test = filteredData.map((status, i)=> {
+  //     let signedGov1 = isBillSignedByGovornor(status.node.actions) 
+  //     let newBill1 = isBillNew(status.node.actions) 
+  //     let failedBill1 = isBillFailedByGovornor(status.node.actions) 
+  //     let major1 = isUpdateMajor(status.node.actions)
 
-      // console.log('signedGov ', signedGov)
-      if (signedGov1=== true) {
-        setCount({ 
-          ...count,
-          count:count['signedGov']++ 
-        })
-      }
+  //     // console.log('signedGov ', signedGov)
+  //     if (signedGov1=== true) {
+  //       setCount({ 
+  //         ...count,
+  //         count:count['signedGov']++ 
+  //       })
+  //     }
 
-      if (major1=== true) {
-        setCount({ 
-          ...count,
-          count:count['major']++ 
-        })
-      }
+  //     if (major1=== true) {
+  //       setCount({ 
+  //         ...count,
+  //         count:count['major']++ 
+  //       })
+  //     }
       
-      if (newBill1=== true) {
-        setCount({ 
-          ...count,
-          count:count['newBill']++ 
-        })
-      }
-      if (failedBill1=== true) {
-        setCount({ 
-          ...count,
-          count:count['failedBill']++ 
-        })
-      }
+  //     if (newBill1=== true) {
+  //       setCount({ 
+  //         ...count,
+  //         count:count['newBill']++ 
+  //       })
+  //     }
+  //     if (failedBill1=== true) {
+  //       setCount({ 
+  //         ...count,
+  //         count:count['failedBill']++ 
+  //       })
+  //     }
 
-        })
+  //       })
   
     
-  }, []);
+  // }, []);
 
-  const { signedGov, major, newBill, failedBill  } = count
+  // const { signedGov, major, newBill, failedBill  } = count
  
 
 
@@ -128,98 +129,69 @@ const DisplayList = function () {
   }
 
 
-  const handleInputChange = (event) => {
-    const query = event.target.value
-    console.log("event.target.value", event.target.value )
+   const handleInputChange = (event) => {
+  //   const query = event.target.value
+  //   console.log("event.target.value", event.target.value )
     
-    const posts = data.OpenState.bills.edges || []
+  //   const posts = data.OpenState.bills.edges || []
     
-    const filteredData = posts.filter(post => {
+  //   const filteredData = posts.filter(post => {
       
-      const { identifier, legislativeSession } = post.node
-      return (
+  //     const { identifier, legislativeSession } = post.node
+  //     return (
         
-        identifier.replace(/\s+/g, "").toLowerCase().includes(query.toLowerCase()) 
-        // ||
-        //  title.toLowerCase().includes(query.toLowerCase()) 
-        ||
-        (legislativeSession.jurisdiction.name && legislativeSession.jurisdiction.name
-          .toLowerCase()
-          .includes(query.toLowerCase()))
-          )
-        })
+  //       identifier.replace(/\s+/g, "").toLowerCase().includes(query.toLowerCase()) 
+  //       // ||
+  //       //  title.toLowerCase().includes(query.toLowerCase()) 
+  //       ||
+  //       (legislativeSession.jurisdiction.name && legislativeSession.jurisdiction.name
+  //         .toLowerCase()
+  //         .includes(query.toLowerCase()))
+  //         )
+  //       })
         
-        setState({
-          query, 
-          filteredData 
-        })
-      }
+  //       setState({
+  //         query, 
+  //         filteredData 
+  //       })
+     }
       
-      const handleDropdownChange = (event, jsonData)  =>{
-
-
-
-
-
-        // if (searchItem === "all") {
-        //   console.log("EE ");
-        //   displayBills(fetchedBills);
-        //   return;
-        // } else if (searchItem === "recent") {
-        //   filteredItems = fetchedBills.filter(bill => {
-        //     return bill.isBillNew === true;
-        //   });
-        // } else if (searchItem === "major") {
-        //   filteredItems = fetchedBills.filter(bill => {
-        //     return bill.isLastUpdateImportant === 1;
-        //   });
-        // }
-    
-        // displayBills(filteredItems);
-
-
-
-
-        // console.log("event  ", event.target.value )
-        const query = event.target.value
-        const posts = jsonData || []
-          // console.log("posts ", posts )
+       const handleDropdownChange = (event, jsonData)  =>{
+  //       const query = event.target.value
+  //       const posts = jsonData || []
+  
           
          
-          if (event.target.value==='all') {
-            setState({ query, filteredData: jsonData}) 
-         } 
+  //         if (event.target.value==='all') {
+  //           setState({ query, filteredData: jsonData}) 
+  //        } 
 
-       const test = posts.filter(post => {
+  //      const test = posts.filter(post => {
          
-         if (event.target.value==='passed'){
-          let signedGov1 = didBillPassGovernor(post.node.actions)
+  //        if (event.target.value==='passed'){
+  //         let signedGov1 = didBillPassGovernor(post.node.actions)
 
-          if (typeof (signedGov1) !== "undefined" && (signedGov1.length > 0)) {
+  //         if (typeof (signedGov1) !== "undefined" && (signedGov1.length > 0)) {
 
             
-            return signedGov1
-          }
+  //           return signedGov1
+  //         }
           
-         }
+  //        }
          
 
         
-      })
-      setState({ query,filteredData: test})
-      // console.log("signedGov1-filteredData ", filteredData)
-      // console.log("signedGov1-test ", test)
-      
-
-
+  //     })
+  //     setState({ query,filteredData: test})
 
        }  
   
-  const { filteredData } = state
+  // let { filteredData } = state
   
   // console.log("filteredData outside",filteredData)
 
-
+  const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)
+  
   const renderView = ()=>{
     if(clicked === "Table"){
       return <div className="py-2">
@@ -272,11 +244,11 @@ const DisplayList = function () {
         </div>
 
     } else{
-      return <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">{cardComponent}</div>
+      return <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{cardComponent}</div>
     }
   }
- console.log("filteredData - cardCom ", filteredData)
-  const cardComponent = filteredData.map((b, i) => {
+ 
+  const cardComponent = bills.map((b, i) => {
     return (
       <Card
         key={i}
@@ -291,7 +263,7 @@ const DisplayList = function () {
   })
 
 
-  const tableComponent = filteredData.map((b, i) => {
+  const tableComponent = bills.map((b, i) => {
     return (
       <Table
         key={i}
@@ -306,6 +278,7 @@ const DisplayList = function () {
   })
 
 
+ 
 
 return (
     < div className="ml-16 mr-16">
@@ -333,7 +306,7 @@ return (
 </div>
     <div className="relative">
     <label htmlFor="filter-value">
-        <select id="filter-value" onChange={(e)=> handleDropdownChange(e, filteredData)}
+        <select id="filter-value" onChange={(e)=> handleDropdownChange(e, bills)}
             className="sm:ml-3 appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 sm:border-r border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
             <option defaultValue="all" value="all" >All</option>
             <option value="new">New bills</option>
@@ -363,21 +336,21 @@ return (
 <div className= "ml-4 px-1"> 
     <div className="flex  mt-4 mb-2"> 
     
-      <p className="text-sm font-medium bg-blue-300 py-1 px-2 mr-2 rounded text-black align-middle">Displaying {filteredData.length} bills</p>
+      {/* <p className="text-sm font-medium bg-blue-300 py-1 px-2 mr-2 rounded text-black align-middle"> {state.bills.length} bills found</p> */}
       <p className="text-sm font-medium bg-green-300 py-1 px-2 mr-2  rounded text-black align-middle"> {count.signedGov} bills signed by Governor</p>
       <p className="text-sm font-medium bg-yellow-300 py-1 px-2  mr-2 rounded text-black align-middle">{count.newBill} new bills</p> 
       <p className="text-sm font-medium bg-red-300 py-1 px-2 mr-2 rounded text-black align-middle">{count.newBill} failed bills</p>
-      <p className="text-sm font-medium bg-indigo-300 py-1 px-2  rounded text-black align-middle">{count.major} bills had major updates</p>
+      <p className="text-sm font-medium bg-indigo-300 py-1 px-2  mr-2 rounded text-black align-middle">{count.major} bills had major updates</p>
    
     </div>
     <small className="font-normal leading-normal mb-4 text-gray-800 ">
-    Note: Includes paid family leave bills created in the last 200 days.
+     Displaying page {pageState.currentPage}  of {pageState.pageSize} of {state.bills.length} results
     </small>
 </div>
 
     {renderView()}
     
-  <Pagination itemsCount={filteredData.length} pageSize={pageState.pageSize} onPageChange={handlePageChange} currentPage={pageState.currentPage}></Pagination>
+  <Pagination itemsCount={state.bills.length} pageSize={pageState.pageSize} onPageChange={handlePageChange} currentPage={pageState.currentPage}></Pagination>
     </div>
   )
 }
