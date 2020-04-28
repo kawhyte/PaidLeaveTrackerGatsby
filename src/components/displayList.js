@@ -130,30 +130,31 @@ const DisplayList = function () {
 
 
    const handleInputChange = (event) => {
-  //   const query = event.target.value
+     const query = event.target.value
   //   console.log("event.target.value", event.target.value )
+      console.log("state.bills ", state.bills )
     
-  //   const posts = data.OpenState.bills.edges || []
+     const billsToBeFiltered =  data.OpenState.bills.edges  || [] //data.OpenState.bills.edges || []
     
-  //   const filteredData = posts.filter(post => {
+     const bills= billsToBeFiltered.filter(bill => {
       
-  //     const { identifier, legislativeSession } = post.node
-  //     return (
+       const { identifier, legislativeSession } = bill.node
+       return (
         
-  //       identifier.replace(/\s+/g, "").toLowerCase().includes(query.toLowerCase()) 
-  //       // ||
-  //       //  title.toLowerCase().includes(query.toLowerCase()) 
-  //       ||
-  //       (legislativeSession.jurisdiction.name && legislativeSession.jurisdiction.name
-  //         .toLowerCase()
-  //         .includes(query.toLowerCase()))
-  //         )
-  //       })
+         identifier.replace(/\s+/g, "").toLowerCase().includes(query.toLowerCase()) ||
+        (legislativeSession.jurisdiction.name && legislativeSession.jurisdiction.name
+           .toLowerCase()
+          .includes(query.toLowerCase()))
+        )
+         })
+
+         console.log("filteredBills " , bills )
+      
         
-  //       setState({
-  //         query, 
-  //         filteredData 
-  //       })
+         setState({
+           query, 
+           bills :bills
+         })
      }
       
        const handleDropdownChange = (event, jsonData)  =>{
