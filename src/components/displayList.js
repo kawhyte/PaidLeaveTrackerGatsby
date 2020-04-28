@@ -5,6 +5,7 @@ import Table from './table'
 import {sentenceCase,isBillNew, isBillSignedByGovornor, isBillFailedByGovornor, isUpdateMajor, didBillPassGovernor} from '../Util/helper'
 // let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
 import Pagination from '../components/common/pagination.jsx'
+import { paginate } from '../Util/paginate'
 
 const DisplayList = function () {
 
@@ -271,7 +272,7 @@ const DisplayList = function () {
         </div>
 
     } else{
-      return <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{cardComponent}</div>
+      return <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">{cardComponent}</div>
     }
   }
  console.log("filteredData - cardCom ", filteredData)
