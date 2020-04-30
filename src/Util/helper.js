@@ -529,6 +529,8 @@ let getBillIntroduction = (actions) => {
   }
 }
 
+
+
 ////LOGIC TO CHECK IF BILL IS NEW //////
 let isBillNew = (introductionDate) => {
   let futureDate = date_fns.addDays(new Date(Date.now()), 15)
@@ -631,7 +633,7 @@ if (governorBillPassed.length > 0) {
     return null
   }
 }
-let lastBillaction = (actions) => {
+let getBillActions = (actions) => {
  
   // billIntroduction.sort( (a, b) => new Date(a.date) - new Date(b.date)  )
   let lastAction = actions.sort((a, b) => {
@@ -662,5 +664,5 @@ module.exports = {
   isUpdateMajor,
   isBillSignedByGovornor,
   isBillFailedByGovornor,
-  lastBillaction
+  getBillActions
 }

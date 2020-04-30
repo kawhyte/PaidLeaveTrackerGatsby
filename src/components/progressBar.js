@@ -1,6 +1,6 @@
 import React from 'react'
 import format from 'date-fns/format'
-import {getBillIntroduction,didBillPassHouse,didBillPassSenate,didBillPassGovernor, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
+import {getBillIntroduction,getBillActions,didBillPassHouse,didBillPassSenate,didBillPassGovernor, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
 import { parseJSON } from 'date-fns'
 
 let houseBillPassed = " "
@@ -17,6 +17,7 @@ const Progress = ({actions, createdAt, identifier, jurisdiction, houseBillPassed
 	houseBillPassed = didBillPassHouse(actions)
 	senateBillPassed = didBillPassSenate(actions)
 	governorBillPassed = didBillPassGovernor(actions)
+	const firstAction = getBillActions(actions)
 
 	
 
@@ -108,7 +109,7 @@ return(
 	
 	<div className="flex text-xs content-center text-center tracking-tighter">
 		<div className="w-1/4">
-		{billIntroduction !== null ?  format(new Date(billIntroduction[0].date.substring(0,10)),'LLL d, yyyy')   : createdAt.substring(0,10)}
+		{billIntroduction !== null ?  format(new Date(billIntroduction[0].date.substring(0,10)),'LLL d, yyyy')   :  format(new Date(firstAction[firstAction.length - 1].date),'LLL dd, yyyy')}
 		</div>
 		
 		<div className="w-1/4">

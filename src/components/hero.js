@@ -23,8 +23,9 @@ const Hero = () => {
             Track upcoming 
             <br className="" />
             <span className="text-indigo-600">Paid Family Leave </span>
+          <span className="tracking-normal rounded-full text-white bg-gray-500 uppercase px-2 py-1 text-xs font-bold mr-3">Beta</span>
           </h2>
-          <p className="mt-3 text-base text-gray-700 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+          <p className="mt-3 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
           Track upcoming  paid family & medical leave Legislations for US states 
           </p>
           {/* <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">

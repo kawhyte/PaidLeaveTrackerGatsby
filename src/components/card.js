@@ -1,13 +1,13 @@
 import React from 'react'
 import format from 'date-fns/format'
 import Progress from './progressBar'
-import {getBillIntroduction, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor, lastBillaction} from '../Util/helper'
+import {getBillIntroduction, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor, getBillActions} from '../Util/helper'
 
 
 const Card = ({ title, identifier, jurisdiction, actions, sources, createdAt  }) => {
 
 
-  const lastAction = lastBillaction(actions)
+  const lastAction = getBillActions(actions)
 
   console.log( "last " , lastAction[0].date)
 
@@ -67,7 +67,7 @@ const Card = ({ title, identifier, jurisdiction, actions, sources, createdAt  })
 
    {sources.map((link, i)=>{
 
-return (<li key={i}> <a href={link.url} target="_blank" rel="noopener" rel="noopener noreferrer" className="mr-3 flex-auto text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle no-underline">Link {i+1}</a> </li>)
+return (<li key={i}> <a href={link.url} target="_blank" rel="noopener" rel="noopener noreferrer" className="mr-3 flex-auto text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle no-underline"> {i+1}</a> </li>)
 
     })}
   </ul>
