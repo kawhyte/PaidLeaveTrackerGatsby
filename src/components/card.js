@@ -62,7 +62,7 @@ const Card = ({ title, identifier, jurisdiction, actions, sources, createdAt  })
         <div> 
 <p className="text-gray-700">{jurisdiction}  bill source(s)</p>
 
-  <ul className=" text-gray-700 list-inside">
+  <ul className=" text-blue-700 list-inside">
 
 {sources.map((link, i)=>{
 

@@ -108,7 +108,7 @@ return(
 	
 	<div className="flex text-xs content-center text-center tracking-tighter">
 		<div className="w-1/4">
-		{billIntroduction !== null ?  format(new Date(billIntroduction[0].date.substring(0,10)),'LLL d, yyyy')   : "No Date"}
+		{billIntroduction !== null ?  format(new Date(billIntroduction[0].date.substring(0,10)),'LLL d, yyyy')   : createdAt.substring(0,10)}
 		</div>
 		
 		<div className="w-1/4">
