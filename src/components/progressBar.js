@@ -10,7 +10,7 @@ let governorBillPassed =" "
 let billIntroduction =" "
 let introDate = " "
 
-const Progress = ({actions}) => {
+const Progress = ({actions, createdAt, identifier, jurisdiction, houseBillPassed}) => {
 	let governorBillPassedDate =" "
 	
 	billIntroduction = getBillIntroduction(actions)
@@ -18,33 +18,43 @@ const Progress = ({actions}) => {
 	senateBillPassed = didBillPassSenate(actions)
 	governorBillPassed = didBillPassGovernor(actions)
 
-	//  console.log("governorBillPassed ", governorBillPassed)
-	//  console.log("governorBillPassed.length ", governorBillPassed.length)
-	   
 	
 
-	if ((typeof (billIntroduction[0]) !== "undefined") && billIntroduction.length) {
-	//   console.log("billIntroduction ", (billIntroduction[0].date))
-	// if ((billIntroduction[0].date).length > 10) {
-	 	//introDate = format(new Date(parseJSON(billIntroduction[0].date)),'LLL d, yyyy')
-		 introDate = billIntroduction[0].date
-		//  console.log("formatteed ", introDate)
-	// 	 console.log("INtro Date ",introDate)
-	// } else {
-		//introDate =  format(new Date(billIntroduction[0]),'LLL d, yyyy')
-		// console.log("No format ", format(new Date(introDate),'LLL d, yyyy'))
-	 //}
-	}
+	
+	if ((typeof (billIntroduction) !== "undefined") && billIntroduction !== null) {
+		
+		console.log("billIntroduction ",jurisdiction,  "- ", identifier,  billIntroduction )
 
+    }
 
-	 if ((typeof ((governorBillPassed[0]) !== "undefined" ) && governorBillPassed.length > 0)){
+	   
 
-	 if (governorBillPassed[0].date > 10) {
-		governorBillPassedDate = format(new Date(parseJSON(governorBillPassed[0].date)),'LLL d, yyyy')
+	if ((typeof (createdAt) !== "undefined") && createdAt.length > 0) {
+	 if ((createdAt).length > 10) {
+		 introDate = format(new Date(parseJSON(createdAt)),'LLL d, yyyy')
+		//  console.log("createdAt 1 ", introDate)
+	
 	 } else {
-		governorBillPassedDate =  format(new Date(governorBillPassed[0].date),'LLL d, yyyy')
-	 }
+		// console.log("billIntroduction[0].date ++++ ", billIntroduction)
+		introDate =  format(new Date(createdAt),'LLL d, yyyy')
+		// console.log("createdAt 2 ", introDate)
 	}
+}
+
+
+
+
+
+
+	//  if ((typeof ((governorBillPassed[0]) !== "undefined" ) && governorBillPassed.length > 0)){
+
+	//  if (governorBillPassed[0].date > 10) {
+	// 	governorBillPassedDate = format(new Date(parseJSON(governorBillPassed[0].date)),'LLL d, yyyy')
+	// 	governorBillPassedDate = format(new Date(parseJSON(houseBillPassed[0].date.substring(0,10))),'LLL d, yyyy')
+	//  } else {
+	// 	governorBillPassedDate =  format(new Date(governorBillPassed[0].date),'LLL d, yyyy')
+	//  }
+	// }
 	
 	//   console.log("governorBillPassedDate ",governorBillPassedDate)
 	// let billPassed = actions.filter(house => {
@@ -69,7 +79,7 @@ const Progress = ({actions}) => {
 return( 
 
 <div className="relative pt-1 mx-4">
-<div className="flex text-xs  content-center text-center">
+<div className="flex text-xs content-center text-center">
 		<div className="w-1/4 mr-3 text-gray-700">
 			Introduced
 		</div>
@@ -88,31 +98,32 @@ return(
 	</div>
 
 
-  <div className="overflow-hidden h-2 mb-1 text-xs flex rounded bg-gray-200">
+	<div className="overflow-hidden h-2 mb-1 text-xs flex rounded bg-gray-200">
     <div style={{ width: "25%" }} className={"shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 "}></div>{" "}
-    { houseBillPassed ? <div style={{ width: "25%" }} className="shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center  bg-indigo-500"></div>: ""} 
-    { senateBillPassed ? <div style={{ width: "25%" }} className="shadow-none  text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>: ""}
-	{governorBillPassed ? <div style={{ width: "25%" }} className="shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center bg-teal-500"></div> : ""}
+    { houseBillPassed !== null  ? <div style={{ width: "25%" }} className="shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center  bg-indigo-500"></div> : <div style={{ width: "25%" }} className="shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center"></div>} 
+    { senateBillPassed !==null  ? <div style={{ width: "25%" }} className="shadow-none  text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>: <div style={{ width: "25%" }} className="shadow-none  text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center"></div> }
+	{governorBillPassed !== null ? <div style={{ width: "25%" }} className="shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center bg-teal-500"></div> : <div style={{ width: "25%" }} className="shadow-none  text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center"></div>}
  </div>
 
 	
 	<div className="flex text-xs content-center text-center tracking-tighter">
 		<div className="w-1/4">
-		{introDate ? introDate : " "}
+		{billIntroduction !== null ?  format(new Date(billIntroduction[0].date.substring(0,10)),'LLL d, yyyy')   : "No Date"}
 		</div>
 		
 		<div className="w-1/4">
-		{houseBillPassed  ? houseBillPassed   : " "}
+
+		{houseBillPassed !== null ? format(new Date(houseBillPassed[0].date.substring(0,10)),'LLL d, yyyy') : " "}
 		
 		</div>
 		
 		<div className="w-1/4">
-		{senateBillPassed ? senateBillPassed : " "}
+		{senateBillPassed !==null ? format(new Date(senateBillPassed[0].date.substring(0,10)),'LLL d, yyyy') : " "}
 
 		</div>
 		
 		<div className="w-1/4">
-		{governorBillPassedDate ? governorBillPassedDate : " "}
+		{governorBillPassed !== null ? format(new Date(governorBillPassed[0].date.substring(0,10)),'LLL d, yyyy')   : " "}
 
 		</div>			
 	</div>

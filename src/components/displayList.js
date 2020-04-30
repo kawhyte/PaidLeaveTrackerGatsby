@@ -4,6 +4,7 @@ import { graphql, useStaticQuery} from 'gatsby'
 import Table from './table'
 import {sentenceCase,isBillNew, isBillSignedByGovornor, isBillFailedByGovornor, isUpdateMajor, didBillPassGovernor} from '../Util/helper'
 // let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
+import ListGroup from './common/listGroup'
 import Pagination from '../components/common/pagination.jsx'
 import { paginate } from '../Util/paginate'
 
@@ -12,7 +13,7 @@ const DisplayList = function () {
   const data = useStaticQuery(graphql`
   query {
     OpenState{ 
-           bills(first: 100, searchQuery:"\\\"paid family leave\\\"" , updatedSince: "2019-06-15") {
+           bills(first: 100, searchQuery:"\\\"paid family leave\\\"" , actionSince: "2019-07-07") {
         edges {
           node {
             identifier
@@ -56,7 +57,7 @@ const DisplayList = function () {
 
   const emptyQuery = ""
   const [state, setState] = useState({
-    bills: data.OpenState.bills.edges,
+    bills: data.OpenState.bills.edges.sort((a, b) => new Date(b.node.createdAt) - new Date(a.node.createdAt)),
     query: emptyQuery
   })
 
@@ -158,14 +159,23 @@ const DisplayList = function () {
      }
       
        const handleDropdownChange = (event, jsonData)  =>{
-  //       const query = event.target.value
+
+        console.log("EVENT ", event.target.value)
+         const query = event.target.value
   //       const posts = jsonData || []
   
-          
+  const billsToBeFiltered =  data.OpenState.bills.edges  || []    
+  
+  console.log("billsToBeFiltered ", billsToBeFiltered)
          
-  //         if (event.target.value==='all') {
-  //           setState({ query, filteredData: jsonData}) 
-  //        } 
+           if (event.target.value==='all') {
+           setState({ query, bills: billsToBeFiltered}) 
+           } 
+
+           if(event.target.value==='passed' ){
+
+            
+           }
 
   //      const test = posts.filter(post => {
          
@@ -249,6 +259,10 @@ const DisplayList = function () {
     }
   }
  
+  // sorted = actions.sort((a, b) => new Date(b.date) - new Date(a.date));
+ const kenny = bills.sort((a, b) => new Date(b.node.updatedAt) - new Date(a.node.updatedAt))
+
+ console.log("KENNY ", kenny)
   const cardComponent = bills.map((b, i) => {
     return (
       <Card
@@ -259,6 +273,7 @@ const DisplayList = function () {
         createdAt={b.node.createdAt}
         sources={b.node.sources}
         actions={b.node.actions}
+        
       />
     )
   })
@@ -282,7 +297,7 @@ const DisplayList = function () {
  
 
 return (
-    < div className="ml-16 mr-16">
+    <div className="ml-16 mr-16">
 
       <div className="py-8 ">
 
@@ -306,7 +321,9 @@ return (
     className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
 </div>
     <div className="relative">
-    <label htmlFor="filter-value">
+    <ListGroup items = {data.OpenState.bills.edges}  onChange={handleDropdownChange} /> 
+
+    {/* <label htmlFor="filter-value">
         <select id="filter-value" onChange={(e)=> handleDropdownChange(e, bills)}
             className="sm:ml-3 appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 sm:border-r border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
             <option defaultValue="all" value="all" >All</option>
@@ -320,7 +337,7 @@ return (
             <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
             </svg>
-        </div>
+        </div> */}
     </div>
 </div>
 
@@ -336,6 +353,7 @@ return (
 
 <div className= "ml-4 px-1"> 
     <div className="flex  mt-4 mb-2"> 
+    
     
       {/* <p className="text-sm font-medium bg-blue-300 py-1 px-2 mr-2 rounded text-black align-middle"> {state.bills.length} bills found</p> */}
       <p className="text-sm font-medium bg-green-300 py-1 px-2 mr-2  rounded text-black align-middle"> {count.signedGov} bills signed by Governor</p>
