@@ -515,12 +515,6 @@ let status = {
 }
 
 let getBillIntroduction = (actions) => {
-  let introductionDate = ' '
-  let sorted = ' '
-
-  //sorted = actions.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-  //  console.log("Helper 000 ",actions[0].date)
   const billIntroduction = actions.filter((h) => {
     return h.classification.some((v) => v === 'introduction')
   })
@@ -533,19 +527,6 @@ let getBillIntroduction = (actions) => {
   } else {
     return null
   }
-  //return billIntroduction //billIntroduction
-
-
-
-
-  // if (typeof billIntroduction[0] !== 'undefined') {
-  //   return (introductionDate = date_fns.format(
-  //     new Date(billIntroduction[0].date),
-  //     'LLL d, yyyy'
-  //   ))
-  // } else {
-  //   return 'No date found'
-  // }
 }
 
 ////LOGIC TO CHECK IF BILL IS NEW //////
@@ -624,7 +605,6 @@ let didBillPassSenate = (actions) => {
   })
 
   if (senateBillPassed.length > 0) {
-    // console.log('senateBillPassed ', senateBillPassed)
     return senateBillPassed
   } else {
     return null
@@ -651,6 +631,23 @@ if (governorBillPassed.length > 0) {
     return null
   }
 }
+let lastBillaction = (actions) => {
+ 
+  // billIntroduction.sort( (a, b) => new Date(a.date) - new Date(b.date)  )
+  let lastAction = actions.sort((a, b) => {
+    
+    return (new Date(b.date) - new Date(a.date))
+  })
+    
+ 
+  console.log(" lastAction ", lastAction )
+
+if (lastAction.length > 0) {
+    return lastAction
+  } else {
+    return null
+  }
+}
 
 module.exports = {
   state,
@@ -665,4 +662,5 @@ module.exports = {
   isUpdateMajor,
   isBillSignedByGovornor,
   isBillFailedByGovornor,
+  lastBillaction
 }
