@@ -60,15 +60,16 @@ const Card = ({ title, identifier, jurisdiction, actions, sources, createdAt  })
         </span>
 
         <div> 
-<p className="text-gray-700">{jurisdiction}  bill source(s)</p>
+<p className="text-gray-700 mb-2">{jurisdiction}  Source(s)</p>
 
-  <ul className=" text-blue-700 list-inside">
 
-{sources.map((link, i)=>{
+  <ul className=" flex text-blue-700 list-inside">
 
-return (<li key={i}> <a href={link.url} target="_blank" rel="noopener" rel="noopener noreferrer" className="no-underline">Link ({i+1})</a> </li>)
+   {sources.map((link, i)=>{
 
-})}
+return (<li key={i}> <a href={link.url} target="_blank" rel="noopener" rel="noopener noreferrer" className="mr-3 flex-auto text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle no-underline">Link {i+1}</a> </li>)
+
+    })}
   </ul>
 
 </div>
