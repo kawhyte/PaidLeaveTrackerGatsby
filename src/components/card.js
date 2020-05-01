@@ -1,5 +1,6 @@
 import React from 'react'
 import format from 'date-fns/format'
+import { addDays, differenceInDays } from 'date-fns'
 import Progress from './progressBar'
 import {getBillIntroduction, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor, getBillActions} from '../Util/helper'
 
@@ -9,9 +10,9 @@ const Card = ({ title, identifier, jurisdiction, actions, sources, createdAt  })
 
   const lastAction = getBillActions(actions)
 
-  console.log( "last " , lastAction[0].date)
 
-  return (
+
+return (
 
 <div className="p-2 ">
 <div className=" p-2 w-full lg:flex justify-center">
@@ -27,7 +28,7 @@ const Card = ({ title, identifier, jurisdiction, actions, sources, createdAt  })
 
   </div>
   <div className="flex mt-3"> 
-   {isBillNew (getBillIntroduction(actions)) === true ?   <span className="flex rounded-full text-white bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} 
+   {isBillNew(actions) ?   <span className="flex rounded-full text-white bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} 
    {isBillSignedByGovornor(actions) ?   <span className="flex rounded-full bg-green-300 text-black uppercase px-2 py-1 text-xs font-bold mr-3">Passed</span>: " "} 
    {isBillFailedByGovornor(actions) ? <span className="flex rounded-full bg-red-500 text-black uppercase px-2 py-1 text-xs font-bold mr-3">Failed</span>: " "} 
    {isUpdateMajor(actions) ? <a href="https://www.google.com/" className="flex rounded-full text-black bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3"> Major</a> : " "}

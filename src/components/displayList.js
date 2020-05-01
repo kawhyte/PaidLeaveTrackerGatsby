@@ -2,11 +2,13 @@ import React, {useState, useEffect} from 'react'
 import Card from './card'
 import { graphql, useStaticQuery} from 'gatsby'
 import Table from './table'
-import {sentenceCase,isBillNew, isBillSignedByGovornor, isBillFailedByGovornor, isUpdateMajor, didBillPassGovernor} from '../Util/helper'
+import {getBillIntroduction,getBillActions,didBillPassHouse,didBillPassSenate,didBillPassGovernor, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
+
 // let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
 import ListGroup from './common/listGroup'
 import Pagination from '../components/common/pagination.jsx'
 import { paginate } from '../Util/paginate'
+import StatsGroup from './common/statsGroup.jsx'
 
 const DisplayList = function () {
 
@@ -72,6 +74,24 @@ const DisplayList = function () {
   const [count, setCount] = useState({
     newBill:0 , signedGov:0, failedBill:0, major:0
   })
+
+
+
+  // useEffect(() => {
+  //   // Update the document title using the browser API
+  //   const billIntroduction = getBillIntroduction(bills.actions)
+  //   const houseBillPassed = didBillPassHouse(bills.actions)
+  //   const senateBillPassed = didBillPassSenate(bills.actions)
+  //   const governorBillPassed = didBillPassGovernor(bills.actions)
+  //   const firstAction = getBillActions(bills.actions)
+    
+  // },[]);
+
+  
+
+
+
+
 
   function handleSwitchView() {
     clicked === "Table" ? setClicked("Card") : setClicked("Table") 
@@ -201,6 +221,15 @@ const DisplayList = function () {
   
   // console.log("filteredData outside",filteredData)
 
+
+
+
+
+
+
+
+
+
   const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)
   
   const renderView = ()=>{
@@ -245,11 +274,6 @@ const DisplayList = function () {
 
                         </tbody>
                     </table>
-              
-
-
-
-
                 </div>
             </div>
         </div>
@@ -260,9 +284,9 @@ const DisplayList = function () {
   }
  
   // sorted = actions.sort((a, b) => new Date(b.date) - new Date(a.date));
- const kenny = bills.sort((a, b) => new Date(b.node.updatedAt) - new Date(a.node.updatedAt))
+//  const kenny = bills.sort((a, b) => new Date(b.node.updatedAt) - new Date(a.node.updatedAt))
 
- console.log("KENNY ", kenny)
+//  console.log("KENNY ", kenny)
   const cardComponent = bills.map((b, i) => {
     return (
       <Card
@@ -350,22 +374,22 @@ return (
 
 
 </div>
+<StatsGroup actions={bills} billTotal= {state.bills.length}  newCount={count.newBill} majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} ></StatsGroup>
 
-<div className= "ml-4 px-1"> 
+{/* <div className= "ml-4 px-1"> 
     <div className="flex  mt-4 mb-2"> 
     
     
-      {/* <p className="text-sm font-medium bg-blue-300 py-1 px-2 mr-2 rounded text-black align-middle"> {state.bills.length} bills found</p> */}
-      <p className="text-sm font-medium bg-green-300 py-1 px-2 mr-2  rounded text-black align-middle"> {count.signedGov} bills signed by Governor</p>
+      <p className="text-sm font-medium bg-blue-300 py-1 px-2 mr-2 rounded text-black align-middle"> {state.bills.length} bills found</p>
       <p className="text-sm font-medium bg-yellow-300 py-1 px-2  mr-2 rounded text-black align-middle">{count.newBill} new bills</p> 
       <p className="text-sm font-medium bg-red-300 py-1 px-2 mr-2 rounded text-black align-middle">{count.newBill} failed bills</p>
       <p className="text-sm font-medium bg-indigo-300 py-1 px-2  mr-2 rounded text-black align-middle">{count.major} bills had major updates</p>
    
     </div>
     <small className="font-normal leading-normal mb-4 text-gray-800 ">
-     Displaying page {pageState.currentPage}  of {pageState.pageSize} of {state.bills.length} results
+     Displaying page {pageState.currentPage}  of {pageState.pageSize} bills
     </small>
-</div>
+</div> */}
 
     {renderView()}
     

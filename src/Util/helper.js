@@ -532,15 +532,32 @@ let getBillIntroduction = (actions) => {
 
 
 ////LOGIC TO CHECK IF BILL IS NEW //////
-let isBillNew = (introductionDate) => {
-  let futureDate = date_fns.addDays(new Date(Date.now()), 15)
-  let billDateDifference = date_fns.differenceInDays(
-    futureDate,
-    new Date(date_fns.parseJSON(introductionDate))
-  )
+let isBillNew = (actions) => {
 
-  return billDateDifference > 14 ? true : false
+const billIntroduction = getBillIntroduction(actions)
+const returnedActions = getBillActions(actions)
+const dateBillWasAdded =  billIntroduction !== null ? billIntroduction[0].date.substring(0,10)  :  returnedActions[returnedActions.length - 1].date
+
+const futureDate = date_fns.addDays(new Date(Date.now()), 15)
+
+const billDateDifference = date_fns.differenceInDays(
+  futureDate,
+  new Date(dateBillWasAdded)
+  )
+  
+  console.log("billDateDifference ", billDateDifference)
+  return billDateDifference < 68 ? true : false
 }
+////LOGIC TO CHECK IF BILL IS NEW //////
+// let isBillNew = (introductionDate) => {
+//   let futureDate = date_fns.addDays(new Date(Date.now()), 15)
+//   let billDateDifference = date_fns.differenceInDays(
+//     futureDate,
+//     new Date(date_fns.parseJSON(introductionDate))
+//   )
+
+//   return billDateDifference > 14 ? true : false
+// }
 
 /// Format to Sentence Case
 let sentenceCase = (string) => {
@@ -642,7 +659,7 @@ let getBillActions = (actions) => {
   })
     
  
-  console.log(" lastAction ", lastAction )
+  // console.log(" lastAction ", lastAction )
 
 if (lastAction.length > 0) {
     return lastAction

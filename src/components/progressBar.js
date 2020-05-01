@@ -22,11 +22,11 @@ const Progress = ({actions, createdAt, identifier, jurisdiction, houseBillPassed
 	
 
 	
-	if ((typeof (billIntroduction) !== "undefined") && billIntroduction !== null) {
+	// if ((typeof (billIntroduction) !== "undefined") && billIntroduction !== null) {
 		
-		console.log("billIntroduction ",jurisdiction,  "- ", identifier,  billIntroduction )
+	// 	console.log("billIntroduction ",jurisdiction,  "- ", identifier,  billIntroduction )
 
-    }
+    // }
 
 	   
 
