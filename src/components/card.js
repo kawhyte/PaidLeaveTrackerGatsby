@@ -2,7 +2,7 @@ import React from 'react'
 import format from 'date-fns/format'
 import { addDays, differenceInDays } from 'date-fns'
 import Progress from './progressBar'
-import {getBillIntroduction, didBillFailGovernor, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor, getBillActions} from '../Util/helper'
+import {didBillFailGovernor, sentenceCase,isBillNew, isUpdateMajor, getBillActions} from '../Util/helper'
 
 
 const Card = ({ title, identifier, jurisdiction, actions, sources, createdAt  }) => {

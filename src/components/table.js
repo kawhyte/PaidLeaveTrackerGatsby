@@ -1,7 +1,7 @@
 import React from 'react'
 import format from 'date-fns/format'
 import Progress from './progressBar'
-import {getBillIntroduction, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
+import {didBillFailGovernor, sentenceCase,isBillNew, isUpdateMajor} from '../Util/helper'
 
 
 
@@ -42,9 +42,9 @@ const Table = ({ title, identifier, jurisdiction, actions, sources}) => {
 
 <div className="flex ml-3" > 
 
-{isBillNew (getBillIntroduction(actions)) === true ? <span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">New</span> :" "}
-{isBillSignedByGovornor(actions) ?  <span className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle"> Passed</span> :" "}
-{isBillFailedByGovornor(actions) ? <span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Failed</span> : " "}
+{isBillNew (actions) === true ? <span className="text-sm font-medium bg-blue-100 py-1 px-2 rounded text-blue-500 align-middle">New</span> :" "}
+{/* {isBillSignedByGovornor(actions) ?  <span className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle"> Passed</span> :" "} */}
+{didBillFailGovernor(actions) ? <span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Failed</span> : " "}
 {isUpdateMajor(actions) ? <span className="text-sm font-medium bg-red-100 py-1 px-2 rounded text-yellow-500 align-middle">Major</span> : " "}
 
   </div>
