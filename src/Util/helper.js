@@ -529,6 +529,11 @@ let getBillIntroduction = (actions) => {
   }
 }
 
+/// Format to Sentence Case
+let sentenceCase = (string) => {
+  let lowercaseTitle = string.toLowerCase()
+  return lowercaseTitle[0].toUpperCase() + lowercaseTitle.substring(1)
+}
 
 
 ////LOGIC TO CHECK IF BILL IS NEW //////
@@ -544,26 +549,10 @@ const billDateDifference = date_fns.differenceInDays(
   futureDate,
   new Date(dateBillWasAdded)
   )
-  
-  console.log("billDateDifference ", billDateDifference)
-  return billDateDifference < 68 ? true : false
-}
-////LOGIC TO CHECK IF BILL IS NEW //////
-// let isBillNew = (introductionDate) => {
-//   let futureDate = date_fns.addDays(new Date(Date.now()), 15)
-//   let billDateDifference = date_fns.differenceInDays(
-//     futureDate,
-//     new Date(date_fns.parseJSON(introductionDate))
-//   )
 
-//   return billDateDifference > 14 ? true : false
-// }
-
-/// Format to Sentence Case
-let sentenceCase = (string) => {
-  let lowercaseTitle = string.toLowerCase()
-  return lowercaseTitle[0].toUpperCase() + lowercaseTitle.substring(1)
+  return billDateDifference < 40 ? true : false
 }
+
 
 ///LOGIC TO CHECK IF BILL IS MAJOR //////
 let isUpdateMajor = (actions) => {
@@ -573,6 +562,8 @@ let isUpdateMajor = (actions) => {
       value.classification.includes('executive-veto') ||
       value.classification.includes('veto-override-passage') ||
       value.classification.includes('executive-veto-line-item') ||
+      value.classification.includes('became-law') ||
+      value.classification.includes('executive-signature') ||
       Object.values(value.description).includes('governor') ||
       Object.values(value.description).includes('executive')
   )
@@ -591,13 +582,7 @@ let isBillSignedByGovornor = (actions) => {
   return didBillPass
 }
 
-let isBillFailedByGovornor = (actions) => {
-  let didBillFail = actions.some(
-    (value) =>
-      value.classification.includes('executive-veto') ||
-      value.classification.includes('veto-override-failure')
-  )
-}
+
 
 let didBillPassHouse = (actions) => {
   let houseBillPassed = actions.filter((h) => {
@@ -631,15 +616,18 @@ let didBillPassSenate = (actions) => {
 }
 
 let didBillPassGovernor = (actions) => {
-  let govDate = ' '
-
   let governorBillPassed = actions.filter((h) => {
     
     let result = ((h.organization.classification.includes('executive') ||
+
+    h.classification.includes('became-law') ||
+    h.classification.includes('executive-signature') ||
+
       h.organization.classification.includes('legislature')) &&
         (h.classification.some((v) => v === 'passage') ||
           h.classification.some((v) => v === 'executive-signature') ||
           h.classification.includes((v) => v === 'executive-signature')))
+
  return result
   })
   
@@ -650,16 +638,58 @@ if (governorBillPassed.length > 0) {
     return null
   }
 }
+
+
+let isBillFailedByGovornor = (actions) => {
+  let didBillFail = actions.some(
+    (value) =>
+      value.classification.includes('executive-veto') ||
+      value.classification.includes('veto-override-failure') ||
+      value.classification.includes('committee-failure') ||
+      value.classification.includes('withdrawal') ||
+      value.classification.includes('failure')
+  )
+}
+
+
+
+
+let didBillFailGovernor = (actions) => {
+  let governorBillPassed = actions.filter((h) => {
+    
+    let result = (
+      
+      (
+        // h.organization.classification.includes('executive') ||
+
+    h.classification.includes('executive-veto') ||
+    h.classification.includes('veto-override-failure') ||
+
+      h.organization.classification.includes('legislature')) &&
+        (h.classification.some((v) => v === 'passage') ||
+          h.classification.some((v) => v === 'executive-signature') ||
+          h.classification.includes((v) => v === 'executive-signature')))
+
+ return result
+  })
+  
+
+if (governorBillPassed.length > 0) {
+    return governorBillPassed
+  } else {
+    return null
+  }
+}
+
+
+
+
+
 let getBillActions = (actions) => {
- 
-  // billIntroduction.sort( (a, b) => new Date(a.date) - new Date(b.date)  )
   let lastAction = actions.sort((a, b) => {
     
     return (new Date(b.date) - new Date(a.date))
   })
-    
- 
-  // console.log(" lastAction ", lastAction )
 
 if (lastAction.length > 0) {
     return lastAction
@@ -673,6 +703,7 @@ module.exports = {
   status,
   statusColor,
   didBillPassGovernor,
+  didBillFailGovernor,
   didBillPassSenate,
   didBillPassHouse,
   getBillIntroduction,

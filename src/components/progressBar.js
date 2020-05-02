@@ -94,7 +94,7 @@ return(
 		</div>
 		
 		<div className="w-1/4 text-gray-700">
-			Governor
+		Became Law
 		</div>			
 	</div>
 
