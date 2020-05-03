@@ -2,8 +2,8 @@ import React from 'react'
 import format from 'date-fns/format'
 import { addDays, differenceInDays } from 'date-fns'
 import Progress from './progressBar'
-import {didBillFailGovernor, sentenceCase,isBillNew, isUpdateMajor, getBillActions} from '../Util/helper'
-
+import { sentenceCase, getBillActions} from '../Util/helper'
+import Status from './common/status'
 
 const Card = ({ title, identifier, jurisdiction, actions, sources, createdAt  }) => {
 
@@ -25,9 +25,7 @@ return (
 
   </div>
   <div className="flex mt-3"> 
-   {isBillNew(actions) ?   <span className="flex rounded-full text-white bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} 
-   {didBillFailGovernor(actions) ? <span className="flex rounded-full bg-red-500 text-black uppercase px-2 py-1 text-xs font-bold mr-3">Failed</span>: " "} 
-   {isUpdateMajor(actions) ? <a href="https://www.google.com/" className="flex rounded-full text-black bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3"> Major</a> : " "}
+  <Status actions ={actions}/>
   </div>
 </div>
       </div>
