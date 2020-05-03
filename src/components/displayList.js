@@ -2,14 +2,15 @@ import React, {useState, useEffect} from 'react'
 import Card from './card'
 import { graphql, useStaticQuery} from 'gatsby'
 import Table from './table'
-import {getBillIntroduction,getBillActions,didBillPassHouse,didBillPassSenate,didBillPassGovernor, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
+import {getBillIntroduction,didBillFailGovernor,getBillActions,didBillPassHouse,didBillPassSenate,didBillPassGovernor, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
 
-// let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
 import ListGroup from './common/listGroup'
 import Pagination from '../components/common/pagination.jsx'
 import { paginate } from '../Util/paginate'
 import StatsGroup from './common/statsGroup.jsx'
 
+let billIntroduction
+ let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
 const DisplayList = function () {
 
   const data = useStaticQuery(graphql`
@@ -66,7 +67,7 @@ const DisplayList = function () {
   const [pageState, setPageState] = useState({
     bills: data.OpenState.bills.edges,
     currentPage: 1,
-    pageSize: 10
+    pageSize: 50
   })
 
   const [clicked, setClicked] = useState("Card");
@@ -77,19 +78,44 @@ const DisplayList = function () {
 
 
 
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-  //   const billIntroduction = getBillIntroduction(bills.actions)
-  //   const houseBillPassed = didBillPassHouse(bills.actions)
-  //   const senateBillPassed = didBillPassSenate(bills.actions)
-  //   const governorBillPassed = didBillPassGovernor(bills.actions)
-  //   const firstAction = getBillActions(bills.actions)
+useEffect(() => {
+
+   data.OpenState.bills.edges.map(c => {
+      const newBill = getBillIntroduction(c.node.actions)
+      const failed = didBillFailGovernor(c.node.actions)
+      const governorBillPassed = didBillPassGovernor(c.node.actions)
     
-  // },[]);
+      if (newBill) {
+        console.log("billIntroduction ", newBill)
+         setCount(counters["newBill"]++)
 
-  
+        // setCount({ 
+        //           ...count,
+        //           count:counters['newBill']++ 
+        //         })
+        
+      }
+    
+      if (governorBillPassed) {
+
+        console.log("governorBillPassed ", governorBillPassed)
+        setCount(counters.signedGov++)
+      }
+
+      if (failed) {
+
+        console.log("failed ", failed)
+        setCount(counters.failedBill++)
+      }
+    
+     })
+   },[]);
 
 
+
+  console.log("testing newBill ", counters.newBill)
+  console.log("testing count2 ", counters.signedGov)
+  console.log("testing failed  ", counters.failedBill)
 
 
 
@@ -145,17 +171,17 @@ const DisplayList = function () {
 
 
   const handlePageChange = (page) =>{
-    setPageState({ pageSize: 10, currentPage:page})
+    setPageState({ pageSize: 50, currentPage:page})
 
   }
 
 
    const handleInputChange = (event) => {
      const query = event.target.value
-  //   console.log("event.target.value", event.target.value )
+ 
       console.log("state.bills ", state.bills )
     
-     const billsToBeFiltered =  data.OpenState.bills.edges  || [] //data.OpenState.bills.edges || []
+     const billsToBeFiltered =  data.OpenState.bills.edges  || [] 
     
      const bills= billsToBeFiltered.filter(bill => {
       
@@ -178,11 +204,11 @@ const DisplayList = function () {
          })
      }
       
-       const handleDropdownChange = (event, jsonData)  =>{
+const handleDropdownChange = (event, jsonData)  =>{
 
-        console.log("EVENT ", event.target.value)
+  console.log("EVENT ", event.target.value)
          const query = event.target.value
-  //       const posts = jsonData || []
+
   
   const billsToBeFiltered =  data.OpenState.bills.edges  || []    
   
@@ -197,37 +223,9 @@ const DisplayList = function () {
             
            }
 
-  //      const test = posts.filter(post => {
-         
-  //        if (event.target.value==='passed'){
-  //         let signedGov1 = didBillPassGovernor(post.node.actions)
-
-  //         if (typeof (signedGov1) !== "undefined" && (signedGov1.length > 0)) {
-
-            
-  //           return signedGov1
-  //         }
-          
-  //        }
-         
-
-        
-  //     })
-  //     setState({ query,filteredData: test})
 
        }  
   
-  // let { filteredData } = state
-  
-  // console.log("filteredData outside",filteredData)
-
-
-
-
-
-
-
-
 
 
   const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)
@@ -283,10 +281,7 @@ const DisplayList = function () {
     }
   }
  
-  // sorted = actions.sort((a, b) => new Date(b.date) - new Date(a.date));
-//  const kenny = bills.sort((a, b) => new Date(b.node.updatedAt) - new Date(a.node.updatedAt))
 
-//  console.log("KENNY ", kenny)
   const cardComponent = bills.map((b, i) => {
     return (
       <Card
@@ -374,7 +369,7 @@ return (
 
 
 </div>
-<StatsGroup actions={bills} billTotal= {state.bills.length}  newCount={count.newBill} majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} ></StatsGroup>
+<StatsGroup actions={bills} newBills={counters.newBill}  failedBills={counters.failedBill} passBills={counters.signedGov}  billTotal= {state.bills.length}   majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} ></StatsGroup>
 
 {/* <div className= "ml-4 px-1"> 
     <div className="flex  mt-4 mb-2"> 
