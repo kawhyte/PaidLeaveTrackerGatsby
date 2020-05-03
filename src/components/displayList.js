@@ -2,15 +2,14 @@ import React, {useState, useEffect} from 'react'
 import Card from './card'
 import { graphql, useStaticQuery} from 'gatsby'
 import Table from './table'
-import {getBillIntroduction,didBillFailGovernor,getBillActions,didBillPassHouse,didBillPassSenate,didBillPassGovernor, sentenceCase,isBillNew, isUpdateMajor, isBillSignedByGovornor, isBillFailedByGovornor} from '../Util/helper'
-
+import {getBillIntroduction,didBillFailGovernor,didBillPassGovernor} from '../Util/helper'
 import ListGroup from './common/listGroup'
 import Pagination from '../components/common/pagination.jsx'
 import { paginate } from '../Util/paginate'
 import StatsGroup from './common/statsGroup.jsx'
 
-let billIntroduction
- let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
+let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
+
 const DisplayList = function () {
 
   const data = useStaticQuery(graphql`
@@ -86,87 +85,26 @@ useEffect(() => {
       const governorBillPassed = didBillPassGovernor(c.node.actions)
     
       if (newBill) {
-        console.log("billIntroduction ", newBill)
          setCount(counters["newBill"]++)
-
-        // setCount({ 
-        //           ...count,
-        //           count:counters['newBill']++ 
-        //         })
-        
       }
     
       if (governorBillPassed) {
-
-        console.log("governorBillPassed ", governorBillPassed)
         setCount(counters.signedGov++)
       }
 
       if (failed) {
-
-        console.log("failed ", failed)
         setCount(counters.failedBill++)
       }
-    
+    return counters
      })
    },[]);
 
-
-
-  console.log("testing newBill ", counters.newBill)
-  console.log("testing count2 ", counters.signedGov)
-  console.log("testing failed  ", counters.failedBill)
 
 
 
   function handleSwitchView() {
     clicked === "Table" ? setClicked("Card") : setClicked("Table") 
   }
-
-  
-
-  // useEffect(() => {
-  
-  //   const test = filteredData.map((status, i)=> {
-  //     let signedGov1 = isBillSignedByGovornor(status.node.actions) 
-  //     let newBill1 = isBillNew(status.node.actions) 
-  //     let failedBill1 = isBillFailedByGovornor(status.node.actions) 
-  //     let major1 = isUpdateMajor(status.node.actions)
-
-  //     // console.log('signedGov ', signedGov)
-  //     if (signedGov1=== true) {
-  //       setCount({ 
-  //         ...count,
-  //         count:count['signedGov']++ 
-  //       })
-  //     }
-
-  //     if (major1=== true) {
-  //       setCount({ 
-  //         ...count,
-  //         count:count['major']++ 
-  //       })
-  //     }
-      
-  //     if (newBill1=== true) {
-  //       setCount({ 
-  //         ...count,
-  //         count:count['newBill']++ 
-  //       })
-  //     }
-  //     if (failedBill1=== true) {
-  //       setCount({ 
-  //         ...count,
-  //         count:count['failedBill']++ 
-  //       })
-  //     }
-
-  //       })
-  
-    
-  // }, []);
-
-  // const { signedGov, major, newBill, failedBill  } = count
  
 
 
@@ -194,11 +132,9 @@ useEffect(() => {
           .includes(query.toLowerCase()))
         )
          })
-
-         console.log("filteredBills " , bills )
       
         
-         setState({
+   setState({
            query, 
            bills :bills
          })
@@ -211,24 +147,21 @@ const handleDropdownChange = (event, jsonData)  =>{
 
   
   const billsToBeFiltered =  data.OpenState.bills.edges  || []    
-  
-  console.log("billsToBeFiltered ", billsToBeFiltered)
          
-           if (event.target.value==='all') {
-           setState({ query, bills: billsToBeFiltered}) 
-           } 
+    if (event.target.value==='all') {
+      setState({ query, bills: billsToBeFiltered}) 
+    } 
 
-           if(event.target.value==='passed' ){
+    if(event.target.value==='passed' ){
 
             
-           }
+    }
 
-
-       }  
+}  
   
 
 
-  const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)
+const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)
   
   const renderView = ()=>{
     if(clicked === "Table"){
@@ -313,8 +246,6 @@ const handleDropdownChange = (event, jsonData)  =>{
   })
 
 
- 
-
 return (
     <div className="ml-16 mr-16">
 
@@ -369,26 +300,11 @@ return (
 
 
 </div>
-<StatsGroup actions={bills} newBills={counters.newBill}  failedBills={counters.failedBill} passBills={counters.signedGov}  billTotal= {state.bills.length}   majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} ></StatsGroup>
-
-{/* <div className= "ml-4 px-1"> 
-    <div className="flex  mt-4 mb-2"> 
-    
-    
-      <p className="text-sm font-medium bg-blue-300 py-1 px-2 mr-2 rounded text-black align-middle"> {state.bills.length} bills found</p>
-      <p className="text-sm font-medium bg-yellow-300 py-1 px-2  mr-2 rounded text-black align-middle">{count.newBill} new bills</p> 
-      <p className="text-sm font-medium bg-red-300 py-1 px-2 mr-2 rounded text-black align-middle">{count.newBill} failed bills</p>
-      <p className="text-sm font-medium bg-indigo-300 py-1 px-2  mr-2 rounded text-black align-middle">{count.major} bills had major updates</p>
-   
-    </div>
-    <small className="font-normal leading-normal mb-4 text-gray-800 ">
-     Displaying page {pageState.currentPage}  of {pageState.pageSize} bills
-    </small>
-</div> */}
+<StatsGroup actions={bills} newBills={counters.newBill}  failedBills={counters.failedBill} passBills={counters.signedGov}  billTotal= {state.bills.length}   majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} />
 
     {renderView()}
     
-  <Pagination itemsCount={state.bills.length} pageSize={pageState.pageSize} onPageChange={handlePageChange} currentPage={pageState.currentPage}></Pagination>
+<Pagination itemsCount={state.bills.length} pageSize={pageState.pageSize} onPageChange={handlePageChange} currentPage={pageState.currentPage} />
     </div>
   )
 }

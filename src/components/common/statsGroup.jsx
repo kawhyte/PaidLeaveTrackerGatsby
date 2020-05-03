@@ -1,12 +1,8 @@
 import React from 'react'
-import {sentenceCase,isBillNew2, isBillSignedByGovornor, isBillFailedByGovornor, isUpdateMajor, didBillPassGovernor} from '../../Util/helper.js'
 
 const statsGroup = props => {
 
-    const {  actions, billTotal, newCount, majorCount, currentPage, pageSize, newBills, passBills, failedBills } = props;
-
-    // const newb = isBillNew2(actions)
-   // console.log("newb - ", newb)
+    const { billTotal, currentPage, pageSize, newBills, passBills, failedBills } = props;
 
     return (
         <>

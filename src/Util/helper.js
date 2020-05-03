@@ -550,7 +550,7 @@ let isBillNew = (actions) => {
     new Date(dateBillWasAdded)
   )
 
-  return billDateDifference < 40 ? true : false
+  return billDateDifference < 30 ? true : false
 }
 
 ///LOGIC TO CHECK IF BILL IS MAJOR //////
@@ -633,16 +633,6 @@ let didBillPassGovernor = (actions) => {
   }
 }
 
-// let isBillFailedByGovornor = (actions) => {
-//   let didBillFail = actions.some(
-//     (value) =>
-//       value.classification.includes('executive-veto') ||
-//       value.classification.includes('veto-override-failure') ||
-//       value.classification.includes('committee-failure') ||
-//       value.classification.includes('withdrawal') ||
-//       value.classification.includes('failure')
-//   )
-// }
 
 let didBillFailGovernor = (actions) => {
   let governorBillPassed = actions.filter((h) => {

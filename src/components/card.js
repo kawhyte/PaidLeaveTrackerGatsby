@@ -7,11 +7,7 @@ import {didBillFailGovernor, sentenceCase,isBillNew, isUpdateMajor, getBillActio
 
 const Card = ({ title, identifier, jurisdiction, actions, sources, createdAt  }) => {
 
-
-  const lastAction = getBillActions(actions)
-
-  const test   = isUpdateMajor(actions)
- console.log("test--", test)
+const lastAction = getBillActions(actions)
 
 return (
 
@@ -30,7 +26,6 @@ return (
   </div>
   <div className="flex mt-3"> 
    {isBillNew(actions) ?   <span className="flex rounded-full text-white bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>: " "} 
-   {/* {isBillSignedByGovornor(actions) ?   <span className="flex rounded-full bg-green-300 text-black uppercase px-2 py-1 text-xs font-bold mr-3">Passed</span>: " "}  */}
    {didBillFailGovernor(actions) ? <span className="flex rounded-full bg-red-500 text-black uppercase px-2 py-1 text-xs font-bold mr-3">Failed</span>: " "} 
    {isUpdateMajor(actions) ? <a href="https://www.google.com/" className="flex rounded-full text-black bg-indigo-100 uppercase px-2 py-1 text-xs font-bold mr-3"> Major</a> : " "}
   </div>
