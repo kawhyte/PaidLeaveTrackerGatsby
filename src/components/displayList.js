@@ -247,6 +247,7 @@ const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)
 
 
 return (
+
     <div className="ml-16 mr-16">
 
       <div className="py-8 ">
@@ -306,6 +307,7 @@ return (
     
 <Pagination itemsCount={state.bills.length} pageSize={pageState.pageSize} onPageChange={handlePageChange} currentPage={pageState.currentPage} />
     </div>
+ 
   )
 }
 

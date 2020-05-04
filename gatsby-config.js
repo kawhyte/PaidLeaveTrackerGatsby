@@ -22,7 +22,24 @@ module.exports = {
     }
   },
 
-],  
+], plugins: [
+  {
+    resolve: `gatsby-plugin-canonical-urls`,
+    options: {
+      siteUrl: `https://festive-raman-38b110.netlify.app`,
+    },
+  },
+], 
+plugins: [
+  {
+    resolve: 'gatsby-plugin-robots-txt',
+    options: {
+      host: 'https://festive-raman-38b110.netlify.app/',
+      sitemap: 'https://www.example.com/sitemap.xml',
+      policy: [{ userAgent: '*', allow: '/' }]
+    }
+  }
+],
 
 plugins: [
   {
