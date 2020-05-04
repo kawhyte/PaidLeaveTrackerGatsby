@@ -66,7 +66,7 @@ const DisplayList = function () {
   const [pageState, setPageState] = useState({
     bills: data.OpenState.bills.edges,
     currentPage: 1,
-    pageSize: 50
+    pageSize: 25
   })
 
   const [clicked, setClicked] = useState("Card");
@@ -109,7 +109,7 @@ useEffect(() => {
 
 
   const handlePageChange = (page) =>{
-    setPageState({ pageSize: 50, currentPage:page})
+    setPageState({ pageSize: 25, currentPage:page})
 
   }
 
