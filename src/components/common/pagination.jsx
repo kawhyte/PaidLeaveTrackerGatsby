@@ -25,13 +25,13 @@ const Pagination = (props) => {
   <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
     <div>
       <p className="text-sm leading-5 text-gray-700">
-        Showing
+        {/* Showing
         <span className="font-medium">1</span>
         to
         <span className="font-medium">{pageSize}</span>
         of
             <span className="font-medium">{itemsCount}</span>
-        results
+        results */}
       </p>
     </div>
     <div>
