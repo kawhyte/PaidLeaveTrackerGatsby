@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Card from './card'
 import { graphql, useStaticQuery} from 'gatsby'
 import Table from './table'
-import {getBillIntroduction,didBillFailGovernor,didBillPassGovernor} from '../Util/helper'
+import {isBillNew,didBillFailGovernor,didBillPassGovernor} from '../Util/helper'
 import ListGroup from './common/listGroup'
 import Pagination from '../components/common/pagination.jsx'
 import { paginate } from '../Util/paginate'
@@ -80,7 +80,7 @@ const DisplayList = function () {
 useEffect(() => {
 
    data.OpenState.bills.edges.map(c => {
-      const newBill = getBillIntroduction(c.node.actions)
+      const newBill = isBillNew(c.node.actions)
       const failed = didBillFailGovernor(c.node.actions)
       const governorBillPassed = didBillPassGovernor(c.node.actions)
     

@@ -39,7 +39,7 @@ const Header = ({ siteTitle }) => {
         <div className="hidden md:block md:ml-10 md:pr-4">
           <Link
             className={
-              'ml-8 font-medium text-gray-600 hover:text-blue-900 focus:outline-none focus:text-blue-900 transition duration-150 ease-in-out'
+              'ml-8 font-medium text-gray-900  hover:text-blue-900 focus:outline-none focus:text-blue-900 transition duration-150 ease-in-out'
             }
             to="/"
           >
@@ -47,7 +47,7 @@ const Header = ({ siteTitle }) => {
           </Link>
           <Link
             className={
-              'ml-8 font-medium text-gray-600 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out'
+              'ml-8 font-medium text-gray-900  hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out'
             }
             to="/blog"
           >
@@ -55,7 +55,7 @@ const Header = ({ siteTitle }) => {
           </Link>
           <a
             href="https://legislation-tweets.herokuapp.com/"
-            className="ml-8 font-medium text-gray-600 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
+            className="ml-8 font-medium text-gray-900  hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
           >
             Paid Leave Twitter Mentions
           </a>

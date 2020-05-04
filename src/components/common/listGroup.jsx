@@ -4,7 +4,7 @@ import React from "react";
 
 
 const ListGroup = props => {
-    const { items,textProperty , valueProperty, selectedItem, onChange } = props;
+    const { onChange } = props;
     
     return  (
 <>

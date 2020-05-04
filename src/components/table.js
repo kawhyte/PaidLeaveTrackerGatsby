@@ -3,6 +3,7 @@ import format from 'date-fns/format'
 import Progress from './progressBar'
 import Status from './common/status'
 import {sentenceCase} from '../Util/helper'
+import Sources from './common/billSource'
 
 
 const Table = ({ title, identifier, jurisdiction, actions, sources}) => {
@@ -13,7 +14,7 @@ const Table = ({ title, identifier, jurisdiction, actions, sources}) => {
               <div className="">
               <div className="flex-shrink-0 w-10 h-10 mr-3">
                           <img className="w-full h-full rounded-full"
-                              src={"https://res.cloudinary.com/babyhulk/image/upload/v1584505244/flags/Flag_of_" + jurisdiction +".svg"} alt={"Flag of" + jurisdiction}
+                              src={"https://res.cloudinary.com/babyhulk/image/upload/w_40,h_40,f_auto/v1584505244/flags/Flag_of_" + jurisdiction +".svg"} alt={"Flag of" + jurisdiction}
                                />
               </div>
                   <p className="text-gray-900 whitespace-no-wrap">{jurisdiction} | <span className="bg-blue-100 p-1"> {identifier}</span></p>
@@ -42,7 +43,7 @@ const Table = ({ title, identifier, jurisdiction, actions, sources}) => {
 <div className="flex ml-3" > 
 <Status actions ={actions}/>
 
-  </div>
+</div>
 
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white  text-sm">
@@ -53,15 +54,11 @@ const Table = ({ title, identifier, jurisdiction, actions, sources}) => {
         </td>
 
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <p className="text-gray-900 w-auto whitespace-pre">
+            <div className="text-gray-900 w-auto whitespace-pre">
 
-    {sources.map((u, i)=>{
- 
-        return (<span key={i} className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle" > <a href={u.url} target="_blank" rel="noopener noreferrer" className="no-underline">Link ({i+1})</a> </span>)
- 
-      })}
+            <Sources sources ={sources} />
 
-            </p>
+            </div>
         </td>
     </tr>
     
