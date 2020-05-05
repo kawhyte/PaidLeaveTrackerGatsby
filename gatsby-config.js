@@ -35,7 +35,8 @@ plugins: [
     resolve: 'gatsby-plugin-robots-txt',
     options: {
       host: 'https://festive-raman-38b110.netlify.app/',
-      sitemap: 'https://www.example.com/sitemap.xml',
+      sitemap: 'https://festive-raman-38b110.netlify.app/sitemap.xml',
+      output:'./src/Util/robot.txt',
       policy: [{ userAgent: '*', allow: '/' }]
     }
   }
