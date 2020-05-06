@@ -281,6 +281,8 @@ return (
 
       <div className="py-4 ">
 
+        
+
 <h2 className="mx-5 text-2xl font-semibold leading-tight">Filter</h2>
 
 <div className="my-2 mx-5 mb-5 flex sm:flex-row flex-col">
@@ -303,42 +305,43 @@ return (
     <div className="relative">
     <ListGroup items = {data.OpenState.bills.edges}  onChange={handleDropdownChange} /> 
 
-   
-    
-    {/* <label htmlFor="filter-value">
-        <select id="filter-value" onChange={(e)=> handleDropdownChange(e, bills)}
-            className="sm:ml-3 appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 sm:border-r border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
-            <option defaultValue="all" value="all" >All</option>
-            <option value="new">New bills</option>
-            <option value="major">Major Update</option>
-            <option value="passed">Signed by Gov</option>
-            <option value="failed">Failed bills</option>
-        </select></label>
-        <div
-            className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-            </svg>
-        </div> */}
     </div>
     
 </div>
 
-      <div className="mt-0 mx-5 flex lg:flex-shrink-0 lg:mt-3">
-      {/* className= "mr-3 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 py-2 px-4" */}
-        <button aria-label="Left Align" onClick={handleSwitchView} className= "rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-indigo-600 hover:bg-indigo-700 md:text-lg xl:text-base text-white font-semibold leading-tight shadow-md">
-        Switch to {clicked === "Table" ? "Card": "Table" } view
-        </button>
-        <CSVLink data={csvFile} onClick={handleDownloadButtonClick} className= "ml-4 rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-white hover:bg-gray-200 md:text-lg xl:text-base text-gray-800 font-semibold leading-tight shadow-md"  >Download CSV</CSVLink>
-      </div>
 
 
 </div>
+<div className="bg-white px-4 py-3 flex items-center justify-between sm:px-6">
+
+  <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+
 <StatsGroup actions={bills} newBills={counters.newBill}  failedBills={counters.failedBill} passBills={counters.signedGov}  billTotal= {state.bills.length}   majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} />
+   
+<div className="mt-0 mx-7 flex lg:flex-shrink-0 lg:mt-3">
+      {/* className= "mr-3 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 py-2 px-4" */}
+        <button aria-label="Left Align" onClick={handleSwitchView} className= "hidden md:flex text-sm font-medium rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-indigo-600 hover:bg-indigo-700 xl:text-base text-white font-semibold leading-tight shadow-md inline-flex items-center">
+        <svg className="fill-current w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"/></svg>        
+          {/* <span>Switch to {clicked === "Table" ? "Card": "Table" } view</span> */}
+          <span>{clicked === "Table" ? "Card": "Table" }</span>
+        
+        </button>
+        <CSVLink data={csvFile} onClick={handleDownloadButtonClick} className= "ml-4 hidden md:flex text-sm font-medium rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-white hover:bg-gray-200 md:text-lg xl:text-base text-gray-800 font-semibold leading-tight shadow-md inline-flex items-center"  >
+        <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+
+          
+         <span>CSV</span> </CSVLink>
+      </div>
+
+</div>
+</div> 
+   
+   
     {renderView()}
     
 <Pagination itemsCount={state.bills.length} pageSize={pageState.pageSize} onPageChange={handlePageChange} currentPage={pageState.currentPage} />
     </div>
+   
  
   )
 }
