@@ -2,19 +2,30 @@ import React, {useState, useEffect} from 'react'
 import Card from './card'
 import { graphql, useStaticQuery} from 'gatsby'
 import Table from './table'
-import {isBillNew,didBillFailGovernor,didBillPassGovernor, isUpdateMajor} from '../Util/helper'
+import {isBillNew,didBillFailGovernor, didBillPassGovernor, isUpdateMajor, getBillActions, getBillIntroduction, didBillPassHouse, didBillPassSenate} from '../Util/helper'
 import ListGroup from './common/listGroup'
 import Pagination from '../components/common/pagination.jsx'
 import { paginate } from '../Util/paginate'
 import StatsGroup from './common/statsGroup.jsx'
 import JsonToCSV from 'json2csv'
+import format from 'date-fns/format'
 // const { Parser } = require('json2csv');
 import { CSVLink, CSVDownload } from "react-csv";
 
 
 let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
 
- let csvData = [["ID", "STATE", "BILL_ID", "BILL_TITLE","BILL_PROGRESSION", "BILL_STATUS", "LAST_UPDATE"]]
+
+ const headers = [
+  { label: "ID", key: "id" },
+  { label: "STATE", key: "state" },
+  { label: "BILL_ID", key: "billid" },
+  { label: "BILL_STATUS", key: "billstatus" },
+  { label: "BILL_PROGRESSION", key: "billlocation" },
+  { label: "BILL_INTRODUCED", key: "billintroduced" },
+  { label: "BILL_LAST_UPDATED", key: "lastupdate" },
+  { label: "BILL_TITLE", key: "billtitle" }
+];
 //   ["title", "Name", "State"]
 // ];
 
@@ -128,18 +139,34 @@ useEffect(() => {
 
   }
   const handleDownloadButtonClick = () =>{
-    csvData = [["ID" ,"STATE", "BILL_ID", "BILL_TITLE","BILL_PROGRESSION", "BILL_STATUS", "LAST_UPDATE"]]
+   let csvData = []
     
-    
+    //  let csvData = [["ID", "STATE", "BILL_ID", "BILL_TITLE","BILL_PROGRESSION", "BILL_STATUS", "LAST_UPDATE"]]
    data.OpenState.bills.edges.map((c,i) => {
 
-      csvData.push([i+1,c.node.legislativeSession.jurisdiction.name,c.node.identifier,c.node.title, c.node.createdAt, "test","Test2"])
+    let billIntroduction = getBillIntroduction(c.node.actions)
+    let billAction = getBillActions(c.node.actions)
+    let houseBillPassed = didBillPassHouse(c.node.actions)
+    let senateBillPassed = didBillPassSenate(c.node.actions)
+    let governorBillPassed = didBillPassGovernor(c.node.actions)
+
+      csvData.push({id:i+1, 
+                    state: c.node.legislativeSession.jurisdiction.name, 
+                    billid:c.node.identifier,
+                    billstatus:"Major",
+                    billlocation:"Senate", 
+                    billintroduced: billIntroduction !== null ?  format(new Date(billIntroduction[0].date.substring(0,10)),'LLL d, yyyy') :  format(new Date(billAction[billAction.length - 1].date),'LLL dd, yyyy'),
+
+                    lastupdate: format(new Date(billAction[0].date.substring(0,10)),'LLL dd, yyyy'),
+                    billtitle:c.node.title
+                  })
+                    
+
       setCSV(csvData) 
     })
    
      
     console.log("ARR ",csvData)
-    // console.log("ARR cvs ",csv)
     return csvData
 
   }
@@ -327,11 +354,11 @@ return (
           <span>{clicked === "Table" ? "Card": "Table" }</span>
         
         </button>
-        <CSVLink data={csvFile} onClick={handleDownloadButtonClick} className= "ml-4 hidden md:flex text-sm font-medium rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-white hover:bg-gray-200 md:text-lg xl:text-base text-gray-800 font-semibold leading-tight shadow-md inline-flex items-center"  >
+        <CSVLink data={csvFile} headers={headers} filename={"paid_leave_report.csv"} onClick={handleDownloadButtonClick} className= "ml-4 hidden md:flex text-sm font-medium rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-white hover:bg-gray-200 md:text-lg xl:text-base text-gray-800 font-semibold leading-tight shadow-md inline-flex items-center"  >
         <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
 
           
-         <span>CSV</span> </CSVLink>
+         <span>Report</span> </CSVLink>
       </div>
 
 </div>
