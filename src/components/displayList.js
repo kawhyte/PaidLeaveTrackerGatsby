@@ -130,10 +130,8 @@ useEffect(() => {
  const handleSwitchView = (event) => {
 
     if (event.currentTarget.id === "card") {
-      console.log(" CARD ")
       setClicked("Card")
     } else if(event.currentTarget.id === "table") {
-      console.log(" Table ")
       setClicked("Table")
     }
   }
@@ -147,10 +145,8 @@ useEffect(() => {
   }
   const handleDownloadButtonClick = () =>{
    let csvData = []
-    
-    //  let csvData = [["ID", "STATE", "BILL_ID", "BILL_TITLE","BILL_PROGRESSION", "BILL_STATUS", "LAST_UPDATE"]]
-   data.OpenState.bills.edges.map((c,i) => {
 
+   data.OpenState.bills.edges.map((c,i) => {
     let billIntroduction = getBillIntroduction(c.node.actions)
     let billAction = getBillActions(c.node.actions)
     let houseBillPassed = didBillPassHouse(c.node.actions)
@@ -159,7 +155,6 @@ useEffect(() => {
     let billNew = isBillNew(c.node.actions)
     let billFail = didBillFailGovernor(c.node.actions)
     const isMajor = isUpdateMajor(c.node.actions)
-
 
       csvData.push({id:i+1, 
                     state: c.node.legislativeSession.jurisdiction.name, 
@@ -171,14 +166,10 @@ useEffect(() => {
                     billtitle:c.node.title
                   })
                     
-
       setCSV(csvData) 
     })
    
-     
-    console.log("ARR ",csvData)
     return csvData
-
   }
 
 
@@ -186,8 +177,10 @@ useEffect(() => {
      const query = event.target.value
  
       console.log("state.bills ", state.bills )
+      console.log("state.bills ", event.target.value )
     
      const billsToBeFiltered =  data.OpenState.bills.edges  || [] 
+    //  const billsToBeFiltered =  state.bills  || [] 
     
      const bills= billsToBeFiltered.filter(bill => {
       
@@ -207,6 +200,7 @@ useEffect(() => {
            bills :bills
          })
      }
+
       
 const handleDropdownChange = (event, jsonData)  =>{
 
@@ -220,12 +214,75 @@ const handleDropdownChange = (event, jsonData)  =>{
       setState({ query, bills: billsToBeFiltered}) 
     } 
 
-    if(event.target.value==='passed' ){
+    if(event.target.value==='new'){
+      const bills= billsToBeFiltered.filter(bill => {
+      let val = isBillNew(bill.node.actions)
 
-            
+       if (val === true) {
+         return(bill)
+       }
+
+    })
+    setState({
+      query, 
+      bills :bills
+    })  
     }
 
-}  
+    if(event.target.value==='major'){
+      console.log("MAJOR IF ")
+      const bills= billsToBeFiltered.filter(bill => {
+       let val = isUpdateMajor(bill.node.actions)
+       
+       console.log("VAL ", val)
+
+       if (val === true) {
+         return(bill)
+       }
+
+    })
+    setState({
+      query, 
+      bills :bills
+    })  
+    }
+
+    if(event.target.value==='passed'){
+      console.log("Passed IF ")
+      const bills= billsToBeFiltered.filter(bill => {
+       let val = didBillPassGovernor(bill.node.actions)
+       
+       console.log("VAL ", val)
+
+       if (val !== null) {
+         return(bill)
+       }
+
+    })
+    setState({
+      query, 
+      bills :bills
+    })  
+    }
+
+    if(event.target.value==='failed'){
+      console.log("failed IF ")
+      const bills= billsToBeFiltered.filter(bill => {
+       let val = didBillFailGovernor(bill.node.actions)
+       
+       console.log("VAL ", val)
+
+       if (val !== null) {
+         return(bill)
+       }
+
+    })
+    setState({
+      query, 
+      bills :bills
+    })  
+    }
+}
   
 
 const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)

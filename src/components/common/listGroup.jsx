@@ -12,10 +12,10 @@ const ListGroup = props => {
         <select id="lbl-main-menu-mob" aria-label="lbl-main-menu-mob" type="text" name="filter" onChange ={(e)=> onChange(e )}
             className="sm:ml-3 appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 sm:border-r border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
             <option defaultValue="all" value="all" >All</option>
-            <option value="new">New bills</option>
+            <option value="new">New</option>
             <option value="major">Major Update</option>
-            <option value="passed">Signed by Gov</option>
-            <option value="failed">Failed bills</option>
+            <option value="passed">Became Law</option>
+            <option value="failed">Failed</option>
         </select>
         
         <div
