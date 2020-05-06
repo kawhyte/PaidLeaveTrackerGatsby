@@ -326,7 +326,7 @@ return (
 
       <div className="mt-0 mx-5 flex lg:flex-shrink-0 lg:mt-3">
       {/* className= "mr-3 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 py-2 px-4" */}
-        <button aria-label="Left Align" onClick={handleSwitchView} className= "rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-indigo-500 hover:bg-indigo-600 md:text-lg xl:text-base text-white font-semibold leading-tight shadow-md">
+        <button aria-label="Left Align" onClick={handleSwitchView} className= "rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-indigo-600 hover:bg-indigo-700 md:text-lg xl:text-base text-white font-semibold leading-tight shadow-md">
         Switch to {clicked === "Table" ? "Card": "Table" } view
         </button>
         <CSVLink data={csvFile} onClick={handleDownloadButtonClick} className= "ml-4 rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-white hover:bg-gray-200 md:text-lg xl:text-base text-gray-800 font-semibold leading-tight shadow-md"  >Download CSV</CSVLink>
