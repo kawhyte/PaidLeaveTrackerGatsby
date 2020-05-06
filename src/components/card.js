@@ -39,7 +39,7 @@ return (
         <span className=" pl-1"> 
         <svg className="fill-current text-gray-500 w-5  h-5 mr-2 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.667 12H2v8H0V0h12l.333 2H20l-3 6 3 6H8l-.333-2z"/></svg>
         </span>
-        <span className="f6 db pv1 text-gray-700 mb-3 leading-snug  break-all truncate-custom "> {sentenceCase(title)}</span>
+        <span className="f6 db pv1 text-gray-700 mb-3 leading-snug break-words  truncate-custom "> {sentenceCase(title)}</span>
 </div>
 
 <div className="flex">       
