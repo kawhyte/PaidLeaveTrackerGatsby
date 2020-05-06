@@ -149,14 +149,17 @@ useEffect(() => {
     let houseBillPassed = didBillPassHouse(c.node.actions)
     let senateBillPassed = didBillPassSenate(c.node.actions)
     let governorBillPassed = didBillPassGovernor(c.node.actions)
+    let billNew = isBillNew(c.node.actions)
+    let billFail = didBillFailGovernor(c.node.actions)
+    const isMajor = isUpdateMajor(c.node.actions)
+    console.log("isMajor ",isMajor)
 
       csvData.push({id:i+1, 
                     state: c.node.legislativeSession.jurisdiction.name, 
                     billid:c.node.identifier,
-                    billstatus:"Major",
-                    billlocation:"Senate", 
+                    billstatus: (isMajor ? "Governor " :" " ) + (billNew ? "New Bill ": " ") + (billFail ? "Bill Failed" : " "),
+                    billlocation: (governorBillPassed!== null ? "Became Law" :  (houseBillPassed !== null ? "Passed House ": " ") + (senateBillPassed !==null ? "Passed Senate " : " ") ) , 
                     billintroduced: billIntroduction !== null ?  format(new Date(billIntroduction[0].date.substring(0,10)),'LLL d, yyyy') :  format(new Date(billAction[billAction.length - 1].date),'LLL dd, yyyy'),
-
                     lastupdate: format(new Date(billAction[0].date.substring(0,10)),'LLL dd, yyyy'),
                     billtitle:c.node.title
                   })
