@@ -5,7 +5,7 @@ const Header = ({ siteTitle }) => {
   return (
     <>
 
-    <div className="w-full container mx-auto p-6">
+    <div className="w-full container mx-auto p-1">
         
       <div className="w-full flex items-center justify-between">
         <a className="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="https://www.kennywhyte.com/"> 
@@ -22,14 +22,14 @@ const Header = ({ siteTitle }) => {
             Home
           </Link>
 
-          {/* <Link
+          <Link
             className={
               'ml-8 font-medium text-gray-900  hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out'
             }
             to="/blog"
           >
             Blog
-          </Link> */}
+          </Link>
 
           <a
             href="https://legislation-tweets.herokuapp.com/"
