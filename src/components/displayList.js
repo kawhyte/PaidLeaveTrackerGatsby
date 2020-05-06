@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Card from './card'
 import { graphql, useStaticQuery} from 'gatsby'
 import Table from './table'
-import {isBillNew,didBillFailGovernor,didBillPassGovernor} from '../Util/helper'
+import {isBillNew,didBillFailGovernor,didBillPassGovernor, isUpdateMajor} from '../Util/helper'
 import ListGroup from './common/listGroup'
 import Pagination from '../components/common/pagination.jsx'
 import { paginate } from '../Util/paginate'
@@ -96,12 +96,13 @@ useEffect(() => {
       const newBill = isBillNew(c.node.actions)
       const failed = didBillFailGovernor(c.node.actions)
       const governorBillPassed = didBillPassGovernor(c.node.actions)
+      const isMajor = isUpdateMajor(c.node.actions)
     
       if (newBill) {
          setCount(counters["newBill"]++)
       }
     
-      if (governorBillPassed) {
+      if (isMajor) {
         setCount(counters.signedGov++)
       }
 
@@ -320,7 +321,7 @@ return (
    
 <div className="mt-0 mx-7 flex lg:flex-shrink-0 lg:mt-3">
       {/* className= "mr-3 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 py-2 px-4" */}
-        <button aria-label="Left Align" onClick={handleSwitchView} className= "hidden md:flex text-sm font-medium rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-indigo-600 hover:bg-indigo-700 xl:text-base text-white font-semibold leading-tight shadow-md inline-flex items-center">
+        <button aria-label="Left Align" onClick={handleSwitchView} className= "hidden md:flex text-sm font-medium rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-indigo-600 hover:bg-indigo-700 md:text-lg xl:text-base text-white font-semibold leading-tight shadow-md inline-flex items-center">
         <svg className="fill-current w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"/></svg>        
           {/* <span>Switch to {clicked === "Table" ? "Card": "Table" } view</span> */}
           <span>{clicked === "Table" ? "Card": "Table" }</span>
