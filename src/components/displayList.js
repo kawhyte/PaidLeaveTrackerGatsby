@@ -127,8 +127,15 @@ useEffect(() => {
 
 
 
-  function handleSwitchView() {
-    clicked === "Table" ? setClicked("Card") : setClicked("Table") 
+ const handleSwitchView = (event) => {
+
+    if (event.currentTarget.id === "card") {
+      console.log(" CARD ")
+      setClicked("Card")
+    } else if(event.currentTarget.id === "table") {
+      console.log(" Table ")
+      setClicked("Table")
+    }
   }
  
 
@@ -308,11 +315,9 @@ const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)
 
 return (
 
-    <div className="ml-4 mr-4">
+<div className="ml-4 mr-4">
 
-      <div className="py-4 ">
-
-        
+  <div className="py-4 ">
 
 <h2 className="mx-5 text-2xl font-semibold leading-tight">Filter</h2>
 
@@ -335,11 +340,9 @@ return (
 </div>
     <div className="relative">
     <ListGroup items = {data.OpenState.bills.edges}  onChange={handleDropdownChange} /> 
-
     </div>
     
 </div>
-
 
 
 </div>
@@ -349,20 +352,35 @@ return (
 
 <StatsGroup actions={bills} newBills={counters.newBill}  failedBills={counters.failedBill} passBills={counters.signedGov}  billTotal= {state.bills.length}   majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} />
    
-<div className="mt-0 mx-7 flex lg:flex-shrink-0 lg:mt-3">
-      {/* className= "mr-3 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 py-2 px-4" */}
+{/* <div className="mt-0 mx-7 flex lg:flex-shrink-0 lg:mt-3">
+      className= "mr-3 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 py-2 px-4"
         <button aria-label="Left Align" onClick={handleSwitchView} className= "hidden md:flex text-sm font-medium rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-indigo-600 hover:bg-indigo-700 md:text-lg xl:text-base text-white font-semibold leading-tight shadow-md inline-flex items-center">
         <svg className="fill-current w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"/></svg>        
-          {/* <span>Switch to {clicked === "Table" ? "Card": "Table" } view</span> */}
+          <span>Switch to {clicked === "Table" ? "Card": "Table" } view</span>
           <span>{clicked === "Table" ? "Card": "Table" }</span>
         
         </button>
-        <CSVLink data={csvFile} headers={headers} filename={"paid_leave_report.csv"} onClick={handleDownloadButtonClick} className= "ml-4 hidden md:flex text-sm font-medium rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-white hover:bg-gray-200 md:text-lg xl:text-base text-gray-800 font-semibold leading-tight shadow-md inline-flex items-center"  >
-        <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
 
-          
-         <span>Report</span> </CSVLink>
-      </div>
+  </div> */}
+
+
+  <div className="hidden md:flex bg-gray-200 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex">
+    <button onClick={(e) => handleSwitchView (e)} className="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-l-full px-4 py-2 active" id="card">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="fill-current w-4 h-4 mr-2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+      <span>Grid</span>
+    </button>
+    <button onClick={(e) => handleSwitchView (e)}  className="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-r-full px-4 py-2" id="table">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="fill-current w-4 h-4 mr-2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+      <span>Table</span>
+    </button>
+
+
+    <CSVLink data={csvFile} headers={headers} filename={"paid_leave_report.csv"} onClick={handleDownloadButtonClick} className= "inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-r-full px-4 py-2"  >
+        <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+      
+    <span>Report</span> </CSVLink>
+
+  </div>
 
 </div>
 </div> 
