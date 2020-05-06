@@ -26,7 +26,7 @@ const Hero = () => {
 		</div>
 	
 		<div className="w-full md:w-3/5 py-6 px-6 text-center flex justify-end"> 
-			<img  className="w-full md:w-4/5 z-50" src="https://res.cloudinary.com/babyhulk/image/upload/w_676,h_469,f_auto/v1588723920/hero-image/family.png" alt="Family"/>
+			<img  className="w-full md:w-4/5 z-50" src="https://res.cloudinary.com/babyhulk/image/upload/w_690,h_469,f_auto/v1588723920/hero-image/family.png" alt="Family"/>
 		</div>
 		
 	</div>
