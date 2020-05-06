@@ -14,12 +14,12 @@ const Hero = () => {
 
       <Headers /> 
 
-      <div className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+      <div className="mt-10 mx-auto max-w-screen-xl   px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
         <div className="sm:text-center lg:text-left">
           <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
             Track upcoming 
             <br className="" />
-            <span className="text-indigo-600">Paid Family Leave </span>
+            <span className="text-indigo-600 ">Paid Family Leave </span>
           <span className="tracking-normal rounded-full text-white bg-gray-800 uppercase px-2 py-1 text-xs font-bold mr-3">Beta</span>
           </h2>
           <p className="mt-3 text-base text-gray-800 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
@@ -41,13 +41,13 @@ const Hero = () => {
         </div>
 
       </div>
-      <svg className="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <svg className="hidden lg:block absolute right-0 inset-y-0 h-full w-10 text-white transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">  
         <polygon points="50,0 100,0 50,100 0,100" />
       </svg>
     </div>
   </div>
   <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-    <img className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://res.cloudinary.com/babyhulk/image/upload/w_676,h_469,f_auto/v1588631591/hero-image/family-green.svg" alt="" />
+    <img className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://res.cloudinary.com/babyhulk/image/upload/w_676,h_469,f_auto/v1588723920/hero-image/family.png" alt="Photo of family" />
   </div>
 </div>
 

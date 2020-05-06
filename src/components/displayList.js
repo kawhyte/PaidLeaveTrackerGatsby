@@ -189,7 +189,6 @@ const handleDropdownChange = (event, jsonData)  =>{
 
 }  
   
-console.log("BILLS", data.OpenState.bills.edges)
 
 const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)
   
@@ -240,7 +239,7 @@ const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)
         </div>
 
     } else{
-      return <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{cardComponent}</div>
+      return <div className=" my-1 px-1 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">{cardComponent}</div>
     }
   }
  
@@ -278,9 +277,9 @@ const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)
 
 return (
 
-    <div className="ml-16 mr-16">
+    <div className="ml-4 mr-4">
 
-      <div className="py-8 ">
+      <div className="py-4 ">
 
 <h2 className="mx-5 text-2xl font-semibold leading-tight">Filter</h2>
 
