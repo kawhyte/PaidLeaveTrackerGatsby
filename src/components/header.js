@@ -15,7 +15,7 @@ const Header = ({ siteTitle }) => {
         <div className="flex w-2/3 justify-end content-center pr-10">
 
           <Link className={
-              'hidden sm:inline-block  ml-8 font-medium text-gray-900  hover:text-blue-900 focus:outline-none focus:text-blue-900 transition duration-150 ease-in-out'
+              'hidden  ml-8 font-medium text-gray-900  hover:text-blue-900 focus:outline-none focus:text-blue-900 transition duration-150 ease-in-out'
             }
             to="/"
           >
@@ -24,16 +24,16 @@ const Header = ({ siteTitle }) => {
 
           <Link
             className={
-              ' hidden sm:inline-block ml-8 font-medium text-gray-900  hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out'
+              ' hidden  ml-8 font-medium text-gray-900  hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out'
             }
             to="/blog"
           >
             Blog
           </Link>
 
-          <a
+          <a 
             href="https://legislation-tweets.herokuapp.com/"
-            className=" ml-8 font-medium text-gray-900  hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
+            className=" hidden ml-8 font-medium text-gray-900  hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
           >
             Twitter Mentions
           </a>
@@ -47,7 +47,7 @@ const Header = ({ siteTitle }) => {
               {' '}
               🍕
             </span>{' '}
-            by KW
+            by Kenny
           </a>
 
 

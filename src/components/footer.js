@@ -33,10 +33,10 @@ const Footer = () => {
 
             <hr className="h-px mt-1 bg-gray-700 border-none" />
 
-            <div className="flex flex-col items-center justify-between mt-4 md:flex-row">
-                <div>
+            <div className="flex flex-col items-center justify-center mt-4 md:flex-row">
+                {/* <div>
                     <a href="https://www.kennywhyte.com/" className="text-xl font-bold">KW</a>
-                </div>
+                </div> */}
                 <div className="flex mt-4 md:m-0">
                     <div className="-mx-0">
                     <small >© {data.site.siteMetadata.year} <b className="uppercase">{data.site.siteMetadata.title}</b>, All Rights Reserved</small>
