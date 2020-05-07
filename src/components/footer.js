@@ -23,8 +23,6 @@ const Footer = () => {
   `
   
   )
-
-// console.log("Time ", time.currentBuildDate.currentDate)
 console.log( data)
   return (
 
@@ -47,8 +45,8 @@ console.log( data)
                 <div className="flex mt-5 md:m-0 items-center justify-center">
                     <div className="mx-6">
                    
-                   <span className=" mr-4 text-gray-700 text-sm sm:text-xs md:text-sm lg:text-sm xl:text-sm"> Website information updated <span className="italic ">{data.build.nodes[0].buildTime}</span></span>
-                    {/* <small>Created by <a href="https://www.kennywhyte.com/" className=" ml-0 font-medium text-indigo-600 hover:text-indigo-900 focus:outline-none focus:text-indigo-700 transition duration-150 ease-in-out"> {data.site.siteMetadata.author}</a></small> */}
+                    <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm">Created by <a href="https://www.kennywhyte.com/" className=" ml-0 font-medium text-indigo-600 hover:text-indigo-900 focus:outline-none focus:text-indigo-700 transition duration-150 ease-in-out"> {data.site.siteMetadata.author} ✌🏽+ ❤️ </a></p>
+                   <span className=" mr-4 text-gray-700 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"> Website information updated <span className="italic ">{data.build.nodes[0].buildTime}</span></span>
                   	</div>
                 </div>
             </div>

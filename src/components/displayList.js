@@ -83,7 +83,7 @@ const DisplayList = function () {
   const [pageState, setPageState] = useState({
     bills: data.OpenState.bills.edges,
     currentPage: 1,
-    pageSize: 30
+    pageSize: 15
   })
 
   const [clicked, setClicked] = useState("Card");

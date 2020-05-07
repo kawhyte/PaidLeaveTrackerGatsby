@@ -11,7 +11,7 @@ module.exports = {
     title: 'Paid Leave Legislation Tracker',
     author: 'Kenny Whyte',
     year: 2020,
-    siteUrl:`https://festive-raman-38b110.netlify.app`
+    siteUrl:`https://paidleave.netlify.app`
   },
   plugins: ['gatsby-plugin-react-helmet',
 
