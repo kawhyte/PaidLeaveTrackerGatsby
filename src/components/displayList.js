@@ -1,17 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import Card from './card'
 import { graphql, useStaticQuery} from 'gatsby'
+import TableRow from './tableRow'
 import Table from './table'
 import {isBillNew,didBillFailGovernor, didBillPassGovernor, isUpdateMajor, getBillActions, getBillIntroduction, didBillPassHouse, didBillPassSenate} from '../Util/helper'
 import ListGroup from './common/listGroup'
 import Pagination from '../components/common/pagination.jsx'
 import { paginate } from '../Util/paginate'
 import StatsGroup from './common/statsGroup.jsx'
-import JsonToCSV from 'json2csv'
 import format from 'date-fns/format'
-// const { Parser } = require('json2csv');
 import { CSVLink, CSVDownload } from "react-csv";
-
+import _ from "lodash";
 
 let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
 
@@ -26,8 +25,7 @@ let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
   { label: "BILL_LAST_UPDATED", key: "lastupdate" },
   { label: "BILL_TITLE", key: "billtitle" }
 ];
-//   ["title", "Name", "State"]
-// ];
+
 
 const DisplayList = function () {
 
@@ -88,16 +86,17 @@ const DisplayList = function () {
     pageSize: 15
   })
 
-  const [clicked, setClicked] = useState("Card");
+  const [clicked, setClicked] = useState("Table");
 
   const [csvFile, setCSV] = useState( [
-    //["STATE", "BILL_ID", "BILL_TITLE","BILL_PROGRESSION", "BILL_STATUS", "LAST_UPDATE"]
     
   ]);
 
   const [count, setCount] = useState({
     newBill:0 , signedGov:0, failedBill:0, major:0
   })
+
+  const [sortColumn, setColumnSort] = useState({ path:'title' , order:'asc'})
 
 
 
@@ -175,9 +174,6 @@ useEffect(() => {
 
    const handleInputChange = (event) => {
      const query = event.target.value
- 
-      console.log("state.bills ", state.bills )
-      console.log("state.bills ", event.target.value )
     
      const billsToBeFiltered =  data.OpenState.bills.edges  || [] 
     //  const billsToBeFiltered =  state.bills  || [] 
@@ -285,54 +281,20 @@ const handleDropdownChange = (event, jsonData)  =>{
 }
   
 
-const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)
+const handleSort = path =>{
+  console.log("path ", path)
+  setColumnSort({path:path , order:'asc'})
+}
+
+console.log("pathsortColumn.path ", sortColumn.path,sortColumn.order )
+const sorted = _.orderBy(state.bills,[sortColumn.path], [sortColumn.order])
+console.log("SORTED", sorted)
+
+const bills = paginate( sorted, pageState.currentPage, pageState.pageSize)
   
-  const renderView = ()=>{
+const renderView = ()=> {
     if(clicked === "Table"){
-      return <div className="py-2">
-            <div className="-mx-4 sm:-mx-8 px-4 sm:px-5 py-4 overflow-x-auto">
-                <div className="inline-block  shadow rounded-lg overflow-hidden">
-                    <table className="table-fixed ">
-      
-                    <thead>
-                            <tr>
-                            <th
-                                    className="w-1/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    State/Bill ID
-                                </th>
-                                <th
-                                    className="w-2/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    bill title
-                                </th>
-                                <th
-                                    className="w-2/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Bill Progression
-                                </th>
-                                <th
-                                    className="w-1/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Bill Status
-                                </th>
-                                <th
-                                    className="w-1/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Last Update
-                                </th>
-                                <th
-                                    className="w-1/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Sources
-                                </th>
-                             
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                            {tableComponent}
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
+      return <Table tableComponent = {tableComponent}  onSort = {handleSort} />
     } else{
       return <div className=" my-1 px-1 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">{cardComponent}</div>
     }
@@ -357,7 +319,7 @@ const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)
 
   const tableComponent = bills.map((b, i) => {
     return (
-      <Table
+      <TableRow
         key={i}
         title={b.node.title}
         identifier={b.node.identifier}
@@ -365,6 +327,7 @@ const bills = paginate( state.bills, pageState.currentPage, pageState.pageSize)
         createdAt={b.node.createdAt}
         sources={b.node.sources}
         actions={b.node.actions}
+       
       />
     )
   })

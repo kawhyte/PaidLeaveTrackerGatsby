@@ -1,73 +1,51 @@
 import React from 'react'
-import format from 'date-fns/format'
-import Progress from './progressBar'
-import Status from './common/status'
-import {sentenceCase} from '../Util/helper'
-import Sources from './common/billSource'
 
-
-const Table = ({ title, identifier, jurisdiction, actions, sources}) => {
-
+function table({tableComponent, onSort}) {
     return (
-        <tr>
-        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-              <div className="">
-              <div className="flex-shrink-0 w-10 h-10 mr-3">
-                          <img className="w-full h-full rounded-full"
-                              src={"https://res.cloudinary.com/babyhulk/image/upload/w_40,h_40,f_auto/v1584505244/flags/Flag_of_" + jurisdiction +".svg"} alt={"Flag of" + jurisdiction}
-                               />
-              </div>
-                  <p className="text-gray-900 whitespace-no-wrap">{jurisdiction} | <span className="bg-blue-100 p-1"> {identifier}</span></p>
-              
-                </div>
-        </td>
-        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <div className="">
-                <div className="ml-3">
-                    <p className="text-gray-900  wrap">
-                    {sentenceCase(title)} 
-                    </p>
-                </div>
+        <div className="py-2">
+        <div className="-mx-4 sm:-mx-8 px-4 sm:px-5 py-4 overflow-x-auto">
+            <div className="inline-block  shadow rounded-lg overflow-hidden">
+                <table className="table-fixed ">
+  
+                <thead>
+                        <tr>
+                        <th onClick={()=> onSort('state')}
+                                className="w-1/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                State/Bill ID
+                            </th>
+                            <th onClick={()=> onSort('title')}
+                                className="w-2/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                bill title
+                            </th>
+                            <th onClick={()=> onSort()}
+                                className="w-2/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Bill Progression
+                            </th>
+                            <th onClick={()=> onSort('status')}
+                                className="w-1/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Bill Status
+                            </th>
+                            <th onClick={()=> onSort('lastUpdated')}
+                                className="w-1/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Last Update
+                            </th>
+                            <th onClick={()=> onSort()}
+                                className="w-1/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Sources
+                            </th>
+                         
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {tableComponent}
+
+                    </tbody>
+                </table>
             </div>
-        </td>
-        <td className="px-5 py-5 border-b border-gray-200 bg-white-200 text-sm">
-
-<Progress actions ={actions}/> 
-
-  <div className="inline-flex items-center bg-gray-400">
-</div>
-        </td>
-        <td className="w-auto border-b border-gray-200 bg-white text-sm">
-
-
-<div className="flex ml-3" > 
-<Status actions ={actions}/>
-
-</div>
-
-        </td>
-        <td className="px-5 py-5 border-b border-gray-200 bg-white  text-sm">
-            <p className="text-gray-900 w-56 ">
-            <time>{format(new Date(actions[0].date),'LLL dd, yyyy')}</time>  
-            </p>
-             <p className=" f6 w-auto inline-block wrap">{sentenceCase(actions[0].description)}</p> 
-        </td>
-
-        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <div className="text-gray-900 w-auto whitespace-pre">
-
-            <Sources sources ={sources} />
-
-            </div>
-        </td>
-    </tr>
-    
+        </div>
+    </div>
     )
 }
-export default Table
 
-
-
-
-
-
+export default table
