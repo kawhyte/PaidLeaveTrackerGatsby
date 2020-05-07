@@ -23,7 +23,7 @@ const Footer = () => {
   `
   
   )
-console.log( data)
+
   return (
 
   //   <div> 
