@@ -11,6 +11,7 @@ module.exports = {
     title: 'Paid Leave Legislation Tracker',
     author: 'Kenny Whyte',
     year: 2020,
+    siteUrl:`https://festive-raman-38b110.netlify.app`
   },
   plugins: ['gatsby-plugin-react-helmet',
 
@@ -20,27 +21,30 @@ module.exports = {
       postCssPlugins: [require(`tailwindcss`)
       ]
     }
-  },
+  }, 
 
-], plugins: [
-  {
-    resolve: `gatsby-plugin-canonical-urls`,
-    options: {
-      siteUrl: `https://festive-raman-38b110.netlify.app`,
-    },
-  },
-], 
-plugins: [
-  {
-    resolve: 'gatsby-plugin-robots-txt',
-    options: {
-      host: 'https://festive-raman-38b110.netlify.app/',
-      sitemap: 'https://festive-raman-38b110.netlify.app/sitemap.xml',
-      output:'./src/Util/robot.txt',
-      policy: [{ userAgent: '*', allow: '/' }]
-    }
-  }
 ],
+plugins: [`gatsby-plugin-sitemap`,`gatsby-plugin-robots-txt`],
+
+// plugins: [
+//   {
+//     resolve: `gatsby-plugin-canonical-urls`,
+//     options: {
+//       siteUrl: `https://festive-raman-38b110.netlify.app`,
+//     },
+//   },
+// ], 
+// plugins: [
+//   {
+//     resolve: 'gatsby-plugin-robots-txt',
+//     options: {
+//       host: 'https://festive-raman-38b110.netlify.app/',
+//       sitemap: 'https://festive-raman-38b110.netlify.app/sitemap.xml',
+//       output:'./src/Util/robot.txt',
+//       policy: [{ userAgent: '*', allow: '/' }]
+//     }
+//   }
+// ],
 
 plugins: [
   {
@@ -57,7 +61,6 @@ plugins: [
 ],
 
   plugins: [
-        // Advanced config, passing parameters to apollo-link
     {
       resolve: "gatsby-source-graphql",
       options: {

@@ -17,6 +17,7 @@
     "gatsby-plugin-react-helmet": "^3.2.1",
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sharp": "^2.5.3",
+    "gatsby-plugin-sitemap": "^2.4.2",
     "gatsby-remark-images": "^3.2.1",
     "gatsby-remark-relative-images": "^0.3.0",
     "gatsby-source-contentful": "^2.1.19",
@@ -46,6 +47,7 @@
   "scripts": {
     "build": "env-cmd -f .env.development gatsby build",
     "develop": "env-cmd -f .env.development gatsby develop",
+    "serve": "env-cmd -f .env.development gatsby serve",
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

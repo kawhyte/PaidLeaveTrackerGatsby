@@ -1,4 +1,0 @@
-User-Agent: *
-Disallow: 
-
-Sitemap: https://festive-raman-38b110.netlify.app/sitemap.xml
