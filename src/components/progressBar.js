@@ -17,7 +17,7 @@ senateBillPassed = didBillPassSenate(actions)
 governorBillPassed = didBillPassGovernor(actions)
 firstAction = getBillActions(actions)
 let billFailed = didBillFailGovernor(actions)
-console.log("FAILED", billFailed)
+
 
 return( 
 
