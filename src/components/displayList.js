@@ -9,7 +9,7 @@ import Pagination from '../components/common/pagination.jsx'
 import { paginate } from '../Util/paginate'
 import StatsGroup from './common/statsGroup.jsx'
 import format from 'date-fns/format'
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 import _ from "lodash";
 
 let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
@@ -83,10 +83,12 @@ const DisplayList = function () {
   const [pageState, setPageState] = useState({
     bills: data.OpenState.bills.edges,
     currentPage: 1,
-    pageSize: 101
+    pageSize: 30
   })
 
   const [clicked, setClicked] = useState("Card");
+
+  const [dropDown, setropDown] = useState("Card");
 
   const [csvFile, setCSV] = useState( [
     
@@ -138,7 +140,10 @@ useEffect(() => {
 
 
   const handlePageChange = (page) =>{
-    setPageState({ pageSize: 101, currentPage:page})
+    setPageState(prevState =>{
+      
+      return {...prevState, currentPage:page}
+      })
 
 
   }
@@ -154,7 +159,7 @@ useEffect(() => {
     let billNew = isBillNew(c.node.actions)
     let billFail = didBillFailGovernor(c.node.actions)
     const isMajor = isUpdateMajor(c.node.actions)
- console.log("billFailed--- " , billFail)
+ 
       csvData.push({id:i+1, 
                     state: c.node.legislativeSession.jurisdiction.name, 
                     billid:c.node.identifier,
@@ -174,6 +179,8 @@ useEffect(() => {
 
    const handleInputChange = (event) => {
      const query = event.target.value
+
+
     
      const billsToBeFiltered =  data.OpenState.bills.edges  || [] 
     //  const billsToBeFiltered =  state.bills  || [] 
@@ -199,9 +206,7 @@ useEffect(() => {
 
       
 const handleDropdownChange = (event, jsonData)  =>{
-
-  console.log("EVENT ", event.target.value)
-         const query = event.target.value
+  const query = event.target.value
 
   
   const billsToBeFiltered =  data.OpenState.bills.edges  || []    
@@ -226,11 +231,8 @@ const handleDropdownChange = (event, jsonData)  =>{
     }
 
     if(event.target.value==='major'){
-      console.log("MAJOR IF ")
       const bills= billsToBeFiltered.filter(bill => {
        let val = isUpdateMajor(bill.node.actions)
-       
-       console.log("VAL ", val)
 
        if (val === true) {
          return(bill)
@@ -244,11 +246,9 @@ const handleDropdownChange = (event, jsonData)  =>{
     }
 
     if(event.target.value==='passed'){
-      console.log("Passed IF ")
+     
       const bills= billsToBeFiltered.filter(bill => {
        let val = didBillPassGovernor(bill.node.actions)
-       
-       console.log("VAL ", val)
 
        if (val !== null) {
          return(bill)
@@ -262,11 +262,8 @@ const handleDropdownChange = (event, jsonData)  =>{
     }
 
     if(event.target.value==='failed'){
-      console.log("failed IF ")
       const bills= billsToBeFiltered.filter(bill => {
        let val = didBillFailGovernor(bill.node.actions)
-       
-       console.log("VAL ", val)
 
        if (val !== null) {
          return(bill)
@@ -288,7 +285,7 @@ const handleSort = path =>{
 
 // console.log("pathsortColumn.path ", sortColumn.path,sortColumn.order )
 const sorted = _.orderBy(state.bills,[sortColumn.path], [sortColumn.order])
-// console.log("SORTED", sorted)
+ console.log("SORTED", sorted)
 
 const bills = paginate( sorted, pageState.currentPage, pageState.pageSize)
   
@@ -359,7 +356,7 @@ return (
     className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
 </div>
     <div className="relative">
-    <ListGroup items = {data.OpenState.bills.edges}  onChange={handleDropdownChange} /> 
+    <ListGroup items = {sorted}  onChange={handleDropdownChange} /> 
     </div>
     
 </div>
