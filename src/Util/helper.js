@@ -639,7 +639,7 @@ let didBillFailGovernor = (actions) => {
     let result =
       h.classification.includes('executive-veto') ||
       h.classification.includes('veto-override-failure') ||
-      //h.classification.includes('committee-failure') ||
+      h.classification.includes('committee-failure') ||
       h.classification.includes('withdrawal') ||
       h.classification.includes('failure')
 
