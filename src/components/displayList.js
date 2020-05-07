@@ -285,7 +285,7 @@ const handleSort = path =>{
 
 // console.log("pathsortColumn.path ", sortColumn.path,sortColumn.order )
 const sorted = _.orderBy(state.bills,[sortColumn.path], [sortColumn.order])
- console.log("SORTED", sorted)
+
 
 const bills = paginate( sorted, pageState.currentPage, pageState.pageSize)
   

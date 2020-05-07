@@ -10,15 +10,22 @@ const Footer = () => {
         siteMetadata {
           title
           year
+          author
+        }
+      }
+      build: allSiteBuildMetadata{
+        nodes{
+          buildTime(fromNow:true)
         }
       }
     }
+  
   `
   
   )
 
 // console.log("Time ", time.currentBuildDate.currentDate)
-
+console.log( data)
   return (
 
   //   <div> 
@@ -31,16 +38,17 @@ const Footer = () => {
   <footer className="flex justify-center px-4 text-gray-900">
         <div className="container py-6">
 
-            <hr className="h-px mt-1 bg-gray-700 border-none" />
+            <hr className="h-px mt-1  bg-gray-700 border-none" />
 
-            <div className="flex flex-col items-center justify-center mt-4 md:flex-row">
+            <div className="flex flex-col items-center justify-center mt-4 mb-2 md:flex-row">
                 {/* <div>
-                    <a href="https://www.kennywhyte.com/" className="text-xl font-bold">KW</a>
+                    <a href="https://www.kennywhyte.com/" className="text-xl font-bold">{data.build.nodes[0].buildTime}</a>
                 </div> */}
-                <div className="flex mt-4 md:m-0">
-                    <div className="-mx-0">
-                    <small >© {data.site.siteMetadata.year} <b className="uppercase">{data.site.siteMetadata.title}</b>, All Rights Reserved</small>
+                <div className="flex mt-5 md:m-0 items-center justify-center">
+                    <div className="mx-6">
                    
+                   <span className=" mr-4 text-gray-700 text-sm sm:text-xs md:text-sm lg:text-sm xl:text-sm"> Website information updated <span className="italic ">{data.build.nodes[0].buildTime}</span></span>
+                    {/* <small>Created by <a href="https://www.kennywhyte.com/" className=" ml-0 font-medium text-indigo-600 hover:text-indigo-900 focus:outline-none focus:text-indigo-700 transition duration-150 ease-in-out"> {data.site.siteMetadata.author}</a></small> */}
                   	</div>
                 </div>
             </div>
@@ -51,3 +59,5 @@ const Footer = () => {
 }
 
 export default Footer
+
+
