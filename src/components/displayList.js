@@ -276,7 +276,84 @@ const handleDropdownChange = (event, jsonData)  =>{
     })  
     }
 }
+
+const handleClicked = event =>{
+
+console.log(event + " was clicked")
+
+const query = event
+
   
+  const billsToBeFiltered =  data.OpenState.bills.edges  || []    
+         
+    if (event ==='all') {
+      setState({ query, bills: billsToBeFiltered}) 
+    } 
+
+    if(event ==='new'){
+      const bills= billsToBeFiltered.filter(bill => {
+      let val = isBillNew(bill.node.actions)
+
+       if (val === true) {
+         return(bill)
+       }
+
+    })
+    setState({
+      query, 
+      bills :bills
+    })  
+    }
+
+    if(event ==='major'){
+      const bills= billsToBeFiltered.filter(bill => {
+       let val = isUpdateMajor(bill.node.actions)
+
+       if (val === true) {
+         return(bill)
+       }
+
+    })
+    setState({
+      query, 
+      bills :bills
+    })  
+    }
+
+    if(event ==='passed'){
+     
+      const bills= billsToBeFiltered.filter(bill => {
+       let val = didBillPassGovernor(bill.node.actions)
+
+       if (val !== null) {
+         return(bill)
+       }
+
+    })
+    setState({
+      query, 
+      bills :bills
+    })  
+    }
+
+    if(event ==='failed'){
+      const bills= billsToBeFiltered.filter(bill => {
+       let val = didBillFailGovernor(bill.node.actions)
+
+       if (val !== null) {
+         return(bill)
+       }
+
+    })
+    setState({
+      query, 
+      bills :bills
+    })  
+    }
+
+
+}
+
 
 const handleSort = path =>{
   // console.log("path ", path)
@@ -336,13 +413,13 @@ return (
 
   <div className="py-4 ">
 
+
 <h2 className="mx-5 text-2xl font-semibold leading-tight">Filter</h2>
+<div className="my-2 mx-5 mb-5 flex sm:flex-row flex-col content-around ">
+{/* <div className="flex  flex-row mb-1 sm:mb-0">
 
-<div className="my-2 mx-5 mb-5 flex sm:flex-row flex-col">
-<div className="flex  flex-row mb-1 sm:mb-0">
-
-</div>
-<div className="block relative">
+</div> */}
+<div className="block relative mr-3">
     <span className="h-full absolute inset-y-0 left-0 flex items-center pl-2">
         <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current text-gray-500">
             <path
@@ -355,8 +432,10 @@ return (
     placeholder="Filter by State or Bill ID" onChange={handleInputChange}
     className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
 </div>
-    <div className="relative">
-    <ListGroup items = {sorted}  onChange={handleDropdownChange} /> 
+
+    <div className="relative text-sm font-medium  py-3 mr-2 text-gray-600">
+   Showing {state.bills.length} of {data.OpenState.bills.edges.length} {data.OpenState.bills.edges.length > 1 ? "bills": "bill"}
+    {/* <ListGroup items = {sorted}  onChange={handleDropdownChange} />  */}
     </div>
     
 </div>
@@ -367,7 +446,7 @@ return (
 
   <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
 
-<StatsGroup actions={bills} newBills={counters.newBill}  failedBills={counters.failedBill} passBills={counters.signedGov}  billTotal= {state.bills.length}   majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} />
+<StatsGroup onClicked = {handleClicked} actions={bills} newBills={counters.newBill}  failedBills={counters.failedBill} passBills={counters.signedGov}  billTotal= {data.OpenState.bills.edges.length}   majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} />
    
 {/* <div className="mt-0 mx-7 flex lg:flex-shrink-0 lg:mt-3">
       className= "mr-3 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 py-2 px-4"
