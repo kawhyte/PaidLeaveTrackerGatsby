@@ -32,7 +32,7 @@ const DisplayList = function () {
   const data = useStaticQuery(graphql`
   query {
     OpenState{ 
-           bills(first: 100, searchQuery:"\\\"paid family leave\\\"" , actionSince: "2019-07-07") {
+           bills(first: 100, searchQuery:"\\\"paid family leave\\\"" , actionSince: "2019-05-05") {
         edges {
           node {
             identifier
