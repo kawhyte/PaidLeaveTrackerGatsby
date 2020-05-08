@@ -15,7 +15,7 @@ const Footer = () => {
       }
       build: allSiteBuildMetadata{
         nodes{
-          buildTime(fromNow:true)
+          buildTime(formatString:"dddd, MMMM Do YYYY")
         }
       }
     }
@@ -46,7 +46,7 @@ const Footer = () => {
                     <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"> <a href="https://www.kennywhyte.com/" className=" ml-0 font-medium text-indigo-600 hover:text-indigo-900 focus:outline-none focus:text-indigo-700 transition duration-150 ease-in-out"> {data.site.siteMetadata.author} ✌🏽+ ❤️ </a></p>
                     <div className="mx-4">
                    
-                   <span className="mr-4 text-gray-700 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"> Website information updated <span className="italic ">{data.build.nodes[0].buildTime}</span></span>
+                   <span className="mr-4 text-gray-700 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"> Website information updated {data.build.nodes[0].buildTime}</span>
                   	</div>
                 </div>
             </div>
