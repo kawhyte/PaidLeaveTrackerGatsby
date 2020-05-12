@@ -13,10 +13,13 @@ const Header = ({ siteTitle }) => {
     <div className="w-full  mx-auto p-1">
         
       <div className="w-full flex items-center justify-between">
-        <a className="flex items-center text-indigo-600 no-underline hover:no-underline font-bold text-xl lg:text-4xl"  href="/"> 
-           <svg className="h-8 fill-current text-indigo-600 pr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-5.6-4.29a9.95 9.95 0 0 1 11.2 0 8 8 0 1 0-11.2 0zm6.12-7.64l3.02-3.02 1.41 1.41-3.02 3.02a2 2 0 1 1-1.41-1.41z"/></svg> KW
+        <a className="flex items-center flex-column text-indigo-600 no-underline hover:no-underline font-bold text-xl lg:text-4xl"  href="/"> 
+ <img className="h-16 w-16" src="https://res.cloudinary.com/babyhulk/image//upload/v1589318555/hero-image/avatar-01.png" alt="Family"/> 
+           {/* <svg className="h-8 fill-current text-indigo-600 pr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm-5.6-4.29a9.95 9.95 0 0 1 11.2 0 8 8 0 1 0-11.2 0zm6.12-7.64l3.02-3.02 1.41 1.41-3.02 3.02a2 2 0 1 1-1.41-1.41z"/></svg> */}
+       
+       KW
         </a>
-
+        
         <div className="flex w-2/3 justify-end content-center pr-10">
 
           <Link className={
