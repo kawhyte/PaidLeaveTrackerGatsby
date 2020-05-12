@@ -27,7 +27,7 @@ function table({tableComponent, onSort}) {
                             </th>
                             <th onClick={()=> onSort('lastUpdated')}
                                 className="w-1/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Last Update
+                                Last Activity
                             </th>
                             <th onClick={()=> onSort()}
                                 className="w-1/6 px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">

@@ -22,7 +22,7 @@ let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
   { label: "BILL_STATUS", key: "billstatus" },
   { label: "BILL_PROGRESSION", key: "billlocation" },
   { label: "BILL_INTRODUCED", key: "billintroduced" },
-  { label: "BILL_LAST_UPDATED", key: "lastupdate" },
+  { label: "BILL_LAST_ACTIVITY", key: "lastupdate" },
   { label: "BILL_TITLE", key: "billtitle" }
 ];
 
