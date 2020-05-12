@@ -32,7 +32,7 @@ const DisplayList = function () {
   const data = useStaticQuery(graphql`
   query {
     OpenState{ 
-           bills(first: 100, searchQuery:"\\\"paid family leave\\\"" , actionSince: "2019-05-05") {
+           bills(first: 100, searchQuery:"\\\"paid family leave\\\"" , actionSince: "2019-07-07") {
         edges {
           node {
             identifier
@@ -434,7 +434,7 @@ return (
 </div>
 
     <div className="relative text-sm font-medium  py-3 mr-2 text-gray-600">
-   Showing {state.bills.length} of {data.OpenState.bills.edges.length} {data.OpenState.bills.edges.length > 1 ? "bills": "bill"}
+     {state.bills.length} of {data.OpenState.bills.edges.length} {data.OpenState.bills.edges.length > 1 ? "bills": "bill"}
     {/* <ListGroup items = {sorted}  onChange={handleDropdownChange} />  */}
     </div>
     
@@ -460,7 +460,7 @@ return (
   </div> */}
 
 
-  <div className="hidden md:flex bg-gray-200 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex">
+  <div className="hidden justify-center md:flex bg-gray-200 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex">
     <button onClick={(e) => handleSwitchView (e)} className="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-l-full px-4 py-2 active" id="card">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="fill-current w-4 h-4 mr-2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
       <span>Grid</span>

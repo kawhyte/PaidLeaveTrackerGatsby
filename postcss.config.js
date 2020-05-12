@@ -12,5 +12,9 @@ module.exports = () => ({
   //   postcssBrowserReporter(),
   //   postcssReporter(),
   // ],
-  plugins: [require("tailwindcss"), require('autoprefixer')]
+  plugins: [require("tailwindcss"), require('autoprefixer')],
+
+  variants: {
+    backgroundColor: ['responsive', 'hover', 'focus','active'],
+  },
 })
