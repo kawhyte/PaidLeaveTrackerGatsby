@@ -12,7 +12,7 @@ const lastAction = getBillActions(actions)
 return (
 
 <>
-<div className=" p-2 w-full flex justify-center">
+<div className="mb-4 mt-4 w-full flex justify-center">
   <div className="max-w-md shadow-xl mx-1 my-1 border-r border-b border-l border-gray-400  border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
     <div className="mb-8">
       <div className="text-sm  flex items-center">

@@ -3,9 +3,9 @@ import React from 'react'
 function table({tableComponent, onSort}) {
     return (
         <div className="py-2">
-        <div className="-mx-4 sm:-mx-8 px-4 sm:px-5 py-4 overflow-x-auto">
-            <div className="inline-block  shadow rounded-lg overflow-hidden">
-                <table className="table-fixed ">
+        <div className=" -mx-4 sm:-mx-8 px-4 sm:px-5 py-4 overflow-x-auto">
+            <div className=" inline-block  shadow rounded-lg overflow-hidden">
+                <table className=" table-fixed ">
   
                 <thead>
                         <tr>

@@ -10,7 +10,7 @@ const Header = ({ siteTitle }) => {
   return (
     <>
 
-    <div className="w-full container mx-auto p-1">
+    <div className="w-full  mx-auto p-1">
         
       <div className="w-full flex items-center justify-between">
         <a className="flex items-center text-indigo-600 no-underline hover:no-underline font-bold text-xl lg:text-4xl"  href="/"> 

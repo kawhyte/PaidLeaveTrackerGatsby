@@ -370,7 +370,7 @@ const renderView = ()=> {
     if(clicked === "Table"){
       return <Table tableComponent = {tableComponent}  onSort = {handleSort} />
     } else{
-      return <div className=" my-1 px-1 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">{cardComponent}</div>
+      return <div className="   grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">{cardComponent}</div>
     }
   }
  
@@ -409,7 +409,7 @@ const renderView = ()=> {
 
 return (
 
-<div className="ml-4 mr-4">
+<div className="ml-4 mr-4 md:ml-1 sm:ml-4">
 
   <div className="py-4 ">
 
@@ -444,7 +444,7 @@ return (
 </div>
 <div className="bg-white px-4 py-3 flex items-center justify-between sm:px-6">
 
-  <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+  <div className="sm:flex-1 sm:flex sm:items-center sm:justify-between">
 
 <StatsGroup onClicked = {handleClicked} actions={bills} newBills={counters.newBill}  failedBills={counters.failedBill} passBills={counters.signedGov}  billTotal= {data.OpenState.bills.edges.length}   majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} />
    

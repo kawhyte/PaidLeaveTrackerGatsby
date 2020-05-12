@@ -8,9 +8,9 @@ const Hero = () => {
 
 
 
-<div className="pt-10">
+<div className="pt-3 ">
 
-	<div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+	<div className="px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
 	<Headers /> 
 		<div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
         <h2 className="pt-5 lg:pt-5 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-5xl   ">
@@ -25,7 +25,7 @@ const Hero = () => {
           </p>			
 		</div>
 	
-		<div className="w-full md:w-3/5 py-6 px-6 text-center flex justify-end"> 
+		<div className="w-full sm:w-3/5 py-6 px-6 text-center flex justify-end"> 
 			<img  className="w-full md:w-4/5 z-50" src="https://res.cloudinary.com/babyhulk/image/upload/w_690,h_469,f_auto/v1588723920/hero-image/family.png" alt="Family"/>
 		</div>
 		
