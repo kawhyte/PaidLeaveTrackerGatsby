@@ -1,10 +1,13 @@
 
 let activeEnv =
-  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || process.env.OPENSTATE ||  process.env.CONTENTFUL_ACCESS_TOKEN || "development"
+  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || process.env.OPENSTATE ||  process.env.CONTENTFUL_ACCESS_TOKEN || "development" || "production"
 
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+// require("dotenv").config({
+//   path: `.env.${process.env.NODE_ENV}`,
+// })
+console.log(`Using environment config: ${activeEnv}`)
+
+require("dotenv").config()
 
 module.exports = {
   siteMetadata: {
