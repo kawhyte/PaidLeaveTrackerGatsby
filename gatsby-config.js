@@ -29,6 +29,17 @@ module.exports = {
 ],
 plugins: [`gatsby-plugin-sitemap`,`gatsby-plugin-robots-txt`],
 
+
+plugins: [
+  // You can should only have one instance of this plugin
+  {
+    resolve: `gatsby-plugin-netlify-identity`,
+    options: {
+      url: `https://paidleave.netlify.app/` // required!
+    }
+  }
+],
+
 // plugins: [
 //   {
 //     resolve: `gatsby-plugin-canonical-urls`,
