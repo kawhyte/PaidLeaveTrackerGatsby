@@ -41,16 +41,16 @@ return(
 	</div>
 
 	{/* {billFailed !==null ? <div className="overflow-hidden h-2 mb-1 text-xs flex rounded bg-pink-200">: "" } */}
-	{billFailed !== null  ? <div style={{ width: "100%" }} className=" overflow-hidden h-2 mb-1 text-xs flex rounded shadow-none text-red-700 flex flex-col text-center whitespace-nowrap text-white justify-center  bg-red-300"></div> :
+	{billFailed !== null  ? <div style={{ width: "100%" }} className=" overflow-hidden h-2 mb-1 text-xs rounded shadow-none text-red-700 flex flex-col text-center whitespace-nowrap justify-center  bg-red-300"></div> :
 	
 	
 	<div className="overflow-hidden h-2 mb-1 text-xs flex rounded bg-gray-200">
 	 
-    <div style={{ width: "25%" }} className={"shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 "}></div>{" "}
+    <div style={{ width: "25%" }} className={"shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap  justify-center bg-blue-500 "}></div>
 
-    {houseBillPassed !== null  ? <div style={{ width: "25%" }} className="shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center  bg-indigo-500"></div> : <div style={{ width: "25%" }} className="shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center"></div>} 
-    {senateBillPassed !==null  ? <div style={{ width: "25%" }} className="shadow-none  text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>: <div style={{ width: "25%" }} className="shadow-none  text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center"></div> }
-	{governorBillPassed !== null ? <div style={{ width: "25%" }} className="shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center bg-teal-500"></div> : <div style={{ width: "25%" }} className="shadow-none  text-gray-700 flex flex-col text-center whitespace-nowrap text-white justify-center"></div>}
+    {houseBillPassed !== null  ? <div style={{ width: "25%" }} className="shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap  justify-center  bg-indigo-500"></div> : <div style={{ width: "25%" }} className="shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap  justify-center"></div>} 
+    {senateBillPassed !==null  ? <div style={{ width: "25%" }} className="shadow-none  text-gray-700 flex flex-col text-center whitespace-nowrap  justify-center bg-green-500"></div>: <div style={{ width: "25%" }} className="shadow-none  text-gray-700 flex flex-col text-center whitespace-nowrap  justify-center"></div> }
+	{governorBillPassed !== null ? <div style={{ width: "25%" }} className="shadow-none text-gray-700 flex flex-col text-center whitespace-nowrap  justify-center bg-teal-500"></div> : <div style={{ width: "25%" }} className="shadow-none  text-gray-700 flex flex-col text-center whitespace-nowrap  justify-center"></div>}
  </div>} 
 
 	
