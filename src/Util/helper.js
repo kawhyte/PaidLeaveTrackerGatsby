@@ -641,7 +641,9 @@ let didBillFailGovernor = (actions) => {
       h.classification.includes('veto-override-failure') ||
       h.classification.includes('committee-failure') ||
       h.classification.includes('withdrawal') ||
-      h.classification.includes('failure')
+      h.classification.includes('failure') ||
+      h.description.toLowerCase().includes('died in committee')
+
 
     return result
   })
