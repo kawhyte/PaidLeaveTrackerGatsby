@@ -16,7 +16,20 @@ module.exports = {
     year: 2020,
     siteUrl:`https://paidleave.netlify.app`
   },
-  plugins: ['gatsby-plugin-react-helmet',
+  plugins: [
+    {
+    resolve: `gatsby-plugin-google-analytics`,
+    options: {
+      // The property ID; the tracking code won't be generated without it
+      trackingId: "UA-7700317-3",
+      head: true,
+      anonymize: true,
+      respectDNT: true,
+      pageTransitionDelay: 0,
+    },
+  },
+    
+    'gatsby-plugin-react-helmet',
 
   {
     resolve: "gatsby-plugin-postcss",
