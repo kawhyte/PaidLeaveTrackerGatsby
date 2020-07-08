@@ -32,10 +32,11 @@ const DisplayList = function () {
   const data = useStaticQuery(graphql`
   query {
     OpenState{ 
-           bills(first: 99, searchQuery:"\\\"paid family leave\\\"" ,  actionSince: "2019-07-02", updatedSince: "2019-07-02") {
+      query1:bills(first: 99 ,  actionSince: "2019-07-02", updatedSince: "2019-07-02", subject:"Family Leave") {
         edges {
           node {
             identifier
+            subject
             title
             classification
             updatedAt
@@ -68,20 +69,72 @@ const DisplayList = function () {
           }
         }
       }
-    }
+  
+  
+      query2:  bills(first: 99, searchQuery:"\\\"paid family leave\\\"" ,  actionSince: "2019-07-02", updatedSince: "2019-07-02") {
+        edges {
+          node {
+            identifier
+            subject
+            title
+            classification
+            updatedAt
+            createdAt
+            legislativeSession {
+              identifier
+              jurisdiction {
+                name
+              }
+            }
+            actions {
+              order
+              date
+              description
+              classification
+              organization{
+                classification
+                foundingDate
+                name
+                image
+                updatedAt
+                createdAt
+                            }
+            }
+            
+            sources {
+              url
+                
+            }
+          }
+        }
+      }
+  
+      }
+ 
+
+
+    
+
+
+
+
   }
 
   `)
 
+const openStateQuery = [...data.OpenState.query2.edges, ...data.OpenState.query1.edges]
+
+
+console.log("Combined ", openStateQuery )
 
   const emptyQuery = ""
   const [state, setState] = useState({
-    bills: data.OpenState.bills.edges.sort((a, b) => new Date(b.node.createdAt) - new Date(a.node.createdAt)),
+    bills: openStateQuery,//.sort((a, b) => new Date(b.node.createdAt) - new Date(a.node.createdAt)),
     query: emptyQuery
   })
 
   const [pageState, setPageState] = useState({
-    bills: data.OpenState.bills.edges,
+    bills: openStateQuery,
     currentPage: 1,
     pageSize: 15
   })
@@ -104,7 +157,7 @@ const DisplayList = function () {
 
 useEffect(() => {
 
-   data.OpenState.bills.edges.map(c => {
+  openStateQuery.map(c => {
       const newBill = isBillNew(c.node.actions)
       const failed = didBillFailGovernor(c.node.actions)
       const governorBillPassed = didBillPassGovernor(c.node.actions)
@@ -150,7 +203,7 @@ useEffect(() => {
   const handleDownloadButtonClick = () =>{
    let csvData = []
 
-   data.OpenState.bills.edges.map((c,i) => {
+   openStateQuery.map((c,i) => {
     let billIntroduction = getBillIntroduction(c.node.actions)
     let billAction = getBillActions(c.node.actions)
     let houseBillPassed = didBillPassHouse(c.node.actions)
@@ -182,7 +235,7 @@ useEffect(() => {
 
 
     
-     const billsToBeFiltered =  data.OpenState.bills.edges  || [] 
+     const billsToBeFiltered =  openStateQuery  || [] 
     //  const billsToBeFiltered =  state.bills  || [] 
     
      const bills= billsToBeFiltered.filter(bill => {
@@ -209,7 +262,7 @@ const handleDropdownChange = (event, jsonData)  =>{
   const query = event.target.value
 
   
-  const billsToBeFiltered =  data.OpenState.bills.edges  || []    
+  const billsToBeFiltered =  openStateQuery  || []    
          
     if (event.target.value==='all') {
       setState({ query, bills: billsToBeFiltered}) 
@@ -284,7 +337,7 @@ console.log(event + " was clicked")
 const query = event
 
   
-  const billsToBeFiltered =  data.OpenState.bills.edges  || []    
+  const billsToBeFiltered =  openStateQuery  || []    
          
     if (event ==='all') {
       setState({ query, bills: billsToBeFiltered}) 
@@ -434,7 +487,7 @@ return (
 </div>
 
     <div className="relative text-sm font-medium  py-3 mr-2 text-gray-600">
-     {state.bills.length} of {data.OpenState.bills.edges.length} {data.OpenState.bills.edges.length > 1 ? "bills": "bill"}
+     {state.bills.length} of {openStateQuery.length} {openStateQuery.length > 1 ? "bills": "bill"}
     {/* <ListGroup items = {sorted}  onChange={handleDropdownChange} />  */}
     </div>
     
@@ -446,7 +499,7 @@ return (
 
   <div className="sm:flex-1 sm:flex sm:items-center sm:justify-between">
 
-<StatsGroup onClicked = {handleClicked} actions={bills} newBills={counters.newBill}  failedBills={counters.failedBill} passBills={counters.signedGov}  billTotal= {data.OpenState.bills.edges.length}   majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} />
+<StatsGroup onClicked = {handleClicked} actions={bills} newBills={counters.newBill}  failedBills={counters.failedBill} passBills={counters.signedGov}  billTotal= {openStateQuery.length}   majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} />
    
 {/* <div className="mt-0 mx-7 flex lg:flex-shrink-0 lg:mt-3">
       className= "mr-3 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 py-2 px-4"
