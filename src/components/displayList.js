@@ -4,7 +4,6 @@ import { graphql, useStaticQuery} from 'gatsby'
 import TableRow from './tableRow'
 import Table from './table'
 import {isBillNew,didBillFailGovernor, didBillPassGovernor, isUpdateMajor, getBillActions, getBillIntroduction, didBillPassHouse, didBillPassSenate} from '../Util/helper'
-import ListGroup from './common/listGroup'
 import Pagination from '../components/common/pagination.jsx'
 import { paginate } from '../Util/paginate'
 import StatsGroup from './common/statsGroup.jsx'
@@ -110,14 +109,6 @@ const DisplayList = function () {
       }
   
       }
- 
-
-
-    
-
-
-
-
   }
 
   `)
@@ -125,11 +116,11 @@ const DisplayList = function () {
 const openStateQuery = [...data.OpenState.query2.edges, ...data.OpenState.query1.edges]
 
 
-console.log("Combined ", openStateQuery )
+//console.log("Combined ", openStateQuery )
 
   const emptyQuery = ""
   const [state, setState] = useState({
-    bills: openStateQuery,//.sort((a, b) => new Date(b.node.createdAt) - new Date(a.node.createdAt)),
+    bills: openStateQuery.sort((a, b) => new Date(b.node.createdAt) - new Date(a.node.createdAt)),
     query: emptyQuery
   })
 
@@ -140,8 +131,6 @@ console.log("Combined ", openStateQuery )
   })
 
   const [clicked, setClicked] = useState("Card");
-
-  const [dropDown, setropDown] = useState("Card");
 
   const [csvFile, setCSV] = useState( [
     
@@ -160,7 +149,7 @@ useEffect(() => {
   openStateQuery.map(c => {
       const newBill = isBillNew(c.node.actions)
       const failed = didBillFailGovernor(c.node.actions)
-      const governorBillPassed = didBillPassGovernor(c.node.actions)
+      // const governorBillPassed = didBillPassGovernor(c.node.actions)
       const isMajor = isUpdateMajor(c.node.actions)
     
       if (newBill) {
@@ -258,77 +247,77 @@ useEffect(() => {
      }
 
       
-const handleDropdownChange = (event, jsonData)  =>{
-  const query = event.target.value
+// const handleDropdownChange = (event, jsonData)  =>{
+//   const query = event.target.value
 
   
-  const billsToBeFiltered =  openStateQuery  || []    
+//   const billsToBeFiltered =  openStateQuery  || []    
          
-    if (event.target.value==='all') {
-      setState({ query, bills: billsToBeFiltered}) 
-    } 
+//     if (event.target.value==='all') {
+//       setState({ query, bills: billsToBeFiltered}) 
+//     } 
 
-    if(event.target.value==='new'){
-      const bills= billsToBeFiltered.filter(bill => {
-      let val = isBillNew(bill.node.actions)
+//     if(event.target.value==='new'){
+//       const bills= billsToBeFiltered.filter(bill => {
+//       let val = isBillNew(bill.node.actions)
 
-       if (val === true) {
-         return(bill)
-       }
+//        if (val === true) {
+//          return(bill)
+//        }
 
-    })
-    setState({
-      query, 
-      bills :bills
-    })  
-    }
+//     })
+//     setState({
+//       query, 
+//       bills :bills
+//     })  
+//     }
 
-    if(event.target.value==='major'){
-      const bills= billsToBeFiltered.filter(bill => {
-       let val = isUpdateMajor(bill.node.actions)
+//     if(event.target.value==='major'){
+//       const bills= billsToBeFiltered.filter(bill => {
+//        let val = isUpdateMajor(bill.node.actions)
 
-       if (val === true) {
-         return(bill)
-       }
+//        if (val === true) {
+//          return(bill)
+//        }
 
-    })
-    setState({
-      query, 
-      bills :bills
-    })  
-    }
+//     })
+//     setState({
+//       query, 
+//       bills :bills
+//     })  
+//     }
 
-    if(event.target.value==='passed'){
+//     if(event.target.value==='passed'){
      
-      const bills= billsToBeFiltered.filter(bill => {
-       let val = didBillPassGovernor(bill.node.actions)
+//       const bills= billsToBeFiltered.filter(bill => {
+//        let val = didBillPassGovernor(bill.node.actions)
 
-       if (val !== null) {
-         return(bill)
-       }
+//        if (val !== null) {
+//          return(bill)
+//        }
 
-    })
-    setState({
-      query, 
-      bills :bills
-    })  
-    }
+//     })
+//     setState({
+//       query, 
+//       bills :bills
+//     })  
+//     }
 
-    if(event.target.value==='failed'){
-      const bills= billsToBeFiltered.filter(bill => {
-       let val = didBillFailGovernor(bill.node.actions)
+//     if(event.target.value==='failed'){
+//       const bills= billsToBeFiltered.filter(bill => {
+//        let val = didBillFailGovernor(bill.node.actions)
 
-       if (val !== null) {
-         return(bill)
-       }
+//        if (val !== null) {
+//          return(bill)
+//        }
 
-    })
-    setState({
-      query, 
-      bills :bills
-    })  
-    }
-}
+//     })
+//     setState({
+//       query, 
+//       bills :bills
+//     })  
+//     }
+// }
 
 const handleClicked = event =>{
 
