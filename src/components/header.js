@@ -13,8 +13,9 @@ const Header = ({ siteTitle }) => {
             href="/"
           >
             <img
-              className="h-16 w-16"
-              src="https://res.cloudinary.com/babyhulk/image/upload/w_70,h_70,f_auto/v1589318555/hero-image/avatar-01.png"
+              className="h-16 w-16 mr-2"
+              // src="https://res.cloudinary.com/babyhulk/image/upload/w_70,h_70,f_auto/v1589318555/hero-image/avatar-01.png"
+              src="https://res.cloudinary.com/babyhulk/image/upload/w_70,h_70,f_auto/v1594922425/hero-image/law.png"
               alt="Family"
             />
             PFL.
@@ -46,16 +47,16 @@ const Header = ({ siteTitle }) => {
               Twitter Mentions
             </a>
 
-            {/* <a
+             <a
               href="https://www.kennywhyte.com/"
               className=" ml-8 font-medium text-indigo-600 hover:text-indigo-900 focus:outline-none focus:text-indigo-700 transition duration-150 ease-in-out"
             >
-              Made with
-              <span role="img" aria-label="pizza">
+              Made by Kenny
+              {/* <span role="img" aria-label="pizza">
                 🍕
-              </span>
-              by Kenny
-            </a> */}
+              </span> */}
+              
+            </a> 
           </div>
 
           {/* <div class="flex w-1/2 justify-end content-center">		
