@@ -550,7 +550,7 @@ let isBillNew = (actions) => {
     new Date(dateBillWasAdded)
   )
 
-  return billDateDifference < 30 ? true : false
+  return billDateDifference < 40 ? true : false
 }
 
 ///LOGIC TO CHECK IF BILL IS MAJOR //////
