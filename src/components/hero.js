@@ -13,14 +13,14 @@ const Hero = () => {
 	<div className="px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
 	<Headers /> 
 		<div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-        <h2 className="pt-5 lg:pt-5 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-5xl   ">
+        <h2 className="pt-5 text-left lg:pt-5 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-5xl   ">
             Track upcoming
          
             <br className="p-0" />
-            <span className="text-indigo-600 ">Paid Family Leave </span>
+            <span className="text-indigo-600 text-left">Paid Family Leave </span>
           </h2>
 
-          <p className="mt-3 text-base text-gray-800 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:mb-5  md:text-xl lg:mx-0">
+          <p className="mt-3 text-base text-left text-gray-800 sm:mt-3 sm:text-lg sm:max-w-xl md:mt-5 md:mb-5  md:text-xl lg:mx-0">
           Track upcoming paid family & medical leave Legislations for US states 
           </p>			
 		</div>
