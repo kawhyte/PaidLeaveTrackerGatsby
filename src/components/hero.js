@@ -15,7 +15,7 @@ const Hero = () => {
 		<div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
         <h2 className="pt-5 lg:pt-5 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-5xl   ">
             Track upcoming {' '} 
-          <span className="tracking-normal  rounded-full text-white bg-gray-800 uppercase px-2 py-1 text-xs font-bold mr-2">Beta</span>
+         
             <br className="p-0" />
             <span className="text-indigo-600 ">Paid Family Leave </span>
           </h2>
