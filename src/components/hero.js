@@ -14,7 +14,7 @@ const Hero = () => {
 	<Headers /> 
 		<div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
         <h2 className="pt-5 lg:pt-5 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-5xl   ">
-            Track upcoming {' '} 
+            Track upcoming
          
             <br className="p-0" />
             <span className="text-indigo-600 ">Paid Family Leave </span>
