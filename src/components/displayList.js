@@ -31,7 +31,7 @@ const DisplayList = function () {
   const data = useStaticQuery(graphql`
   query {
     OpenState{ 
-      query1:bills(first: 99 ,  actionSince: "2020-01-01", updatedSince: "2020-01-01", subject:"Family Leave") {
+      query1:bills(first: 99 ,  actionSince: "2020-12-12", updatedSince: "2020-12-12", subject:"Family Leave") {
         edges {
           node {
             identifier
@@ -70,7 +70,7 @@ const DisplayList = function () {
       }
   
   
-      query2:  bills(first: 99, searchQuery:"\\\"paid family leave\\\"" ,  actionSince: "2020-01-01", updatedSince: "2020-01-01") {
+      query2:  bills(first: 99, searchQuery:"\\\"paid family\\\"" ,  actionSince: "2020-12-12", updatedSince: "2020-12-12") {
         edges {
           node {
             identifier
@@ -412,7 +412,7 @@ const renderView = ()=> {
     if(clicked === "Table"){
       return <Table tableComponent = {tableComponent}  onSort = {handleSort} />
     } else{
-      return <div className="   grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">{cardComponent}</div>
+      return <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">{cardComponent}</div>
     }
   }
  
@@ -457,13 +457,13 @@ return (
 
 
 <h2 className="mx-5 text-2xl font-semibold leading-tight">Filter</h2>
-<div className="my-2 mx-5 mb-5 flex sm:flex-row flex-col content-around ">
-{/* <div className="flex  flex-row mb-1 sm:mb-0">
+<div className="flex flex-col content-around mx-5 my-2 mb-5 sm:flex-row ">
+{/* <div className="flex flex-row mb-1 sm:mb-0">
 
 </div> */}
-<div className="block relative mr-3">
-    <span className="h-full absolute inset-y-0 left-0 flex items-center pl-2">
-        <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current text-gray-500">
+<div className="relative block mr-3">
+    <span className="absolute inset-y-0 left-0 flex items-center h-full pl-2">
+        <svg viewBox="0 0 24 24" className="w-4 h-4 text-gray-500 fill-current">
             <path
                 d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z">
             </path>
@@ -472,10 +472,10 @@ return (
     <input type ="text"
     aria-label ="Search"
     placeholder="Filter by State or Bill ID" onChange={handleInputChange}
-    className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+    className="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400 rounded-l rounded-r appearance-none sm:rounded-l-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
 </div>
 
-    <div className="relative text-sm font-medium  py-3 mr-2 text-gray-600">
+    <div className="relative py-3 mr-2 text-sm font-medium text-gray-600">
      {state.bills.length} of {openStateQuery.length} {openStateQuery.length > 1 ? "bills": "bill"}
     {/* <ListGroup items = {sorted}  onChange={handleDropdownChange} />  */}
     </div>
@@ -484,16 +484,16 @@ return (
 
 
 </div>
-<div className="bg-white px-4 py-3 flex items-center justify-between sm:px-6">
+<div className="flex items-center justify-between px-4 py-3 bg-white sm:px-6">
 
   <div className="sm:flex-1 sm:flex sm:items-center sm:justify-between">
 
 <StatsGroup onClicked = {handleClicked} actions={bills} newBills={counters.newBill}  failedBills={counters.failedBill} passBills={counters.signedGov}  billTotal= {openStateQuery.length}   majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} />
    
-{/* <div className="mt-0 mx-7 flex lg:flex-shrink-0 lg:mt-3">
-      className= "mr-3 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 py-2 px-4"
-        <button aria-label="Left Align" onClick={handleSwitchView} className= "hidden md:flex text-sm font-medium rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-indigo-600 hover:bg-indigo-700 md:text-lg xl:text-base text-white font-semibold leading-tight shadow-md inline-flex items-center">
-        <svg className="fill-current w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"/></svg>        
+{/* <div className="flex mt-0 mx-7 lg:flex-shrink-0 lg:mt-3">
+      className= "px-4 py-2 mr-3 font-medium text-white transition duration-150 bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:shadow-outline"
+        <button aria-label="Left Align" onClick={handleSwitchView} className= "inline-flex items-center hidden px-4 py-3 text-sm font-medium font-semibold leading-tight text-white bg-indigo-600 rounded-lg shadow-md md:flex md:px-5 xl:px-4 md:py-4 xl:py-3 hover:bg-indigo-700 md:text-lg xl:text-base">
+        <svg className="w-5 h-5 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"/></svg>        
           <span>Switch to {clicked === "Table" ? "Card": "Table" } view</span>
           <span>{clicked === "Table" ? "Card": "Table" }</span>
         
@@ -502,19 +502,19 @@ return (
   </div> */}
 
 
-  <div className="justify-center md:flex bg-gray-200 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex">
-    <button onClick={(e) => handleSwitchView (e)} className="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-l-full px-4 py-2 active" id="card">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="fill-current w-4 h-4 mr-2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+  <div className="inline-flex justify-center text-sm leading-none text-gray-500 bg-gray-200 border-2 border-gray-200 rounded-full md:flex">
+    <button onClick={(e) => handleSwitchView (e)} className="inline-flex items-center px-4 py-2 transition-colors duration-300 ease-in rounded-l-full focus:outline-none hover:text-blue-400 focus:text-blue-400 active" id="card">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 mr-2 fill-current"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
       <span>Grid</span>
     </button>
-    <button onClick={(e) => handleSwitchView (e)}  className="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-r-full px-4 py-2" id="table">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="fill-current w-4 h-4 mr-2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+    <button onClick={(e) => handleSwitchView (e)}  className="inline-flex items-center px-4 py-2 transition-colors duration-300 ease-in rounded-r-full focus:outline-none hover:text-blue-400 focus:text-blue-400" id="table">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 mr-2 fill-current"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
       <span>Table</span>
     </button>
 
 
-    <CSVLink data={csvFile} headers={headers} filename={"paid_leave_report.csv"} onClick={handleDownloadButtonClick} className= "inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-r-full px-4 py-2"  >
-        <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+    <CSVLink data={csvFile} headers={headers} filename={"paid_leave_report.csv"} onClick={handleDownloadButtonClick} className= "inline-flex items-center px-4 py-2 transition-colors duration-300 ease-in rounded-r-full focus:outline-none hover:text-blue-400 focus:text-blue-400"  >
+        <svg className="w-4 h-4 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
       
     <span>Report</span> </CSVLink>
 
