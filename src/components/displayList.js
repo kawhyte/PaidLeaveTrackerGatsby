@@ -31,7 +31,7 @@ const DisplayList = function () {
   const data = useStaticQuery(graphql`
   query {
     OpenState{ 
-      query1:bills(first: 99 ,  actionSince: "2020-12-12", updatedSince: "2020-12-12", subject:"Family Leave") {
+      query1:bills(last: 100 ,  actionSince: "2021-01-01", updatedSince: "2021-01-01", subject:"Family Leave") {
         edges {
           node {
             identifier
@@ -67,10 +67,11 @@ const DisplayList = function () {
             }
           }
         }
+        totalCount
       }
   
   
-      query2:  bills(first: 99, searchQuery:"\\\"paid family\\\"" ,  actionSince: "2020-12-12", updatedSince: "2020-12-12") {
+      query2:  bills(last: 100, searchQuery:"\\\"paid family\\\"" ,  actionSince: "2021-01-01", updatedSince: "2021-01-01") {
         edges {
           node {
             identifier
@@ -106,6 +107,7 @@ const DisplayList = function () {
             }
           }
         }
+          totalCount
       }
   
       }
@@ -116,6 +118,8 @@ const DisplayList = function () {
 const openStateQuery = [...data.OpenState.query2.edges, ...data.OpenState.query1.edges]
 
 
+console.log("OpenState.query1 TOTAL ", data.OpenState.query1.totalCount )
+console.log("OpenState.query2 TOTAL ", data.OpenState.query2.totalCount )
 //console.log("Combined ", openStateQuery )
 
   const emptyQuery = ""
