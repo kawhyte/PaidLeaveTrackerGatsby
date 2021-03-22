@@ -118,8 +118,8 @@ const DisplayList = function () {
 const openStateQuery = [...data.OpenState.query2.edges, ...data.OpenState.query1.edges]
 
 
-console.log("OpenState.query1 TOTAL ", data.OpenState.query1.totalCount )
-console.log("OpenState.query2 TOTAL ", data.OpenState.query2.totalCount )
+// console.log("OpenState.query1 TOTAL ", data.OpenState.query1.totalCount )
+// console.log("OpenState.query2 TOTAL ", data.OpenState.query2.totalCount )
 //console.log("Combined ", openStateQuery )
 
   const emptyQuery = ""
@@ -251,77 +251,7 @@ useEffect(() => {
      }
 
       
-// const handleDropdownChange = (event, jsonData)  =>{
-//   const query = event.target.value
 
-  
-//   const billsToBeFiltered =  openStateQuery  || []    
-         
-//     if (event.target.value==='all') {
-//       setState({ query, bills: billsToBeFiltered}) 
-//     } 
-
-//     if(event.target.value==='new'){
-//       const bills= billsToBeFiltered.filter(bill => {
-//       let val = isBillNew(bill.node.actions)
-
-//        if (val === true) {
-//          return(bill)
-//        }
-
-//     })
-//     setState({
-//       query, 
-//       bills :bills
-//     })  
-//     }
-
-//     if(event.target.value==='major'){
-//       const bills= billsToBeFiltered.filter(bill => {
-//        let val = isUpdateMajor(bill.node.actions)
-
-//        if (val === true) {
-//          return(bill)
-//        }
-
-//     })
-//     setState({
-//       query, 
-//       bills :bills
-//     })  
-//     }
-
-//     if(event.target.value==='passed'){
-     
-//       const bills= billsToBeFiltered.filter(bill => {
-//        let val = didBillPassGovernor(bill.node.actions)
-
-//        if (val !== null) {
-//          return(bill)
-//        }
-
-//     })
-//     setState({
-//       query, 
-//       bills :bills
-//     })  
-//     }
-
-//     if(event.target.value==='failed'){
-//       const bills= billsToBeFiltered.filter(bill => {
-//        let val = didBillFailGovernor(bill.node.actions)
-
-//        if (val !== null) {
-//          return(bill)
-//        }
-
-//     })
-//     setState({
-//       query, 
-//       bills :bills
-//     })  
-//     }
-// }
 
 const handleClicked = event =>{
 
@@ -402,11 +332,11 @@ const query = event
 
 
 const handleSort = path =>{
-  // console.log("path ", path)
+
   setColumnSort({path:path , order:'asc'})
 }
 
-// console.log("pathsortColumn.path ", sortColumn.path,sortColumn.order )
+
 const sorted = _.orderBy(state.bills,[sortColumn.path], [sortColumn.order])
 
 
@@ -462,9 +392,7 @@ return (
 
 <h2 className="mx-5 text-2xl font-semibold leading-tight">Filter</h2>
 <div className="flex flex-col content-around mx-5 my-2 mb-5 sm:flex-row ">
-{/* <div className="flex flex-row mb-1 sm:mb-0">
 
-</div> */}
 <div className="relative block mr-3">
     <span className="absolute inset-y-0 left-0 flex items-center h-full pl-2">
         <svg viewBox="0 0 24 24" className="w-4 h-4 text-gray-500 fill-current">
@@ -481,7 +409,7 @@ return (
 
     <div className="relative py-3 mr-2 text-sm font-medium text-gray-600">
      {state.bills.length} of {openStateQuery.length} {openStateQuery.length > 1 ? "bills": "bill"}
-    {/* <ListGroup items = {sorted}  onChange={handleDropdownChange} />  */}
+   
     </div>
     
 </div>
@@ -494,16 +422,7 @@ return (
 
 <StatsGroup onClicked = {handleClicked} actions={bills} newBills={counters.newBill}  failedBills={counters.failedBill} passBills={counters.signedGov}  billTotal= {openStateQuery.length}   majorCount={count.major} currentPage={pageState.currentPage} pageSize ={pageState.pageSize} />
    
-{/* <div className="flex mt-0 mx-7 lg:flex-shrink-0 lg:mt-3">
-      className= "px-4 py-2 mr-3 font-medium text-white transition duration-150 bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:shadow-outline"
-        <button aria-label="Left Align" onClick={handleSwitchView} className= "inline-flex items-center hidden px-4 py-3 text-sm font-medium font-semibold leading-tight text-white bg-indigo-600 rounded-lg shadow-md md:flex md:px-5 xl:px-4 md:py-4 xl:py-3 hover:bg-indigo-700 md:text-lg xl:text-base">
-        <svg className="w-5 h-5 mr-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 3v2a5 5 0 0 0-3.54 8.54l-1.41 1.41A7 7 0 0 1 10 3zm4.95 2.05A7 7 0 0 1 10 17v-2a5 5 0 0 0 3.54-8.54l1.41-1.41zM10 20l-4-4 4-4v8zm0-12V0l4 4-4 4z"/></svg>        
-          <span>Switch to {clicked === "Table" ? "Card": "Table" } view</span>
-          <span>{clicked === "Table" ? "Card": "Table" }</span>
-        
-        </button>
 
-  </div> */}
 
 
   <div className="inline-flex justify-center text-sm leading-none text-gray-500 bg-gray-200 border-2 border-gray-200 rounded-full md:flex">
