@@ -24,11 +24,10 @@ import DataGroup from './common/dataGroup'
 import _ from 'lodash'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
-import {statusOptions, stateOptions}  from '../Util/dropDownData'
+import { statusOptions, stateOptions } from '../Util/dropDownData'
 
 let counters = { newBill: 0, signedGov: 0, failedBill: 0, major: 0 }
-const animatedComponents = makeAnimated();
-
+const animatedComponents = makeAnimated()
 
 const headers = [
   { label: 'ID', key: 'id' },
@@ -338,13 +337,11 @@ const DisplayList = function () {
           pageSize={pageState.pageSize}
         />
       </div>
-    
+
       <div className="ml-4 mr-4 md:ml-1 sm:ml-4  ">
-      <div className="flex justify-center flex-col  my-12 px-8 py-8 rounded-3xl mx-auto max-w-3xl bg-blue-100">
-        <div className=" flex flex-col sm:flex-row justify-between  align-bottom w-full ">
-
-
-         
+        <div className=" flex  flex-col  my-12 px-8 py-8 rounded-3xl mx-auto max-w-3xl bg-blue-100">
+          <p className="hidden sm:block text-lg font-bold mb-3">Filter</p>
+          <div className=" flex flex-col sm:flex-row justify-between  align-bottom w-full ">
             <div className="font-medium text-gray-600 sm:w-5/12 sm:mr-4 ">
               <Select
                 options={statusOptions}
@@ -359,7 +356,6 @@ const DisplayList = function () {
                 className="mb-3"
                 isSearchable
                 autoFocus
-              
               />
             </div>
 
@@ -376,20 +372,19 @@ const DisplayList = function () {
                 className="mb-3"
                 isSearchable
                 autoFocus
-                
               />
             </div>
 
             <div className="flex items-center justify-end  font-light px-1 mx-1 text-sm text-indigo-600 sm:w-2/12">
-              {state.bills.length} {' '}
+              {state.bills.length}{' '}
               {openStateQuery.length > 1 ? 'bills' : 'bill'} found
             </div>
-            </div>
+          </div>
         </div>
-       
+
         <div className="flex items-center justify-between px-4 py-3 bg-white sm:px-6">
           <div className="sm:flex-1 sm:flex sm:items-center sm:justify-between">
-            <StatsGroup
+           { /* <StatsGroup
               onClicked={handleClicked}
               actions={bills}
               newBills={counters.newBill}
@@ -399,8 +394,7 @@ const DisplayList = function () {
               majorCount={count.major}
               currentPage={pageState.currentPage}
               pageSize={pageState.pageSize}
-
-            />
+           />*/}
 
             <div className="inline-flex justify-center text-sm leading-none text-gray-500 bg-gray-200 border-2 border-gray-200 rounded-full md:flex">
               <button
