@@ -10,6 +10,7 @@ import { paginate } from '../Util/paginate'
 import StatsGroup from './common/statsGroup.jsx'
 import format from 'date-fns/format'
 import { CSVLink } from "react-csv";
+import DataGroup from './common/dataGroup'
 import _ from "lodash";
 
 let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
@@ -384,29 +385,37 @@ const renderView = ()=> {
   })
 
 
-return (<>
+return (
+  <>
 
   <Navbar  onChange={handleInputChange}/>
-  <div className="ml-4 mr-4 md:ml-1 sm:ml-4">
+  <div className="flex justify-center bg-blue-100"> 
+  <DataGroup
+  actions={state}
+  newBills={counters.newBill}
+  failedBills={counters.failedBill}
+  passBills={counters.signedGov}
+  billTotal={openStateQuery.length}
+  majorCount={count.major}
+  currentPage={pageState.currentPage}
+  pageSize={pageState.pageSize}
+/></div>
+  <div className="ml-4 mr-4 md:ml-1 sm:ml-4 ">
   
-  <div className="py-4 ">
+<div className="py-4 bg-red-100 ">
+
+
+
+
+
+
 
 <h2 className="mx-5 text-2xl font-semibold leading-tight">Filter</h2>
-<div className="flex flex-col content-around mx-5 my-2 mb-5 sm:flex-row ">
 
-<div className="relative block mr-3">
-    <span className="absolute inset-y-0 left-0 flex items-center h-full pl-2">
-        <svg viewBox="0 0 24 24" className="w-4 h-4 text-gray-500 fill-current">
-            <path
-                d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z">
-            </path>
-        </svg>
-    </span>
-    <input type ="text"
-    aria-label ="Search"
-    placeholder="Filter by State or Bill ID" onChange={handleInputChange}
-    className="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400 rounded-l rounded-r appearance-none sm:rounded-l-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
-</div>
+
+<div className="flex flex-col content-around mx-5 my-2 mb-5 sm:flex-row ">
+<div className="relative py-3 mr-2 text-lg font-medium text-gray-600">New </div><div className="relative py-3 mr-2 text-lg font-medium text-gray-600">PFL bills in</div><div className="relative py-3 mr-2 text-lg font-medium text-gray-600">Florida</div>
+
 
     <div className="relative py-3 mr-2 text-sm font-medium text-gray-600">
      {state.bills.length} of {openStateQuery.length} {openStateQuery.length > 1 ? "bills": "bill"}
@@ -417,6 +426,9 @@ return (<>
 
 
 </div>
+///
+
+
 <div className="flex items-center justify-between px-4 py-3 bg-white sm:px-6">
 
   <div className="sm:flex-1 sm:flex sm:items-center sm:justify-between">
