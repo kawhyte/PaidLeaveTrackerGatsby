@@ -5,9 +5,9 @@ import { Link } from 'gatsby'
 
 export default function Navbar( props) {
 
-    console.log(props.onChange)
+
 	const {handleInputChange}=props
-    console.log(handleInputChange)
+  
 
 	return (
 		<>
