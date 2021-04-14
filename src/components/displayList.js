@@ -5,9 +5,10 @@ import TableRow from './tableRow'
 import Table from './table'
 import Navbar from '../components/Navbar'
 import {isBillNew,didBillFailGovernor, didBillPassGovernor, isUpdateMajor, getBillActions, getBillIntroduction, didBillPassHouse, didBillPassSenate} from '../Util/helper'
-import Pagination from '../components/common/pagination.jsx'
+import Pagination from '../components/common/pagination'
+import { GetDataFromAPI } from '../Util/getAPIData'
 import { paginate } from '../Util/paginate'
-import StatsGroup from './common/statsGroup.jsx'
+import StatsGroup from './common/statsGroup'
 import format from 'date-fns/format'
 import { CSVLink } from "react-csv";
 import DataGroup from './common/dataGroup'
@@ -29,94 +30,7 @@ let counters = { newBill:0 , signedGov:0, failedBill:0, major:0}
 
 
 const DisplayList = function () {
-
-  const data = useStaticQuery(graphql`
-  query {
-    OpenState{ 
-      query1:bills(last: 100 ,  actionSince: "2021-01-01", updatedSince: "2021-01-01", subject:"Family Leave") {
-        edges {
-          node {
-            identifier
-            subject
-            title
-            classification
-            updatedAt
-            createdAt
-            legislativeSession {
-              identifier
-              jurisdiction {
-                name
-              }
-            }
-            actions {
-              order
-              date
-              description
-              classification
-              organization{
-                classification
-                foundingDate
-                name
-                image
-                updatedAt
-                createdAt
-                            }
-            }
-            
-            sources {
-              url
-                
-            }
-          }
-        }
-        totalCount
-      }
-  
-  
-      query2:  bills(last: 100, searchQuery:"\\\"paid family\\\"" ,  actionSince: "2021-01-01", updatedSince: "2021-01-01") {
-        edges {
-          node {
-            identifier
-            subject
-            title
-            classification
-            updatedAt
-            createdAt
-            legislativeSession {
-              identifier
-              jurisdiction {
-                name
-              }
-            }
-            actions {
-              order
-              date
-              description
-              classification
-              organization{
-                classification
-                foundingDate
-                name
-                image
-                updatedAt
-                createdAt
-                            }
-            }
-            
-            sources {
-              url
-                
-            }
-          }
-        }
-          totalCount
-      }
-  
-      }
-  }
-
-  `)
-
+  const data = GetDataFromAPI()
 const openStateQuery = [...data.OpenState.query2.edges, ...data.OpenState.query1.edges]
 
 
