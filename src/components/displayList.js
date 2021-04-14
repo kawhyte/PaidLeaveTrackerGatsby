@@ -3,6 +3,7 @@ import Card from './card'
 import { graphql, useStaticQuery} from 'gatsby'
 import TableRow from './tableRow'
 import Table from './table'
+import Navbar from '../components/Navbar'
 import {isBillNew,didBillFailGovernor, didBillPassGovernor, isUpdateMajor, getBillActions, getBillIntroduction, didBillPassHouse, didBillPassSenate} from '../Util/helper'
 import Pagination from '../components/common/pagination.jsx'
 import { paginate } from '../Util/paginate'
@@ -383,12 +384,12 @@ const renderView = ()=> {
   })
 
 
-return (
+return (<>
 
-<div className="ml-4 mr-4 md:ml-1 sm:ml-4">
-
+  <Navbar  onChange={handleInputChange}/>
+  <div className="ml-4 mr-4 md:ml-1 sm:ml-4">
+  
   <div className="py-4 ">
-
 
 <h2 className="mx-5 text-2xl font-semibold leading-tight">Filter</h2>
 <div className="flex flex-col content-around mx-5 my-2 mb-5 sm:flex-row ">
@@ -452,7 +453,7 @@ return (
 <Pagination itemsCount={state.bills.length} pageSize={pageState.pageSize} onPageChange={handlePageChange} currentPage={pageState.currentPage} />
     </div>
    
- 
+ </>
   )
 }
 

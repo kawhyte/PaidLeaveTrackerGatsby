@@ -6,20 +6,22 @@ const Header = ({ siteTitle }) => {
 
   return (
     <>
-      <div className="w-full  mx-auto p-1">
+      <div className="w-full mb-10 mx-auto p-1">
         <div className="w-full flex items-center justify-between">
-          <a
-            className="flex items-center flex-column text-black no-underline hover:no-underline font-bold text-xl lg:text-3xl"
-            href="/"
-          >
-            <img
-              className="h-16 w-16 mr-2"
-              // src="https://res.cloudinary.com/babyhulk/image/upload/w_70,h_70,f_auto/v1589318555/hero-image/avatar-01.png"
-              src="https://res.cloudinary.com/babyhulk/image/upload/w_70,h_70,f_auto/v1594922425/hero-image/law.png"
-              alt="Family"
-            />
-            PFL.
-          </a>
+        <Link to='/' className=" cursor-pointer">
+        <div className='flex-shrink-0 flex items-center'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className='text-indigo-600 h-10 w-10'
+            viewBox='0 0 20 20'
+            fill='currentColor'>
+            <path d='M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z' />
+          </svg>
+          <h1 className=' text-black ml-2 uppercase font-extrabold'>
+            PFL Tracker
+          </h1>
+        </div>
+      </Link>
 
           <div className="flex w-2/3 justify-end content-center pr-10">
             <Link

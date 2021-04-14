@@ -13,7 +13,7 @@ const IndexPage = () => {
 <div  className="Roboto">
 <Layout> 
 <Hero /> 
-<DisplayList />  
+
 </Layout>
 </div>
 )
