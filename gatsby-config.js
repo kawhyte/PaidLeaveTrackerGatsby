@@ -5,7 +5,7 @@ let activeEnv =
 // require("dotenv").config({
 //   path: `.env.${process.env.NODE_ENV}`,
 // })
-console.log(`Using environment config: ${activeEnv}`)
+//console.log(`Using environment config: ${activeEnv}`)
 
 require("dotenv").config()
 

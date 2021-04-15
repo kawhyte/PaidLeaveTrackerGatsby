@@ -43,10 +43,10 @@ const headers = [
   { label: 'BILL_TITLE', key: 'billtitle' },
 ]
 
-const DisplayList = function ({ type }) {
+const DisplayList = function ({ type, text }) {
   //type === "leave" ? data = GetDataFromAPI() : data = GetEmploymentDataFromAPI()
   //const
-  console.log('PROPS', type)
+  //console.log('PROPS', type)
   switch (type) {
     case 'leave':
       data = GetDataFromAPI()
@@ -72,8 +72,8 @@ const DisplayList = function ({ type }) {
     ...data.OpenState.query1.edges,
   ]
 
-  console.log('OpenState.query1 TOTAL ', data.OpenState.query1.totalCount)
-  console.log('OpenState.query2 TOTAL ', data.OpenState.query2.totalCount)
+  // console.log('OpenState.query1 TOTAL ', data.OpenState.query1.totalCount)
+  // console.log('OpenState.query2 TOTAL ', data.OpenState.query2.totalCount)
   //console.log("Combined ", openStateQuery )
   //const [stateValue, setStateValue] = useState('')
   //const [statusValue, setStatusValue] = useState('all')
@@ -239,8 +239,8 @@ const DisplayList = function ({ type }) {
       return
     }
 
-    console.log('handleStateChange MY current STATE is ', state.stateValue)
-    console.log(' handleStateChange MY current Status is ', state.statusValue)
+    // console.log('handleStateChange MY current STATE is ', state.stateValue)
+    // console.log(' handleStateChange MY current Status is ', state.statusValue)
 
     //const billsToBeFiltered = openStateQuery || []
     const billsToBeFiltered = state.bills || []
@@ -278,8 +278,8 @@ const DisplayList = function ({ type }) {
     console.log(event + ' was clicked')
 
     const query = event
-    console.log('MY current STATE is ', state.stateValue)
-    console.log('MY current Status is ', state.statusValue)
+    // console.log('MY current STATE is ', state.stateValue)
+    // console.log('MY current Status is ', state.statusValue)
 
     if (query === null) {
       setState({
@@ -453,7 +453,7 @@ const DisplayList = function ({ type }) {
 
   return (
     <>
-      <Navbar onChange={handleInputChange} />
+      <Navbar onChange={handleInputChange}  text={text}/>
       <div className="flex justify-center ">
         <DataGroup
           actions={state}
@@ -465,7 +465,6 @@ const DisplayList = function ({ type }) {
           pageSize={pageState.pageSize}
         />
       </div>
-
       <div className="ml-4 mr-4 md:ml-1 sm:ml-4  ">
         <div className=" flex  flex-col  mb-12 px-8 py-8 rounded-3xl mx-auto max-w-3xl bg-blue-100">
           <p className="hidden sm:block text-lg font-bold mb-3">Filter</p>

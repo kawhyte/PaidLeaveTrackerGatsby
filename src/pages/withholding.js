@@ -6,7 +6,7 @@ import DisplayList from '../components/displayList'
 const Withholding = () => {
   return (
     <div>
-      <DisplayList type={'withholding'} />
+      <DisplayList type={'withholding'} text={"Withholding bills"} />
     </div>
   )
 }

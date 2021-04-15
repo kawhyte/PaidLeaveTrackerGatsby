@@ -7,7 +7,7 @@ const Employment = () => {
   return (
     <div>
    
-  <DisplayList type={"employment"} /> 
+  <DisplayList type={"employment"} text={"Unemployment bills"}  /> 
  
     </div>
   )

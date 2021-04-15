@@ -9,7 +9,7 @@ const Dash = () => {
    
      
   
-     <DisplayList type={"leave"}  /> 
+     <DisplayList type={"leave"} text={"Paid Family Leave bills"}  /> 
      
     </div>
   )
