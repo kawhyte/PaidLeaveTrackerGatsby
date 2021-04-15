@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../footer';
 
 const statsGroup = props => {
 
@@ -168,7 +169,7 @@ const statsGroup = props => {
 
 				{/* <ListGroup items = {sorted}  onChange={handleDropdownChange} />  */}
 			</div>
-
+<Footer />
 			
 		</div>
     </>

@@ -3,16 +3,12 @@ import Layout from '../components/layout'
 import Navbar from '../components/Navbar'
 import DisplayList from '../components/displayList'
 
-const Dash = () => {
+const Withholding = () => {
   return (
     <div>
-   
-     
-  
-     <DisplayList type={"leave"}  /> 
-     
+      <DisplayList type={'withholding'} />
     </div>
   )
 }
 
-export default Dash
+export default Withholding

@@ -1,12 +1,11 @@
 import { graphql, useStaticQuery} from 'gatsby'
 
 
-
-export function GetDataFromAPI() {
+export function GetWithholdingDataFromAPI() {
     return useStaticQuery(graphql`
     query {
       OpenState{ 
-        query1:bills(last: 99,  actionSince: "2021-01-01", updatedSince: "2021-01-01", subject:"Family Leave") {
+        query1:bills(last: 99,  actionSince: "2021-01-01", updatedSince: "2021-01-01", subject:"withholding") {
           edges {
             node {
               identifier
@@ -46,7 +45,7 @@ export function GetDataFromAPI() {
         }
     
     
-        query2:  bills(last: 99, searchQuery:"\\\"paid family\\\"" ,  actionSince: "2021-01-01", updatedSince: "2021-01-01") {
+        query2:  bills(last: 99, searchQuery:"\\\"withholding\\\"" ,  actionSince: "2021-01-01", updatedSince: "2021-01-01") {
           edges {
             node {
               identifier

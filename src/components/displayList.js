@@ -16,6 +16,9 @@ import {
 } from '../Util/helper'
 import Pagination from '../components/common/pagination'
 import { GetDataFromAPI } from '../Util/getAPIData'
+import { GetEmploymentDataFromAPI } from '../Util/getEmpolymentAPIData'
+import { GetWithholdingDataFromAPI} from '../Util/getWithholdingAPIData'
+
 import { paginate } from '../Util/paginate'
 import StatsGroup from './common/statsGroup'
 import format from 'date-fns/format'
@@ -26,7 +29,8 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import { statusOptions, stateOptions } from '../Util/dropDownData'
 
-let counters = { newBill: 0, signedGov: 0, failedBill: 0, major: 0 }
+
+let data =[]
 const animatedComponents = makeAnimated()
 
 const headers = [
@@ -40,15 +44,41 @@ const headers = [
   { label: 'BILL_TITLE', key: 'billtitle' },
 ]
 
-const DisplayList = function () {
-  const data = GetDataFromAPI()
+
+const DisplayList = function ({type}) {
+
+  //type === "leave" ? data = GetDataFromAPI() : data = GetEmploymentDataFromAPI()
+  //const   
+  console.log("PROPS",type)
+switch (type) {
+  case 'leave':
+    data = GetDataFromAPI()
+    
+    break;
+  case 'employment':
+    data = GetEmploymentDataFromAPI()
+    
+    break;
+  case 'withholding':
+    data = GetWithholdingDataFromAPI()
+    
+    break;
+
+  default:
+    data=[]
+    console.log( "No data found ")
+    break;
+}
+ 
+
+
   const openStateQuery = [
     ...data.OpenState.query2.edges,
     ...data.OpenState.query1.edges,
   ]
 
-  // console.log("OpenState.query1 TOTAL ", data.OpenState.query1.totalCount )
-  // console.log("OpenState.query2 TOTAL ", data.OpenState.query2.totalCount )
+  console.log("OpenState.query1 TOTAL ", data.OpenState.query1.totalCount )
+  console.log("OpenState.query2 TOTAL ", data.OpenState.query2.totalCount )
   //console.log("Combined ", openStateQuery )
   //const [stateValue, setStateValue] = useState('')
   //const [statusValue, setStatusValue] = useState('all')
@@ -79,30 +109,36 @@ const DisplayList = function () {
     failedBill: 0,
     major: 0,
   })
+  const [newBillCount, setNewBillCount] = useState(0)
+  const [failedBillCount, setFailedBillCount] = useState(0)
+  const [governorSignedBillCount, setGovernorSignedBillCount] = useState(0)
 
   const [sortColumn, setColumnSort] = useState({ path: 'title', order: 'asc' })
 
   useEffect(() => {
     openStateQuery.map((c) => {
       const newBill = isBillNew(c.node.actions)
+
       const failed = didBillFailGovernor(c.node.actions)
       // const governorBillPassed = didBillPassGovernor(c.node.actions)
       const isMajor = isUpdateMajor(c.node.actions)
 
       if (newBill) {
-        setCount(counters['newBill']++)
+        setNewBillCount( prevCount => prevCount + 1 )
       }
 
       if (isMajor) {
-        setCount(counters.signedGov++)
+        setGovernorSignedBillCount(prevCount => prevCount + 1)
       }
 
       if (failed) {
-        setCount(counters.failedBill++)
+        setFailedBillCount( prevCount => prevCount + 1 )
       }
-      return counters
+      //return counters
     })
   }, [])
+
+
 
   const handleSwitchView = (event) => {
     if (event.currentTarget.id === 'card') {
@@ -429,18 +465,18 @@ const DisplayList = function () {
       <div className="flex justify-center ">
         <DataGroup
           actions={state}
-          newBills={counters.newBill}
-          failedBills={counters.failedBill}
-          passBills={counters.signedGov}
+          newBills={newBillCount}
+          failedBills={failedBillCount}
+          passBills={governorSignedBillCount}
           billTotal={openStateQuery.length}
-          majorCount={count.major}
+          
           currentPage={pageState.currentPage}
           pageSize={pageState.pageSize}
         />
       </div>
 
       <div className="ml-4 mr-4 md:ml-1 sm:ml-4  ">
-        <div className=" flex  flex-col  my-12 px-8 py-8 rounded-3xl mx-auto max-w-3xl bg-blue-100">
+        <div className=" flex  flex-col  mb-12 px-8 py-8 rounded-3xl mx-auto max-w-3xl bg-blue-100">
           <p className="hidden sm:block text-lg font-bold mb-3">Filter</p>
           <div className=" flex flex-col sm:flex-row justify-between  align-bottom w-full ">
             <div className="font-medium text-gray-600 sm:w-5/12 sm:mr-4 ">
