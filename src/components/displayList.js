@@ -3,7 +3,7 @@ import Card from './card'
 import { graphql, useStaticQuery, Link } from 'gatsby'
 import TableRow from './tableRow'
 import Table from './table'
-import Navbar from '../components/Navbar'
+import Navbar from './navBar'
 import {
   isBillNew,
   didBillFailGovernor,
