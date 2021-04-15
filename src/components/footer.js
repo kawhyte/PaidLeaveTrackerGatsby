@@ -42,13 +42,13 @@ const Footer = () => {
                 {/* <div>
                     <a href="https://www.kennywhyte.com/" className="text-xl font-bold">{data.build.nodes[0].buildTime}</a>
                 </div> */}
-                <div className="flex mt-5 md:m-0 items-center justify-center">
+                <div className="flex md:mt-5 md:m-0 items-center justify-center">
                    {/*  
                      <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"> <a href="https://www.kennywhyte.com/" className=" ml-0 font-medium text-indigo-600 hover:text-indigo-900 focus:outline-none focus:text-indigo-700 transition duration-150 ease-in-out"> {data.site.siteMetadata.author} ✌🏽+ ❤️ </a></p>
 
                    */} 
                     
-                    <div className="mx-4">
+                    <div className="md:mx-4">
                    
                    <span className="mr-4 text-gray-500 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm"> Information updated {data.build.nodes[0].buildTime}</span>
                   	</div>

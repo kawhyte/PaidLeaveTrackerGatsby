@@ -33,7 +33,7 @@ const Card = ({
 
               <div className=" text-center py-4 lg:px-4">
                 <div
-                  className="p-2 items-center text-white bg-indigo-600 leading-none lg:rounded-full flex lg:inline-flex"
+                  className="font-light px-2 mx-2 text-sm text-indigo-600 bg-indigo-100 rounded-full"
                   role="alert"
                 >
                   <p className="font-semibold mr-2 text-left flex-auto">

@@ -20,9 +20,9 @@ const Pagination = (props) => {
     return (  
 
 
-<div className="bg-white px-4 py-3 flex items-center justify-between  sm:px-6">
+<div className="bg-white justify-center  px-4 py-3 flex items-center sm:justify-between  sm:px-6">
 
-  <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+  <div className=" flex justify-center items-center align-middle sm:flex-1 sm:flex sm:items-center sm:justify-between">
     <div>
     
     </div>

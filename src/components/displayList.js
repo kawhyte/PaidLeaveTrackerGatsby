@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Card from './card'
-import { graphql, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery, Link } from 'gatsby'
 import TableRow from './tableRow'
 import Table from './table'
 import Navbar from '../components/Navbar'
@@ -17,7 +17,7 @@ import {
 import Pagination from '../components/common/pagination'
 import { GetDataFromAPI } from '../Util/getAPIData'
 import { GetEmploymentDataFromAPI } from '../Util/getEmpolymentAPIData'
-import { GetWithholdingDataFromAPI} from '../Util/getWithholdingAPIData'
+import { GetWithholdingDataFromAPI } from '../Util/getWithholdingAPIData'
 
 import { paginate } from '../Util/paginate'
 import StatsGroup from './common/statsGroup'
@@ -29,8 +29,7 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import { statusOptions, stateOptions } from '../Util/dropDownData'
 
-
-let data =[]
+let data = []
 const animatedComponents = makeAnimated()
 
 const headers = [
@@ -44,41 +43,37 @@ const headers = [
   { label: 'BILL_TITLE', key: 'billtitle' },
 ]
 
-
-const DisplayList = function ({type}) {
-
+const DisplayList = function ({ type }) {
   //type === "leave" ? data = GetDataFromAPI() : data = GetEmploymentDataFromAPI()
-  //const   
-  console.log("PROPS",type)
-switch (type) {
-  case 'leave':
-    data = GetDataFromAPI()
-    
-    break;
-  case 'employment':
-    data = GetEmploymentDataFromAPI()
-    
-    break;
-  case 'withholding':
-    data = GetWithholdingDataFromAPI()
-    
-    break;
+  //const
+  console.log('PROPS', type)
+  switch (type) {
+    case 'leave':
+      data = GetDataFromAPI()
 
-  default:
-    data=[]
-    console.log( "No data found ")
-    break;
-}
- 
+      break
+    case 'employment':
+      data = GetEmploymentDataFromAPI()
 
+      break
+    case 'withholding':
+      data = GetWithholdingDataFromAPI()
+
+      break
+
+    default:
+      data = []
+      console.log('No data found ')
+      break
+  }
 
   const openStateQuery = [
     ...data.OpenState.query2.edges,
     ...data.OpenState.query1.edges,
   ]
 
-  console.log("OpenState.query1 TOTAL ", data.OpenState.query1.totalCount )
-  console.log("OpenState.query2 TOTAL ", data.OpenState.query2.totalCount )
+  console.log('OpenState.query1 TOTAL ', data.OpenState.query1.totalCount)
+  console.log('OpenState.query2 TOTAL ', data.OpenState.query2.totalCount)
   //console.log("Combined ", openStateQuery )
   //const [stateValue, setStateValue] = useState('')
   //const [statusValue, setStatusValue] = useState('all')
@@ -124,21 +119,19 @@ switch (type) {
       const isMajor = isUpdateMajor(c.node.actions)
 
       if (newBill) {
-        setNewBillCount( prevCount => prevCount + 1 )
+        setNewBillCount((prevCount) => prevCount + 1)
       }
 
       if (isMajor) {
-        setGovernorSignedBillCount(prevCount => prevCount + 1)
+        setGovernorSignedBillCount((prevCount) => prevCount + 1)
       }
 
       if (failed) {
-        setFailedBillCount( prevCount => prevCount + 1 )
+        setFailedBillCount((prevCount) => prevCount + 1)
       }
       //return counters
     })
   }, [])
-
-
 
   const handleSwitchView = (event) => {
     if (event.currentTarget.id === 'card') {
@@ -288,7 +281,6 @@ switch (type) {
     console.log('MY current STATE is ', state.stateValue)
     console.log('MY current Status is ', state.statusValue)
 
-
     if (query === null) {
       setState({
         query,
@@ -413,7 +405,7 @@ switch (type) {
       return <Table tableComponent={tableComponent} onSort={handleSort} />
     } else {
       return (
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {cardComponent}
         </div>
       )
@@ -469,7 +461,6 @@ switch (type) {
           failedBills={failedBillCount}
           passBills={governorSignedBillCount}
           billTotal={openStateQuery.length}
-          
           currentPage={pageState.currentPage}
           pageSize={pageState.pageSize}
         />
@@ -487,9 +478,11 @@ switch (type) {
                 isClearable
                 //onChange={setbillFilterItem}
                 //onChange={values => handleClicked(values.map(type => type.value))}
-                onChange={(values) => handleStatusChange(values ? values.value: null)}
+                onChange={(values) =>
+                  handleStatusChange(values ? values.value : null)
+                }
                 noOptionsMessage={() => 'no options left'}
-                defaultValue={"hi"}
+                defaultValue={'hi'}
                 placeholder="All bills"
                 className="mb-3"
                 isSearchable
@@ -501,7 +494,7 @@ switch (type) {
                 options={stateOptions}
                 components={animatedComponents}
                 theme={customTheme}
-                defaultValue={"test"}
+                defaultValue={'test'}
                 isClearable
                 //onChange={setbillFilterItem}
                 //onChange={values => handleClicked(values.map(type => type.value))}
@@ -520,9 +513,29 @@ switch (type) {
               {openStateQuery.length > 1 ? 'bills' : 'bill'} found
             </div>
           </div>
+
+          <div className=" md:hidden  sm:ml-6 mt-6 ">
+            <div className="flex justify-between ">
+              <Link to="/dashboard" className="" aria-current="page">
+                <button className="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-600 rounded shadow ripple hover:shadow-lg hover:bg-indigo-800 focus:outline-none">
+                  PFL
+                </button>
+              </Link>
+              <Link to="/employment" className="" aria-current="page">
+                <button className="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-600 rounded shadow ripple hover:shadow-lg hover:bg-indigo-800 focus:outline-none">
+                  UnEmployment
+                </button>
+              </Link>
+              <Link to="/withholding" aria-current="page">
+                <button className="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-600 rounded shadow ripple hover:shadow-lg hover:bg-indigo-800 focus:outline-none">
+                  Withholding
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
 
-        <div className="flex items-center justify-between px-4 py-3 bg-white sm:px-6">
+        <div className="flex items-center  justify-center sm:justify-between px-4 py-3 bg-white sm:px-6 ">
           <div className="sm:flex-1 sm:flex sm:items-center sm:justify-between">
             {/* <StatsGroup
               onClicked={handleClicked}
@@ -536,7 +549,7 @@ switch (type) {
               pageSize={pageState.pageSize}
            />*/}
 
-            <div className="inline-flex justify-center text-sm leading-none text-gray-500 bg-gray-200 border-2 border-gray-200 rounded-full md:flex">
+            <div className="inline-flex mb-6 sm:m-0 justify-center text-sm leading-none text-gray-500 bg-gray-200 border-2 border-gray-200 rounded-full md:flex">
               <button
                 onClick={(e) => handleSwitchView(e)}
                 className="inline-flex items-center px-4 py-2 transition-colors duration-300 ease-in rounded-l-full focus:outline-none hover:text-blue-400 focus:text-blue-400 active"
@@ -605,6 +618,13 @@ switch (type) {
                 <span>Report</span>{' '}
               </CSVLink>
             </div>
+
+            <Pagination
+              itemsCount={state.bills.length}
+              pageSize={pageState.pageSize}
+              onPageChange={handlePageChange}
+              currentPage={pageState.currentPage}
+            />
           </div>
         </div>
         {renderView()}

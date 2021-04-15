@@ -6,7 +6,7 @@ export default function Navbar(props) {
 
   return (
     <>
-      <nav className="bg-indigo-100 mb-20 sticky top-0 z-50">
+      <nav className=" bg-indigo-100 mb-20 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex  items-center justify-between h-16">
             <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
@@ -28,18 +28,18 @@ export default function Navbar(props) {
 
               <div className="hidden md:block  sm:ml-6">
                 <div className="flex space-x-4">
-                  <Link to="/dashboard" className="mr-4" aria-current="page">
-                    <button className="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-gray-900 rounded  ripple  hover:bg-indigo-800 focus:outline-none">
-                      Paid Family Leave
+                  <Link to="/dashboard" className="" aria-current="page">
+                    <button className="inline-block px-6 py-2 text-sm font-medium leading-6 text-center text-black uppercase transition  rounded  ripple  hover:text-indigo-300 focus:outline-none">
+                      PFL
                     </button>
                   </Link>
-                  <Link to="/employment"  className="mr-4" aria-current="page">
-                    <button className="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-gray-900 rounded  ripple  hover:bg-indigo-800 focus:outline-none">
+                  <Link to="/employment"  className="" aria-current="page">
+                    <button className="inline-block px-6 py-2 text-sm font-medium leading-6 text-center text-black uppercase transition  rounded  ripple  hover:text-indigo-300 focus:outline-none">
                       UnEmployment
                     </button>
                   </Link>
                   <Link to="/withholding" aria-current="page">
-                    <button className="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-gray-900 rounded  ripple  hover:bg-indigo-800 focus:outline-none">
+                    <button className="inline-block px-6 py-2 text-sm font-medium leading-6 text-center text-black uppercase transition  rounded  ripple  hover:text-indigo-300 focus:outline-none">
                       Withholding
                     </button>
                   </Link>

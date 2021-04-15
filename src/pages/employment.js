@@ -6,7 +6,9 @@ import DisplayList from '../components/displayList'
 const Employment = () => {
   return (
     <div>
+   
   <DisplayList type={"employment"} /> 
+ 
     </div>
   )
 }
