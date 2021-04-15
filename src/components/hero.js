@@ -24,7 +24,7 @@ const Hero = () => {
               </p>
               <br className="p-0" />
               <Link to="dashboard" className="flex justify-center">
-                <button class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-600 rounded shadow ripple hover:shadow-lg hover:bg-indigo-800 focus:outline-none">
+                <button className="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-600 rounded shadow ripple hover:shadow-lg hover:bg-indigo-800 focus:outline-none">
                   Go to Dashboard
                 </button>
               </Link>

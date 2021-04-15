@@ -1,7 +1,6 @@
 
 
 export const statusOptions = [
-    { value: 'all', label: 'All bills' },
     { value: 'new', label: 'New bills' },
     { value: 'major', label: 'Major Updates' },
     { value: 'failed', label: 'Failed bills' },

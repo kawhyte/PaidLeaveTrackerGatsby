@@ -50,6 +50,8 @@ const DisplayList = function () {
   // console.log("OpenState.query1 TOTAL ", data.OpenState.query1.totalCount )
   // console.log("OpenState.query2 TOTAL ", data.OpenState.query2.totalCount )
   //console.log("Combined ", openStateQuery )
+  //const [stateValue, setStateValue] = useState('')
+  //const [statusValue, setStatusValue] = useState('all')
 
   const emptyQuery = ''
   const [state, setState] = useState({
@@ -57,6 +59,8 @@ const DisplayList = function () {
       (a, b) => new Date(b.node.createdAt) - new Date(a.node.createdAt)
     ),
     query: emptyQuery,
+    stateValue: '',
+    statusValue: '',
   })
 
   const [pageState, setPageState] = useState({
@@ -195,39 +199,119 @@ const DisplayList = function () {
     })
   }
 
-  const handleClicked = (event) => {
+  const handleStateChange = (event) => {
+    let query = event
+
+    if (query === null) {
+      setState({
+        query,
+        bills: openStateQuery,
+      })
+      return
+    }
+
+    console.log('handleStateChange MY current STATE is ', state.stateValue)
+    console.log(' handleStateChange MY current Status is ', state.statusValue)
+
+    //const billsToBeFiltered = openStateQuery || []
+    const billsToBeFiltered = state.bills || []
+    // console.log('openStateQuery^^ --', openStateQuery)
+    // console.log('STATE^^ --', state.bills)
+    let bills = billsToBeFiltered.filter((bill) => {
+      const { identifier, legislativeSession } = bill.node
+
+      return (
+        legislativeSession.jurisdiction.name &&
+        legislativeSession.jurisdiction.name.toLowerCase() ===
+          query.toLowerCase()
+      )
+    })
+
+    //console.log('BILLSIN1', bills)
+
+    if (state.statusValue) {
+      bills = bills.filter(
+        (item) =>
+          item.node.legislativeSession.jurisdiction.name === state.statusValue
+      )
+    }
+
+    //console.log('filtered1', bills)
+    setState({
+      query,
+      bills: bills,
+      statusValue: state.statusValue,
+      stateValue: event,
+    })
+  }
+
+  const handleStatusChange = (event) => {
     console.log(event + ' was clicked')
 
     const query = event
+    console.log('MY current STATE is ', state.stateValue)
+    console.log('MY current Status is ', state.statusValue)
+
+
+    if (query === null) {
+      setState({
+        query,
+        bills: openStateQuery,
+      })
+      return
+    }
 
     const billsToBeFiltered = openStateQuery || []
+    //const billsToBeFiltered = state.bills || []
 
     if (event === 'all') {
-      setState({ query, bills: billsToBeFiltered })
+      setState({ query, bills: openStateQuery })
     }
 
     if (event === 'new') {
-      const bills = billsToBeFiltered.filter((bill) => {
+      let bills = billsToBeFiltered.filter((bill) => {
         let val = isBillNew(bill.node.actions)
 
         if (val === true) {
           return bill
         }
       })
+
+      // console.log('BILLS ', bills)
+      // console.log('stateValue ', state.stateValue)
+
+      if (state.stateValue) {
+        bills = bills.filter(
+          (item) =>
+            item.node.legislativeSession.jurisdiction.name === state.stateValue
+        )
+      }
+
+      // console.log('FILTERED', bills)
       setState({
         query,
         bills: bills,
+        statusValue: event,
+        stateValue: state.stateValue,
       })
     }
 
     if (event === 'major') {
-      const bills = billsToBeFiltered.filter((bill) => {
+      let bills = billsToBeFiltered.filter((bill) => {
         let val = isUpdateMajor(bill.node.actions)
 
         if (val === true) {
           return bill
         }
       })
+
+      if (state.stateValue) {
+        bills = bills.filter(
+          (item) =>
+            item.node.legislativeSession.jurisdiction.name === state.stateValue
+        )
+      }
+
       setState({
         query,
         bills: bills,
@@ -235,13 +319,20 @@ const DisplayList = function () {
     }
 
     if (event === 'passed') {
-      const bills = billsToBeFiltered.filter((bill) => {
+      let bills = billsToBeFiltered.filter((bill) => {
         let val = didBillPassGovernor(bill.node.actions)
 
         if (val !== null) {
           return bill
         }
       })
+
+      if (state.stateValue) {
+        bills = bills.filter(
+          (item) =>
+            item.node.legislativeSession.jurisdiction.name === state.stateValue
+        )
+      }
       setState({
         query,
         bills: bills,
@@ -249,18 +340,28 @@ const DisplayList = function () {
     }
 
     if (event === 'failed') {
-      const bills = billsToBeFiltered.filter((bill) => {
+      let bills = billsToBeFiltered.filter((bill) => {
         let val = didBillFailGovernor(bill.node.actions)
 
         if (val !== null) {
           return bill
         }
       })
+
+      if (state.stateValue) {
+        bills = bills.filter(
+          (item) =>
+            item.node.legislativeSession.jurisdiction.name === state.stateValue
+        )
+      }
+
       setState({
         query,
         bills: bills,
       })
     }
+
+    //console.log("statusValue END",state.statusValue)
   }
 
   const handleSort = (path) => {
@@ -347,15 +448,15 @@ const DisplayList = function () {
                 options={statusOptions}
                 components={animatedComponents}
                 theme={customTheme}
+                isClearable
                 //onChange={setbillFilterItem}
                 //onChange={values => handleClicked(values.map(type => type.value))}
-                onChange={(values) => handleClicked(values.value)}
+                onChange={(values) => handleStatusChange(values ? values.value: null)}
                 noOptionsMessage={() => 'no options left'}
-                defaultValue={statusOptions[0]}
+                defaultValue={"hi"}
                 placeholder="All bills"
                 className="mb-3"
                 isSearchable
-                autoFocus
               />
             </div>
 
@@ -364,14 +465,17 @@ const DisplayList = function () {
                 options={stateOptions}
                 components={animatedComponents}
                 theme={customTheme}
+                defaultValue={"test"}
+                isClearable
                 //onChange={setbillFilterItem}
                 //onChange={values => handleClicked(values.map(type => type.value))}
-                onChange={(values) => handleClicked(values.value)}
+                onChange={(values) =>
+                  handleStateChange(values ? values.label : null)
+                }
                 noOptionsMessage={() => 'no options left'}
                 placeholder="All states"
                 className="mb-3"
                 isSearchable
-                autoFocus
               />
             </div>
 
@@ -384,7 +488,7 @@ const DisplayList = function () {
 
         <div className="flex items-center justify-between px-4 py-3 bg-white sm:px-6">
           <div className="sm:flex-1 sm:flex sm:items-center sm:justify-between">
-           { /* <StatsGroup
+            {/* <StatsGroup
               onClicked={handleClicked}
               actions={bills}
               newBills={counters.newBill}
