@@ -18,3 +18,4 @@ module.exports = () => ({
     backgroundColor: ['responsive', 'hover', 'focus','active'],
   },
 })
+
