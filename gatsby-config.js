@@ -104,14 +104,14 @@ plugins: [
         fetchOptions: {},
       },
     },
-    // {
-    //   resolve: `gatsby-source-contentful`,
-    //   options: {
-    //     spaceId: process.env.CONTENTFUL_SPACE_ID,
-    //     // Learn about environment variables: https://gatsby.dev/env-vars
-    //     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-    //   }
-    // },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        // Learn about environment variables: https://gatsby.dev/env-vars
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      }
+    },
     // You can have multiple instances of this plugin
     // to read source nodes from different locations on your
     // filesystem.
