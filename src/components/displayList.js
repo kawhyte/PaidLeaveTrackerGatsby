@@ -45,29 +45,29 @@ const headers = [
 
 const DisplayList = function ({ type, text, data }) {
 
-  console.log ("DisplayList data ",data)
+  //console.log ("DisplayList data ",data)
   //type === "leave" ? data = GetDataFromAPI() : data = GetEmploymentDataFromAPI()
   //const
   //console.log('PROPS', type)
-  switch (type) {
-    case 'leave':
-      //data = GetDataFromAPI()
+  // switch (type) {
+  //   case 'leave':
+  //     //data = GetDataFromAPI()
 
-      break
-    case 'employment':
-      //data = GetEmploymentDataFromAPI()
+  //     break
+  //   case 'employment':
+  //     //data = GetEmploymentDataFromAPI()
 
-      break
-    case 'withholding':
-     // data = GetWithholdingDataFromAPI()
+  //     break
+  //   case 'withholding':
+  //    // data = GetWithholdingDataFromAPI()
 
-      break
+  //     break
 
-    default:
-      data = []
-      console.log('No data found ')
-      break
-  }
+  //   default:
+  //     data = []
+  //     console.log('No data found ')
+  //     break
+  // }
 
   const openStateQuery = [
     ...data.OpenState.query2.edges,

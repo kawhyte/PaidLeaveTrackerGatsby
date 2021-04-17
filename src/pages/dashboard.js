@@ -9,7 +9,7 @@ const Dash = () => {
 
 
   let data = GetDataFromAPI()
-
+console.log("PFL", data)
   
   return (
     <div>
