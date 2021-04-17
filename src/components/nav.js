@@ -116,9 +116,9 @@ export default function Nav(props) {
             </div>
           </div>
         </div>
-        <header class="bg-gray-100 py-2 mb-8 md:mb-0 shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 class="text-3xl font-bold text-gray-900">
+        <header className="bg-gray-100 py-2 mb-8 md:mb-0 shadow">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl font-bold text-gray-900">
             {props.text}
           </h1>
         </div>

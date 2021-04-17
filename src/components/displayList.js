@@ -43,13 +43,15 @@ const headers = [
   { label: 'BILL_TITLE', key: 'billtitle' },
 ]
 
-const DisplayList = function ({ type, text }) {
+const DisplayList = function ({ type, text, data }) {
+
+  console.log ("DisplayList data ",data)
   //type === "leave" ? data = GetDataFromAPI() : data = GetEmploymentDataFromAPI()
   //const
   //console.log('PROPS', type)
   switch (type) {
     case 'leave':
-      data = GetDataFromAPI()
+      //data = GetDataFromAPI()
 
       break
     case 'employment':
