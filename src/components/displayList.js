@@ -3,7 +3,7 @@ import Card from './card'
 import { graphql, useStaticQuery, Link } from 'gatsby'
 import TableRow from './tableRow'
 import Table from './table'
-import Navbar from './navBar2'
+import Nav from './nav'
 import {
   isBillNew,
   didBillFailGovernor,
@@ -453,7 +453,7 @@ const DisplayList = function ({ type, text }) {
 
   return (
     <>
-      <Navbar onChange={handleInputChange}  text={text}/>
+      <Nav onChange={handleInputChange}  text={text}/>
       <div className="flex justify-center ">
         <DataGroup
           actions={state}
