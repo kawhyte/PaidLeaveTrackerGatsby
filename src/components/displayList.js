@@ -53,11 +53,11 @@ const DisplayList = function ({ type, text }) {
 
       break
     case 'employment':
-      data = GetEmploymentDataFromAPI()
+      //data = GetEmploymentDataFromAPI()
 
       break
     case 'withholding':
-      data = GetWithholdingDataFromAPI()
+     // data = GetWithholdingDataFromAPI()
 
       break
 
