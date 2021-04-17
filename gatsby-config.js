@@ -1,11 +1,12 @@
 
-let activeEnv =
-  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || process.env.OPENSTATE ||  process.env.CONTENTFUL_ACCESS_TOKEN || "development" || "production"
+// let activeEnv =
+//   process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || process.env.OPENSTATE ||  process.env.CONTENTFUL_ACCESS_TOKEN || "development" || "production"
 
 // require("dotenv").config({
 //   path: `.env.${process.env.NODE_ENV}`,
 // })
 //console.log(`Using environment config: ${activeEnv}`)
+process.env.GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY=20
 
 require("dotenv").config()
 
@@ -94,6 +95,10 @@ plugins: [
         typeName: "OpenState",
         fieldName: "OpenState",
         url: "https://openstates.org/graphql",
+        batch: true,
+        dataLoaderOptions: {
+          maxBatchSize: 10,
+        },
         // HTTP headers
         headers: {
           // Learn about environment variables: https://gatsby.dev/env-vars
@@ -104,14 +109,14 @@ plugins: [
         fetchOptions: {},
       },
     },
-    {
-      resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        // Learn about environment variables: https://gatsby.dev/env-vars
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-      }
-    },
+    // {
+    //   resolve: `gatsby-source-contentful`,
+    //   options: {
+    //     spaceId: process.env.CONTENTFUL_SPACE_ID,
+    //     // Learn about environment variables: https://gatsby.dev/env-vars
+    //     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+    //   }
+    // },
     // You can have multiple instances of this plugin
     // to read source nodes from different locations on your
     // filesystem.

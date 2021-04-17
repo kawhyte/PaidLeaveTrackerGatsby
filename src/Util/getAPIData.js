@@ -44,8 +44,6 @@ export function GetDataFromAPI() {
           }
           totalCount
         }
-    
-    
         query2:  bills(last: 99, searchQuery:"\\\"paid family\\\"" ,  actionSince: "2021-01-01", updatedSince: "2021-01-01") {
           edges {
             node {

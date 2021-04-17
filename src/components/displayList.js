@@ -91,7 +91,7 @@ const DisplayList = function ({ type, text }) {
   const [pageState, setPageState] = useState({
     bills: openStateQuery,
     currentPage: 1,
-    pageSize: 15,
+    pageSize: 10,
   })
 
   const [clicked, setClicked] = useState('Card')
@@ -398,7 +398,7 @@ const DisplayList = function ({ type, text }) {
 
   const sorted = _.orderBy(state.bills, [sortColumn.path], [sortColumn.order])
 
-  const bills = paginate(sorted, pageState.currentPage, pageState.pageSize)
+  const bills = sorted //paginate(sorted, pageState.currentPage, pageState.pageSize)
 
   const renderView = () => {
     if (clicked === 'Table') {

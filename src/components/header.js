@@ -44,7 +44,7 @@ const Header = ({ siteTitle }) => {
 
             <a
               href="https://legislation-tweets.herokuapp.com/"
-              className=" hidden ml-8 font-medium text-gray-900  hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
+              className="  hidden ml-8 font-medium text-gray-900  hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
             >
               Twitter Mentions
             </a>
