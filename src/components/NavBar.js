@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-export default function Navbar(props) {
+export default function Nav(props) {
   const { handleInputChange } = props
 
   return (
