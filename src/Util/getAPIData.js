@@ -1,7 +1,6 @@
 import { graphql, useStaticQuery} from 'gatsby'
 
 
-
 export function GetDataFromAPI() {
     return useStaticQuery(graphql`
     query {
