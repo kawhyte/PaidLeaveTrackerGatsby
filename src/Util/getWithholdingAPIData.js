@@ -45,7 +45,7 @@ export function GetWithholdingDataFromAPI() {
         }
     
     
-        query2:  bills(last: 80, searchQuery:"\\\"withholding\\\"" ,  actionSince: "2021-02-02", updatedSince: "2021-02-02") {
+        query2:  bills(last: 50, searchQuery:"\\\"withholding\\\"" ,  actionSince: "2021-02-02", updatedSince: "2021-02-02") {
           edges {
             node {
               identifier
