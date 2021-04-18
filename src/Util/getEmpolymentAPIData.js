@@ -45,7 +45,7 @@ export function GetEmploymentDataFromAPI() {
         }
     
     
-        query2:  bills(last:99, searchQuery:"\\\"unemployment insurance\\\"" ,  actionSince: "2021-02-02", updatedSince: "2022-02-02") {
+        query2:  bills(last:50, searchQuery:"\\\"unemployment insurance\\\"" ,  actionSince: "2021-02-02", updatedSince: "2022-02-02") {
           edges {
             node {
               identifier
