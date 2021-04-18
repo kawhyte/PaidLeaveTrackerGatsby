@@ -5,7 +5,7 @@ export function GetEmploymentDataFromAPI() {
     return useStaticQuery(graphql`
     query {
       OpenState{ 
-        query1:bills(last: 80,  actionSince: "2021-01-01", updatedSince: "2021-01-01", subject:"unemployment") {
+        query1:bills(last: 10,  actionSince: "2021-01-01", updatedSince: "2021-01-01", subject:"unemployment") {
           edges {
             node {
               identifier
@@ -45,7 +45,7 @@ export function GetEmploymentDataFromAPI() {
         }
     
     
-        query2:  bills(last:10, searchQuery:"\\\"unemployment insurance\\\"" ,  actionSince: "2021-02-02", updatedSince: "2022-02-02") {
+        query2:  bills(last: 90, searchQuery:"\\\"unemployment insurance\\\"" ,  actionSince: "2021-02-02", updatedSince: "2021-02-02") {
           edges {
             node {
               identifier
