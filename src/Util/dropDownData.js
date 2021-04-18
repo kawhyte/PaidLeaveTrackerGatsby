@@ -6,7 +6,6 @@ export const statusOptions = [
     { value: 'failed', label: 'Failed bills' },
   ]
 
-
   export const colourOptions = [
     { value: 'ocean', label: 'Ocean', color: '#00B8D9', isFixed: true },
     { value: 'blue', label: 'Blue', color: '#0052CC', isDisabled: true },
