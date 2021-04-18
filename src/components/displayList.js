@@ -516,19 +516,19 @@ const DisplayList = function ({ type, text, data }) {
           </div>
 
           <div className=" md:hidden  sm:ml-6 mt-6 ">
-            <div className="flex justify-between ">
+            <div className="flex flex-wrap justify-center sm:justify-between ">
               <Link to="/dashboard" className="" aria-current="page">
-                <button className="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-600 rounded shadow ripple hover:shadow-lg hover:bg-indigo-800 focus:outline-none">
+                <button className="inline-block px-6 py-2 m-2 sm:m-0 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-600 rounded shadow ripple hover:shadow-lg hover:bg-indigo-800 focus:outline-none">
                   PFL
                 </button>
               </Link>
               <Link to="/employment" className="" aria-current="page">
-                <button className="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-600 rounded shadow ripple hover:shadow-lg hover:bg-indigo-800 focus:outline-none">
+                <button className="inline-block px-6 py-2 m-2 sm:m-0 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-600 rounded shadow ripple hover:shadow-lg hover:bg-indigo-800 focus:outline-none">
                   UnEmployment
                 </button>
               </Link>
               <Link to="/withholding" aria-current="page">
-                <button className="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-600 rounded shadow ripple hover:shadow-lg hover:bg-indigo-800 focus:outline-none">
+                <button className="inline-block px-6 py-2 m-2 sm:m-0 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-600 rounded shadow ripple hover:shadow-lg hover:bg-indigo-800 focus:outline-none">
                   Withholding
                 </button>
               </Link>
