@@ -34,7 +34,7 @@ const statsGroup = props => {
 							</span>
 							<span className="text-xs"> 5 bills added</span>
 						</span>*/}
-						<span className='text-xs flex  mt-2 font-light px-2 mx-2   '>
+						{/*<span className='text-xs flex  mt-2 font-light px-2 mx-2   '>
 							<span>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
@@ -51,7 +51,7 @@ const statsGroup = props => {
 								</svg>
 							</span>
 							<span className="text-xs"> 5 mins ago</span>
-						</span>
+						</span>*/ }
 					</div>
 				</div>
 				<div className='p-5 flex flex-col justify-center items-center align-middle bg-indigo-100  rounded shadow-sm'>
@@ -79,7 +79,7 @@ const statsGroup = props => {
 							</span>
 							<span className="text-xs"> 2 bills added</span>
 					</span>*/}
-						<span className='text-xs flex  mt-2 font-light px-2 mx-2   '>
+						{/*<span className='text-xs flex  mt-2 font-light px-2 mx-2   '>
 							<span>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
@@ -95,8 +95,8 @@ const statsGroup = props => {
 									/>
 								</svg>
 							</span>
-							<span className="text-xs"> 10 mins ago</span>
-						</span>
+							<span className="text-xs"> 5 mins ago</span>
+						</span>*/}
 					</div>
 				</div>
 				<div className='p-5 flex flex-col justify-center items-center align-middle bg-yellow-300 rounded shadow-sm'>
@@ -116,7 +116,7 @@ const statsGroup = props => {
 							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 						  </svg>
                             </span>*/}
-							<span className="text-xs">  of 10</span>
+							{/*<span className="text-xs"> 5 mins ago</span>*/ }
 						</span>
 					</div>
 				</div>
@@ -145,7 +145,7 @@ const statsGroup = props => {
 							</span>
 							<span className="text-xs"> 1 bills added</span>
 			</span>*/}
-						<span className='text-xs flex  mt-2 font-light px-2 mx-2   '>
+						{/*<span className='text-xs flex  mt-2 font-light px-2 mx-2   '>
 							<span>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
@@ -161,8 +161,8 @@ const statsGroup = props => {
 									/>
 								</svg>
 							</span>
-							<span className="text-xs">5 mins ago</span>
-						</span>
+							<span className="text-xs"> 5 mins ago</span>
+						</span>*/ }
 					</div>
 				</div>
 				
