@@ -29,7 +29,7 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import { statusOptions, stateOptions } from '../Util/dropDownData'
 
-let data = []
+let openStateQuery = []
 const animatedComponents = makeAnimated()
 
 const headers = [
@@ -48,30 +48,39 @@ const DisplayList = function ({ type, text, data }) {
   //type === "leave" ? data = GetDataFromAPI() : data = GetEmploymentDataFromAPI()
   //const
   //console.log('PROPS', type)
-  // switch (type) {
-  //   case 'leave':
-  //     //data = GetDataFromAPI()
+  switch (type) {
+    case 'leave':
+      openStateQuery = [
+        ...data.OpenState.query2.edges,
+        ...data.OpenState.query1.edges,
+      ]
 
-  //     break
-  //   case 'employment':
-  //     //data = GetEmploymentDataFromAPI()
+      break
+    case 'employment':
+       openStateQuery = [
+        ...data.OpenState.query2.edges,
+       
+      ]
 
-  //     break
-  //   case 'withholding':
-  //    // data = GetWithholdingDataFromAPI()
+      break
+    case 'withholding':
+       openStateQuery = [
+        ...data.OpenState.query2.edges,
+        
+      ]
 
-  //     break
+      break
 
-  //   default:
-  //     data = []
-  //     console.log('No data found ')
-  //     break
-  // }
+    default:
+      data = []
+      console.log('No data found ')
+      break
+  }
 
-  const openStateQuery = [
-    ...data.OpenState.query2.edges,
-    ...data.OpenState.query1.edges,
-  ]
+  // const openStateQuery = [
+  //   ...data.OpenState.query2.edges,
+  //   ...data.OpenState.query1.edges,
+  // ]
 
   // console.log('OpenState.query1 TOTAL ', data.OpenState.query1.totalCount)
   // console.log('OpenState.query2 TOTAL ', data.OpenState.query2.totalCount)
