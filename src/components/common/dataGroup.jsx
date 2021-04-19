@@ -56,7 +56,7 @@ const statsGroup = props => {
 				</div>
 				<div className='p-5 flex flex-col justify-center items-center align-middle bg-indigo-100  rounded shadow-sm'>
 					<div className='text-xs text-black uppercase font-normal'>
-						Signed by Gov.
+						Major Update 
 					</div>
 					<div className='flex flex-col items-center pt-1'>
 						<div className='text-2xl font-bold text-gray-900 mb-2 '>{passBills}</div>

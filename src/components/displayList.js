@@ -44,7 +44,6 @@ const headers = [
 ]
 
 const DisplayList = function ({ type, text, data }) {
-
   //console.log ("DisplayList data ",data)
   //type === "leave" ? data = GetDataFromAPI() : data = GetEmploymentDataFromAPI()
   //const
@@ -100,12 +99,6 @@ const DisplayList = function ({ type, text, data }) {
 
   const [csvFile, setCSV] = useState([])
 
-  const [count, setCount] = useState({
-    newBill: 0,
-    signedGov: 0,
-    failedBill: 0,
-    major: 0,
-  })
   const [newBillCount, setNewBillCount] = useState(0)
   const [failedBillCount, setFailedBillCount] = useState(0)
   const [governorSignedBillCount, setGovernorSignedBillCount] = useState(0)
@@ -208,7 +201,6 @@ const DisplayList = function ({ type, text, data }) {
     const query = event.target.value
 
     const billsToBeFiltered = openStateQuery || []
-    //  const billsToBeFiltered =  state.bills  || []
 
     const bills = billsToBeFiltered.filter((bill) => {
       const { identifier, legislativeSession } = bill.node
@@ -455,7 +447,7 @@ const DisplayList = function ({ type, text, data }) {
 
   return (
     <>
-      <Nav onChange={handleInputChange}  text={text}/>
+      <Nav onChange={handleInputChange} text={text} />
       <div className="flex justify-center ">
         <DataGroup
           actions={state}
