@@ -52,8 +52,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build2": "env-cmd -f .env gatsby build",
-    "build": "cross-env GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY=1 gatsby build",
+    "build": "env-cmd -f .env gatsby build",
+    "build2": "cross-env GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY=1 gatsby build",
     "develop": "env-cmd -f .env.development gatsby develop",
     "dev": "cross-env GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY=1 gatsby develop",
     "serve": "env-cmd -f .env.development gatsby serve",
