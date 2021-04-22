@@ -7,9 +7,9 @@ const Header = ({ siteTitle }) => {
   return (
     <>
       <div className="w-full mb-10 mx-auto p-1">
-        <div className="w-full flex items-center justify-between">
+        <div className="w-full flex justify-start sm:items-center sm:justify-between">
         <Link to='/' className=" cursor-pointer">
-        <div className='flex-shrink-0 flex items-center'>
+        <div className='flex-shrink-0 flex sm:items-center'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='text-indigo-600 h-10 w-10'

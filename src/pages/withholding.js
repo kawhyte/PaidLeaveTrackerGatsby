@@ -90,16 +90,12 @@ const Withholding = () => {
         />
       ) : (
         <div class="w-full h-full fixed block top-0 left-0 bg-white opacity-75 z-50">
-          <div className="flex items-center justify-center align-middle h-screen">
-            <div className="flex flex-col">
-              <img
-                className="h-20 w-20"
-                src="/Hourglass.gif"
-                alt="this slowpoke moves"
-              />
-              <p> Fetching Data...</p>
-            </div>
+        <div className="flex items-center justify-center align-middle h-screen">
+          <div className="flex flex-col">
+            <img className="h-16  w-32" src="/solid.gif" alt="this slowpoke moves" />
+            <p className =" font-bold text-lg"> Fetching Data...</p>
           </div>
+        </div>
         </div>
       )}
     </div>
