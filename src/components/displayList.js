@@ -44,7 +44,7 @@ const headers = [
 ]
 
 const DisplayList = function ({ type, text, data }) {
-  //console.log ("DisplayList data ",data)
+  console.log ("DisplayList data ",data)
   //type === "leave" ? data = GetDataFromAPI() : data = GetEmploymentDataFromAPI()
   //const
   //console.log('PROPS', type)
@@ -58,7 +58,7 @@ const DisplayList = function ({ type, text, data }) {
       break
     case 'employment':
        openStateQuery = [
-        ...data.OpenState.query2.edges,
+        ...data.bills.bills.edges,
        
       ]
 
@@ -84,7 +84,7 @@ const DisplayList = function ({ type, text, data }) {
 
   // console.log('OpenState.query1 TOTAL ', data.OpenState.query1.totalCount)
   // console.log('OpenState.query2 TOTAL ', data.OpenState.query2.totalCount)
-  //console.log("Combined ", openStateQuery )
+  console.log("Combined ", openStateQuery )
   //const [stateValue, setStateValue] = useState('')
   //const [statusValue, setStatusValue] = useState('all')
 
