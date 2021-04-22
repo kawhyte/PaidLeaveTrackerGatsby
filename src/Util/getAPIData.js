@@ -43,7 +43,7 @@ export function GetDataFromAPI() {
           }
           totalCount
         }
-        query2:  bills(last: 90, searchQuery:"\\\"paid family\\\"" ,  actionSince: "2021-02-02", updatedSince: "2021-02-02") {
+        query2:  bills(last: 95, searchQuery:"\\\"paid family\\\"" ,  actionSince: "2021-02-02", updatedSince: "2021-02-02") {
           edges {
             node {
               identifier
