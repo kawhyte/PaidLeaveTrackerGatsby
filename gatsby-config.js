@@ -32,17 +32,11 @@ module.exports = {
     
     'gatsby-plugin-react-helmet',
 
-  {
-    resolve: "gatsby-plugin-postcss",
-    options: {
-      postCssPlugins: [require(`tailwindcss`)
-      ]
-    }
-  }, 
+  
 
 ],
 plugins: [`gatsby-plugin-sitemap`,`gatsby-plugin-robots-txt`],
-
+plugins: ['gatsby-plugin-postcss'],
 
 plugins: [
   // You can should only have one instance of this plugin
