@@ -3,7 +3,7 @@ import Footer from '../footer';
 
 const statsGroup = props => {
 
-    const { billTotal, newBills, passBills, failedBills, pageSize,currentPage } = props;
+    const { billTotal, newBills, passBills, failedBills } = props;
 
     return (
         <>

@@ -62,7 +62,7 @@ const Employment = () => {
           {
             headers: {
               Accept: 'application/json',
-              'X-API-KEY': process.env.OPENSTATE,
+              'X-API-KEY': '7af11ccd-afc5-4b19-9217-76f9f838389b',
             },
           }
         )
@@ -77,9 +77,7 @@ const Employment = () => {
     }
     fetchData()
   }, [])
-  {
-    console.log('newData ', newData)
-  }
+
   //let data = GetEmploymentDataFromAPI()
   //console.log('Enployment data ', data)
   return (

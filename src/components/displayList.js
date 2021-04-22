@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Card from './card'
-import { graphql, useStaticQuery, Link } from 'gatsby'
+import {  Link } from 'gatsby'
 import TableRow from './tableRow'
 import Table from './table'
 import Nav from './nav'
@@ -15,12 +15,12 @@ import {
   didBillPassSenate,
 } from '../Util/helper'
 import Pagination from '../components/common/pagination'
-import { GetDataFromAPI } from '../Util/getAPIData'
+// import { GetDataFromAPI } from '../Util/getAPIData'
 // import { GetEmploymentDataFromAPI } from '../Util/getEmpolymentAPIData'
 // import { GetWithholdingDataFromAPI } from '../Util/getWithholdingAPIData'
 
-import { paginate } from '../Util/paginate'
-import StatsGroup from './common/statsGroup'
+// import { paginate } from '../Util/paginate'
+// import StatsGroup from './common/statsGroup'
 import format from 'date-fns/format'
 import { CSVLink } from 'react-csv'
 import DataGroup from './common/dataGroup'
@@ -44,7 +44,7 @@ const headers = [
 ]
 
 const DisplayList = function ({ type, text, data }) {
-  console.log('DisplayList data ', data)
+  //console.log('DisplayList data ', data)
   //type === "leave" ? data = GetDataFromAPI() : data = GetEmploymentDataFromAPI()
   //const
   //console.log('PROPS', type)
@@ -78,7 +78,7 @@ const DisplayList = function ({ type, text, data }) {
 
   // console.log('OpenState.query1 TOTAL ', data.OpenState.query1.totalCount)
   // console.log('OpenState.query2 TOTAL ', data.OpenState.query2.totalCount)
-  console.log('Combined ', openStateQuery)
+  //console.log('Combined ', openStateQuery)
   //const [stateValue, setStateValue] = useState('')
   //const [statusValue, setStatusValue] = useState('all')
 
@@ -244,7 +244,7 @@ const DisplayList = function ({ type, text, data }) {
     // console.log('openStateQuery^^ --', openStateQuery)
     // console.log('STATE^^ --', state.bills)
     let bills = billsToBeFiltered.filter((bill) => {
-      const { identifier, legislativeSession } = bill.node
+      const {  legislativeSession } = bill.node
 
       return (
         legislativeSession.jurisdiction.name &&
@@ -272,7 +272,7 @@ const DisplayList = function ({ type, text, data }) {
   }
 
   const handleStatusChange = (event) => {
-    console.log(event + ' was clicked')
+    //console.log(event + ' was clicked')
 
     const query = event
     // console.log('MY current STATE is ', state.stateValue)

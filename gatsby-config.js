@@ -6,7 +6,7 @@
 //   path: `.env.${process.env.NODE_ENV}`,
 // })
 //console.log(`Using environment config: ${activeEnv}`)
-process.env.GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY=20
+//process.env.GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY=20
 
 require("dotenv").config()
 
