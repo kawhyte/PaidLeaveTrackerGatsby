@@ -18,7 +18,7 @@ const Card = ({
   return (
     <>
       <div className="mb-4 mt-4 w-full flex justify-center  ">
-        <div className="max-w-md bg-white rounded-4xl border shadow-md mx-1 my-1   border-gray-200 p-4 flex flex-col justify-between leading-normal">
+        <div className="max-w-md  rounded-3xl border shadow-md mx-1 my-1   border-gray-200 p-4 flex flex-col justify-between leading-normal">
           <div className="mb-8">
             <div className="text-sm  flex items-center">
               <img
