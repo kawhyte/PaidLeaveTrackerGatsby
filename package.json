@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Kenny <kawhyte@gmail.com>",
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@reach/dialog": "^0.10.3",
     "@reach/tabs": "^0.10.3",
     "@reach/visually-hidden": "^0.10.2",
@@ -20,6 +21,7 @@
     "gatsby-image": "^3.3.0",
     "gatsby-plugin-build-date": "^1.0.0",
     "gatsby-plugin-canonical-urls": "^3.3.0",
+    "gatsby-plugin-fontawesome-css": "^1.1.0",
     "gatsby-plugin-google-analytics": "^3.3.0",
     "gatsby-plugin-netlify-identity": "0.0.3",
     "gatsby-plugin-postcss": "^4.3.0",

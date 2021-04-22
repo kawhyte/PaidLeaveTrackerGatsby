@@ -36,7 +36,7 @@ module.exports = {
 
 ],
 plugins: [`gatsby-plugin-sitemap`,`gatsby-plugin-robots-txt`],
-plugins: ['gatsby-plugin-postcss'],
+plugins: ['gatsby-plugin-postcss'],plugins: [`gatsby-plugin-fontawesome-css`],
 
 plugins: [
   // You can should only have one instance of this plugin

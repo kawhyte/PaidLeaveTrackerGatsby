@@ -89,22 +89,15 @@ const Employment = () => {
           data={newData}
         />
       ) : (
-          <div> Loading data...
-          
-          <div class="border border-light-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-          <div class="animate-pulse flex space-x-4">
-            <div class="rounded-full bg-light-blue-400 h-12 w-12"></div>
-            <div class="flex-1 space-y-4 py-1">
-              <div class="h-4 bg-light-blue-400 rounded w-3/4"></div>
-              <div class="space-y-2">
-                <div class="h-4 bg-light-blue-400 rounded"></div>
-                <div class="h-4 bg-light-blue-400 rounded w-5/6"></div>
-              </div>
-            </div>
+   
+        <div class="w-full h-full fixed block top-0 left-0 bg-white opacity-75 z-50">
+        <div className="flex items-center justify-center align-middle h-screen">
+          <div className="flex flex-col">
+            <img className="h-20 w-20" src="/Hourglass.gif" alt="this slowpoke moves" />
+            <p> Fetching Data...</p>
           </div>
         </div>
-          
-          </div>
+        </div>
       )}
     </div>
   )

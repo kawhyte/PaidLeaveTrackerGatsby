@@ -14,13 +14,13 @@ const Hero = () => {
                 Track upcoming
                 <br className="p-0" />
                 <span className="text-indigo-600 text-center">
-                  Paid Family Leave
+                  Legislations
                 </span>
               </h2>
 
               <p className="mt-3 text-base  text-gray-800 sm:mt-3 sm:text-lg sm:max-w-x md:mt-5 md:mb-5  md:text-xl lg:mx-0">
-                Track upcoming paid family & medical leave Legislations for US
-                states
+                Track upcoming unemployment, withholding, paid family & medical
+                leave Legislations for US states
               </p>
               <br className="p-0" />
               <Link to="dashboard" className="flex justify-center">
@@ -72,6 +72,10 @@ const Hero = () => {
     <img className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://res.cloudinary.com/babyhulk/image/upload/w_676,h_469,f_auto/v1588723920/hero-image/family.png" alt="Photo of family" />
   </div>
 </div> */}
+
+  
+
+
     </div>
   )
 }
