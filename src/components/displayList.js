@@ -16,8 +16,8 @@ import {
 } from '../Util/helper'
 import Pagination from '../components/common/pagination'
 import { GetDataFromAPI } from '../Util/getAPIData'
-import { GetEmploymentDataFromAPI } from '../Util/getEmpolymentAPIData'
-import { GetWithholdingDataFromAPI } from '../Util/getWithholdingAPIData'
+// import { GetEmploymentDataFromAPI } from '../Util/getEmpolymentAPIData'
+// import { GetWithholdingDataFromAPI } from '../Util/getWithholdingAPIData'
 
 import { paginate } from '../Util/paginate'
 import StatsGroup from './common/statsGroup'
@@ -44,7 +44,7 @@ const headers = [
 ]
 
 const DisplayList = function ({ type, text, data }) {
-  console.log ("DisplayList data ",data)
+  console.log('DisplayList data ', data)
   //type === "leave" ? data = GetDataFromAPI() : data = GetEmploymentDataFromAPI()
   //const
   //console.log('PROPS', type)
@@ -57,17 +57,11 @@ const DisplayList = function ({ type, text, data }) {
 
       break
     case 'employment':
-       openStateQuery = [
-        ...data.bills.bills.edges,
-       
-      ]
+      openStateQuery = [...data.bills.bills.edges]
 
       break
     case 'withholding':
-       openStateQuery = [
-        ...data.OpenState.query2.edges,
-        
-      ]
+      openStateQuery = [...data.bills.bills.edges]
 
       break
 
@@ -84,7 +78,7 @@ const DisplayList = function ({ type, text, data }) {
 
   // console.log('OpenState.query1 TOTAL ', data.OpenState.query1.totalCount)
   // console.log('OpenState.query2 TOTAL ', data.OpenState.query2.totalCount)
-  console.log("Combined ", openStateQuery )
+  console.log('Combined ', openStateQuery)
   //const [stateValue, setStateValue] = useState('')
   //const [statusValue, setStatusValue] = useState('all')
 

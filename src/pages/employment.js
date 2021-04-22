@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import DisplayList from '../components/displayList'
-import { GetEmploymentDataFromAPI } from '../Util/getEmpolymentAPIData'
+// import { GetEmploymentDataFromAPI } from '../Util/getEmpolymentAPIData'
 import { GET_EMPLOYMENT_QUERY, GRAPHQL_API } from '../Util/constants'
 import axios from 'axios'
 
@@ -10,15 +10,11 @@ const Employment = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-
       try {
-        
-      
-      const queryResult = await axios.post(
-        GRAPHQL_API,{
-
-
-          query: `
+        const queryResult = await axios.post(
+          GRAPHQL_API,
+          {
+            query: `
           {
             bills(last: 50, searchQuery:"\\\"unemployment insurance\\\"" ,  actionSince: "2021-02-02", updatedSince: "2021-02-02") {
               edges {
@@ -61,45 +57,42 @@ const Employment = () => {
           }
           
           
-          `
-        },{
-
-          headers: {
-            Accept: "application/json",
-            "X-API-KEY": '7af11ccd-afc5-4b19-9217-76f9f838389b'
+          `,
           },
-
-        }
-   
-
-      )
-      console.log('axios data', queryResult.data.data.bills)
-      const result = queryResult.data.data
-      setData({ bills: result })
-      setisFetched(true)
-
-      } catch(error){
-
-console.log(error)
-return false
-
+          {
+            headers: {
+              Accept: 'application/json',
+              'X-API-KEY': process.env.OPENSTATE,
+            },
+          }
+        )
+        console.log('axios data', queryResult.data.data.bills)
+        const result = queryResult.data.data
+        setData({ bills: result })
+        setisFetched(true)
+      } catch (error) {
+        console.log(error)
+        return false
       }
-
     }
     fetchData()
   }, [])
-{console.log("newData ",newData)}
+  {
+    console.log('newData ', newData)
+  }
   //let data = GetEmploymentDataFromAPI()
   //console.log('Enployment data ', data)
   return (
     <div>
-    
-    { isFetched ?
-      <DisplayList
-        type={'employment'}
-        text={'Unemployment bills'}
-        data={newData}
-      /> : <p> Loading data...</p>}
+      {isFetched ? (
+        <DisplayList
+          type={'employment'}
+          text={'Unemployment bills'}
+          data={newData}
+        />
+      ) : (
+        <p> Loading data...</p>
+      )}
     </div>
   )
 }
