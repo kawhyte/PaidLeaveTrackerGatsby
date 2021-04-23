@@ -18,7 +18,7 @@ const Card = ({
   return (
     <>
       <div className="mb-4 mt-4 w-full flex justify-center  ">
-        <div className="max-w-md  rounded-3xl border shadow-md mx-1 my-1   border-gray-200 p-4 flex flex-col justify-betwee leading-normal">
+        <div className="max-w-md min-w-min rounded-3xl border shadow-md mx-1 my-1   border-gray-200 p-4 flex flex-col  leading-normal">
           <div className="mb-8">
             <div className="text-sm  flex items-center">
               <img
@@ -34,9 +34,9 @@ const Card = ({
               <div className=" text-center py-4 lg:px-4">
                 <div
                   className="font-light px-2 mx-2 text-sm text-indigo-600 bg-indigo-100 rounded-full"
-                  role="alert"
+                  
                 >
-                  <p className="font-semibold mr-2 text-left flex-auto">
+                  <p className="font-semibold text-left flex-auto">
                     {jurisdiction} - {identifier}
                   </p>
                 </div>
@@ -86,9 +86,9 @@ const Card = ({
                   <time>
                     {format(new Date(lastAction[0].date), 'LLL dd, yyyy')}
                   </time>{' '}
-                  -{' '}
-                  <span className="text-gray-700 mb-3  f6 db pv2 ">
-                    {' '}
+                  <br/>
+                  <span className=" text-gray-700 line-clamp-1 md:line-clamp-3 mb-3  f6 db pv2 ">
+                  
                     {sentenceCase(actions[0].description)}
                   </span>
                 </p>

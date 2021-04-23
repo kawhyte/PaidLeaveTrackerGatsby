@@ -138,6 +138,15 @@ const DisplayList = function ({ type, text, data }) {
       setClicked('Table')
     }
   }
+  const handleCheckbox = (event) => {
+
+    console.log("Checkbox event ",event)
+    // if (event.currentTarget.id === 'card') {
+    //   setClicked('Card')
+    // } else if (event.currentTarget.id === 'table') {
+    //   setClicked('Table')
+    // }
+  }
 
   const handlePageChange = (page) => {
     setPageState((prevState) => {
@@ -529,6 +538,8 @@ const DisplayList = function ({ type, text, data }) {
               </Link>
             </div>
           </div>
+
+          
         </div>
 
         <div className="flex items-center  justify-center sm:justify-between px-4 py-3 bg-white sm:px-6 ">
