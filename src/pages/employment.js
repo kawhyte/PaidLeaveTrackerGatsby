@@ -3,6 +3,8 @@ import DisplayList from '../components/displayList'
 // import { GetEmploymentDataFromAPI } from '../Util/getEmpolymentAPIData'
 import { GET_EMPLOYMENT_QUERY, GRAPHQL_API } from '../Util/constants'
 import axios from 'axios'
+import { ReactQueryDevtools } from 'react-query-devtools';
+import { usePaginatedQuery } from "react-query";
 
 const Employment = () => {
   const [newData, setData] = useState({ bills: [] })
@@ -90,7 +92,7 @@ const Employment = () => {
         />
       ) : (
    
-        <div class="w-full h-full fixed block top-0 left-0 bg-white opacity-75 z-50">
+        <div className="w-full h-full fixed block top-0 left-0 bg-white opacity-75 z-50">
         <div className="flex items-center justify-center align-middle h-screen">
           <div className="flex flex-col">
             <img className="h-16  w-32" src="/solid.gif" alt="this slowpoke moves" />
@@ -99,6 +101,7 @@ const Employment = () => {
         </div>
         </div>
       )}
+      <ReactQueryDevtools initialIsOpen={false} />
     </div>
   )
 }
