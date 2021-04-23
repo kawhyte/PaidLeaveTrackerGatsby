@@ -411,7 +411,7 @@ const DisplayList = function ({ type, text, data }) {
       return <Table tableComponent={tableComponent} onSort={handleSort} />
     } else {
       return (
-        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
           {cardComponent}
         </div>
       )
@@ -459,7 +459,9 @@ const DisplayList = function ({ type, text, data }) {
 
   return (
     <>
-      <Nav onChange={handleInputChange} text={text} />
+    <Nav onChange={handleInputChange} text={text} />
+    <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      
       <div className="flex justify-center ">
         <DataGroup
           actions={state}
@@ -519,7 +521,7 @@ const DisplayList = function ({ type, text, data }) {
             </div>
           </div>
 
-          <div className=" md:hidden  sm:ml-6 mt-6 ">
+         {/* <div className=" md:hidden  sm:ml-6 mt-6 ">
             <div className="flex flex-wrap justify-center sm:justify-between ">
               <Link to="/dashboard" className="" aria-current="page">
                 <button className="inline-block px-6 py-2 m-2 sm:m-0 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-600   rounded-3xl shadow ripple hover:shadow-lg hover:bg-indigo-800 focus:outline-none">
@@ -537,7 +539,7 @@ const DisplayList = function ({ type, text, data }) {
                 </button>
               </Link>
             </div>
-          </div>
+          </div>*/}
 
           
         </div>
@@ -642,6 +644,7 @@ const DisplayList = function ({ type, text, data }) {
           currentPage={pageState.currentPage}
         />
       </div>
+    </div>
     </>
   )
 }

@@ -5,6 +5,8 @@
   "author": "Kenny <kawhyte@gmail.com>",
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "@headlessui/react": "^1.0.0",
+    "@heroicons/react": "^1.0.1",
     "@reach/dialog": "^0.10.3",
     "@reach/tabs": "^0.10.3",
     "@reach/visually-hidden": "^0.10.2",
