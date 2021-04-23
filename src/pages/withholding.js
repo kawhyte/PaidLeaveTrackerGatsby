@@ -62,7 +62,7 @@ const Withholding = () => {
           {
             headers: {
               Accept: 'application/json',
-              'X-API-KEY': '7af11ccd-afc5-4b19-9217-76f9f838389b',
+              'X-API-KEY': process.env.GATSBY_API_URL,
             },
           }
         )
