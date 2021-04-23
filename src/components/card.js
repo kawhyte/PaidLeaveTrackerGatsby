@@ -18,7 +18,7 @@ const Card = ({
   return (
     <>
       <div className="mb-4 mt-4 w-full flex justify-center  ">
-        <div className="max-w-md  rounded-3xl border shadow-md mx-1 my-1   border-gray-200 p-4 flex flex-col justify-between leading-normal">
+        <div className="max-w-md  rounded-3xl border shadow-md mx-1 my-1   border-gray-200 p-4 flex flex-col justify-betwee leading-normal">
           <div className="mb-8">
             <div className="text-sm  flex items-center">
               <img
@@ -65,7 +65,7 @@ const Card = ({
                     <path d="M7.667 12H2v8H0V0h12l.333 2H20l-3 6 3 6H8l-.333-2z" />
                   </svg>
                 </span>
-                <span className="f6 db pv1 text-gray-700 mb-3 leading-snug break-words  truncate-custom ">
+                <span className=" line-clamp-1 md:line-clamp-3 text-gray-700 mb-3 leading-snug break-words  truncate-custom ">
                   {' '}
                   {sentenceCase(title)}
                 </span>
