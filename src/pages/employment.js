@@ -18,7 +18,7 @@ const Employment = () => {
           {
             query: `
           {
-            bills(last: 50, searchQuery:"\\\"unemployment insurance\\\"" ,  actionSince: "2021-02-02", updatedSince: "2021-02-02") {
+            bills(last: 90, searchQuery:"\\\"unemployment insurance\\\"" ,  actionSince: "2021-02-02", updatedSince: "2021-02-02") {
               edges {
                 node {
                   identifier
