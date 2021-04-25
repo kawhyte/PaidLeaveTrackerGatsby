@@ -628,12 +628,7 @@ const DisplayList = function ({ type, text, data }) {
               </CSVLink>
             </div>
 
-            <Pagination
-              itemsCount={state.bills.length}
-              pageSize={pageState.pageSize}
-              onPageChange={handlePageChange}
-              currentPage={pageState.currentPage}
-            />
+        
           </div>
         </div>
         {renderView()}
