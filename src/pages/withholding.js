@@ -16,7 +16,7 @@ const Withholding = () => {
           {
             query: `
           {
-            bills(last: 90, searchQuery:"\\\"withholding\\\"" ,  actionSince: "2021-02-02", updatedSince: "2021-02-02") {
+            bills(last: 90, searchQuery:"\\\"withholding\\\"" ,  actionSince: "2021-06-02", updatedSince: "2021-06-02") {
               edges {
                 node {
                   identifier
