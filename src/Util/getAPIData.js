@@ -5,7 +5,7 @@ export function GetDataFromAPI() {
     return useStaticQuery(graphql`
     query {
       OpenState{ 
-        query1:bills(last: 5,  actionSince: "2021-06-02", updatedSince: "2021-06-02", subject:"Family Leave") {
+        query1:bills(last: 5,  actionSince: "2021-09-02", updatedSince: "2021-09-02", subject:"Family Leave") {
           edges {
             node {
               identifier
